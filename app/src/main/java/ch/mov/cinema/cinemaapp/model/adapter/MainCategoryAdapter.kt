@@ -1,11 +1,14 @@
 package ch.mov.cinema.cinemaapp.model.adapter
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import ch.mov.cinema.R
 import ch.mov.cinema.cinemaapp.model.entities.Movies
 import ch.mov.cinema.databinding.ItemRvMainCategoryBinding
 import com.squareup.picasso.Picasso
+import java.io.File
 
 class MainCategoryAdapter() : RecyclerView.Adapter<MainCategoryAdapter.MovieViewHolder>(){
 
@@ -26,8 +29,9 @@ class MainCategoryAdapter() : RecyclerView.Adapter<MainCategoryAdapter.MovieView
         with(holder){
             with(arrMainCategory[position]) {
                 binding.tvDishName.text = arrMainCategory[position].dishName
-                Picasso.get()
-                    .load(arrMainCategory[position].dishImgPath).into(binding.imgDish)
+                arrMainCategory[position].dishImgPath?.toInt()?.let { binding.imgMov.setImageResource(it) }
+//                Picasso.get()
+//                    .load(arrMainCategory[position].dishImgPath).into(binding.imgDish)
             }
         }
     }

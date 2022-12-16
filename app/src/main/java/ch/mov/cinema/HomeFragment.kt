@@ -1,5 +1,6 @@
 package ch.mov.cinema
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,8 @@ import ch.mov.cinema.cinemaapp.model.MovieDataViewModel
 import ch.mov.cinema.cinemaapp.model.adapter.MainCategoryAdapter
 import ch.mov.cinema.cinemaapp.model.adapter.SubCategoryAdapter
 import ch.mov.cinema.cinemaapp.model.entities.Items
+import ch.mov.cinema.cinemaapp.model.entities.Main
+import ch.mov.cinema.cinemaapp.model.entities.MainCategory
 import ch.mov.cinema.cinemaapp.model.entities.Movies
 import ch.mov.cinema.databinding.FragmentHomeBinding
 import com.beust.klaxon.Klaxon
@@ -63,7 +66,8 @@ class HomeFragment : Fragment() {
         /**
          * Test API
          */
-        testAPI()
+        testAPIMain(requireContext())
+        testAPISub()
 
         var mainCategoryAdapter = MainCategoryAdapter()
         var subCategoryAdapter = SubCategoryAdapter()
@@ -75,7 +79,7 @@ class HomeFragment : Fragment() {
         binding.rvMainCategory.adapter = mainCategoryAdapter
 
 
-        binding.rvMainCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        binding.rvMainCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
 
         binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
 
@@ -125,7 +129,7 @@ class HomeFragment : Fragment() {
         //}
     }
 
-    fun testAPI(){
+    fun testAPISub(){
         val inputStream = requireContext().resources.openRawResource(R.raw.commingup)
         val categories = Klaxon().parse<Items>(inputStream)
 
@@ -134,18 +138,29 @@ class HomeFragment : Fragment() {
             arrSubCategory.add(Movies(id,category.title,category.image))
         }
     }
+
+    fun testAPIMain(context : Context){
+        val inputStream = requireContext().resources.openRawResource(R.raw.maincategory)
+        val categories = Klaxon().parse<Main>(inputStream)
+
+
+        for(maincategories in categories?.maincategories!!){
+            var resourceId = context.getResources().getIdentifier(maincategories.icon, "drawable", context.getPackageName()).toString();
+            arrMainCategory.add(Movies(maincategories.m_id.toInt(),maincategories.title,resourceId))
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-    override fun onResume() {
-        super.onResume()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+//    }
+//
+//    override fun onStop() {
+//        super.onStop()
+//        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+//    }
 }

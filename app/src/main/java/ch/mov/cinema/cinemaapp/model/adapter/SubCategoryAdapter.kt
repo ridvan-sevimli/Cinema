@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ch.mov.cinema.cinemaapp.model.entities.Movies
 import ch.mov.cinema.databinding.ItemRvSubCategoryBinding
+import com.squareup.picasso.Picasso
 
 class SubCategoryAdapter() : RecyclerView.Adapter<SubCategoryAdapter.MovieViewHolder>(){
 
@@ -25,7 +26,7 @@ class SubCategoryAdapter() : RecyclerView.Adapter<SubCategoryAdapter.MovieViewHo
         with(holder){
             with(arrSubCategory[position]) {
                 binding.tvDishName.text = arrSubCategory[position].dishName
-                com.squareup.picasso.Picasso.get()
+                Picasso.get()
                     .load(arrSubCategory[position].dishImgPath).into(binding.imgDish)
             }
         }

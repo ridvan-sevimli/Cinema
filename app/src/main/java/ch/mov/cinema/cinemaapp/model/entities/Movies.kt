@@ -3,6 +3,7 @@ package ch.mov.cinema.cinemaapp.model.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import ch.mov.cinema.R
 import java.io.Serializable
 
 @Entity(tableName = "Movies")

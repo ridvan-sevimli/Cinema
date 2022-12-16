@@ -9,7 +9,7 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#f1f1f1</color>
-    <color name="dark_grey">#121212</color>
+    <color name="dark_grey">#1f1f1f</color>
     <color name="brown">#786060</color>
     <color name="hintTextColor">#787878</color>
 </resources>
