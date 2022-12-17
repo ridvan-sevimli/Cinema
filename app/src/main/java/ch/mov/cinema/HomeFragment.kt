@@ -69,8 +69,12 @@ class HomeFragment : Fragment() {
         testAPIMain(requireContext())
         testAPISub()
 
+
+
         var mainCategoryAdapter = MainCategoryAdapter()
         var subCategoryAdapter = SubCategoryAdapter()
+
+        mainCategoryAdapter.setClickListener(onCLicked)
 
         mainCategoryAdapter.setData(arrMainCategory)
         subCategoryAdapter.setData(arrSubCategory)
@@ -84,6 +88,7 @@ class HomeFragment : Fragment() {
         binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
 
 
+        binding.textViewCategory
         var text :String
         val url = "https://imdb-api.com/en/API/ComingSoon/k_dpwxdc3v"
         val url2 = "https://www.themealdb.com/api/json/v1/1/categories.php"
@@ -127,6 +132,12 @@ class HomeFragment : Fragment() {
         //binding.buttonSecond.setOnClickListener {
         //  findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         //}
+    }
+
+    private val onCLicked  = object : MainCategoryAdapter.OnItemClickListener{
+        override fun onClicked(categoryName: String) {
+            binding.textViewCategory.text = categoryName
+        }
     }
 
     fun testAPISub(){
