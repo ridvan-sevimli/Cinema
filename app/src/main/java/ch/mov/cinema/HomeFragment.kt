@@ -14,6 +14,9 @@ import ch.mov.cinema.cinemaapp.model.adapter.MainCategoryAdapter
 import ch.mov.cinema.cinemaapp.model.adapter.SubCategoryAdapter
 import ch.mov.cinema.cinemaapp.model.entities.*
 import ch.mov.cinema.databinding.FragmentHomeBinding
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.beust.klaxon.Klaxon
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -81,38 +84,27 @@ class HomeFragment : Fragment() {
 
 
 
+//                val requestQueue = Volley.newRequestQueue(requireContext())
+//                val request = StringRequest(
+//                    Request.Method.GET, "https://imdb-api.com/en/API/Top250Movies/k_c5ew4idg", { response ->
+//                   var movies = Klaxon().parse<MovieItem>(response)
+//                        for(movie in movies?.items!!){
+//                            var id : Int = movie.id.subSequence(2,movie.id.length).toString().toInt()
+//                            arrSubCategory.add(Movies(id,movie.title,movie.image))
+//                        }
+//
+//                        var subCategoryAdapter = SubCategoryAdapter()
+//                        subCategoryAdapter.setData(arrSubCategory)
+//                        binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+//                        binding.rvSubCategory.adapter = subCategoryAdapter
+//                    subCategoryAdapter.setData(arrSubCategory)
+//                },
+//                    {
+//
+//                    })
+//
+//                requestQueue.add(request)
 
-
-
-
-
-
-        var text :String
-        val url = "https://imdb-api.com/en/API/ComingSoon/k_dpwxdc3v"
-        val url2 = "https://www.themealdb.com/api/json/v1/1/categories.php"
-//        var categories :Items? = null
-        /**
-         * Actual API
-
-        //        val requestQueue = getMealDataFromDb.newRequestQueue(requireContext())
-        //        val request = StringRequest(Request.Method.GET, url, { response ->
-        //           var categories = Klaxon().parse<Items>(response)
-        //                for(category in categories?.items!!){
-        //                    var id : Int = category.id.subSequence(2,category.id.length).toString().toInt()
-        //                    arrSubCategory.add(Recipes(id,category.title,category.image))
-        //                }
-        //            mainCategoryAdapter.setData(arrMainCategory)
-        //            subCategoryAdapter.setData(arrSubCategory)
-        //
-        //            binding.rvSubCategory.adapter = subCategoryAdapter
-        //            binding.rvMainCategory.adapter = mainCategoryAdapter
-        //        },
-        //            {
-        //
-        //            })
-        //
-        //        requestQueue.add(request)
-         */
 
 //        model.recipes.observe(viewLifecycleOwner,
 //            // note that the observer sends the new value as parameter
@@ -132,21 +124,38 @@ class HomeFragment : Fragment() {
     private val onCLicked  = object : MainCategoryAdapter.OnItemClickListener{
         override fun onClicked(categoryName: String) {
             binding.textViewCategory.text = categoryName
-            getMealDataFromDb("title")
+            changeMovies(categoryName)
         }
     }
 
-    private fun getMealDataFromDb(categoryName:String){
-
+    private fun changeMovies(categoryName:String){
+        val inputStream = requireContext().resources.openRawResource(getJsonMovies(categoryName))
+        val movies = Klaxon().parse<MovieItem>(inputStream)
+        arrSubCategory =  ArrayList<Movies>()
+        for(movie in movies?.items!!){
+            var id : Int = movie.id.subSequence(2,movie.id.length).toString().toInt()
+            arrSubCategory.add(Movies(id,movie.title,movie.image))
+        }
             var subCategoryAdapter = SubCategoryAdapter()
-            //var cat = RecipeDatabase.getDatabase(this@HomeFragment).recipeDao().getSpecificMealList(categoryName)
-            arrSubCategory =  ArrayList<Movies>()
-            arrSubCategory.add(Movies(1,"title","https://m.media-amazon.com/images/M/MV5BM2Q0ZGE2N2EtZGI5Zi00MTlhLTg1NDktY2M2ZmY4Zjk2ZmViXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_UX128_CR0,12,128,176_AL_.jpg"))
             subCategoryAdapter.setData(arrSubCategory)
-            binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+            binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
             binding.rvSubCategory.adapter = subCategoryAdapter
     }
 
+    fun getJsonMovies(categoryName: String) : Int{
+        return when(categoryName){
+            "Coming Soon" -> R.raw.comingsoon
+            "Top 250 Movies" -> R.raw.top_250_movies
+            "Most Popular Movies" -> R.raw.most_popular_movies
+            "Most Popular Tv's" -> R.raw.most_popular_tv
+            "In Theaters" -> R.raw.in_theaters
+            "Box Office" -> R.raw.box_office
+            "Box Office All Time" -> R.raw.box_office_all_time
+            else -> {
+                R.raw.comingsoon
+            }
+        }
+    }
 
     fun initializeCategories(context : Context){
         val inputStream = requireContext().resources.openRawResource(R.raw.categories)
@@ -162,7 +171,7 @@ class HomeFragment : Fragment() {
     }
 
     fun testAPISub(){
-        val inputStream = requireContext().resources.openRawResource(R.raw.commingup)
+        val inputStream = requireContext().resources.openRawResource(R.raw.comingsoon)
         val movies = Klaxon().parse<MovieItem>(inputStream)
 
         for(movie in movies?.items!!){

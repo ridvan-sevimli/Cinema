@@ -41,4 +41,5 @@ class SubCategoryAdapter() : RecyclerView.Adapter<SubCategoryAdapter.MovieViewHo
     override fun getItemCount(): Int {
         return arrSubCategory.size
     }
+
 }
