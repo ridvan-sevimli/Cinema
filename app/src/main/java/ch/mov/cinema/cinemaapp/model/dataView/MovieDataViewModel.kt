@@ -24,12 +24,12 @@ class MovieDataViewModel : ViewModel() {
     }
 
     suspend fun insertMovies(){
-        db?.recipeDao()?.insertAll(
+        db?.movieDao()?.insertAll(
 
         )
     }
     suspend fun readMovies(){
-        val data = db?.recipeDao()?.allMovies()?.toMutableList()
+        val data = db?.movieDao()?.allMovies()?.toMutableList()
         recipes.postValue(data!!)
     }
 }
