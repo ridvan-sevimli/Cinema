@@ -33,7 +33,7 @@
                 android:src="@drawable/icons8_cinema_100" />
 
             <TextView
-                android:id="@+id/tv_dish_name"
+                android:id="@+id/tv_category_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"

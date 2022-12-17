@@ -71,25 +71,25 @@ class HomeFragment : Fragment() {
         testAPISub()
 
 
-
         var mainCategoryAdapter = MainCategoryAdapter()
-        var subCategoryAdapter = SubCategoryAdapter()
-
-        mainCategoryAdapter.setClickListener(onCLicked)
-
         mainCategoryAdapter.setData(arrMainCategory)
-        subCategoryAdapter.setData(arrSubCategory)
-
-        binding.rvSubCategory.adapter = subCategoryAdapter
+        mainCategoryAdapter.setClickListener(onCLicked)
         binding.rvMainCategory.adapter = mainCategoryAdapter
-
-
         binding.rvMainCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
 
+        var subCategoryAdapter = SubCategoryAdapter()
+        subCategoryAdapter.setData(arrSubCategory)
+        binding.rvSubCategory.adapter = subCategoryAdapter
         binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
 
 
-        binding.textViewCategory
+
+
+
+
+
+
+
         var text :String
         val url = "https://imdb-api.com/en/API/ComingSoon/k_dpwxdc3v"
         val url2 = "https://www.themealdb.com/api/json/v1/1/categories.php"
@@ -97,7 +97,7 @@ class HomeFragment : Fragment() {
         /**
          * Actual API
 
-        //        val requestQueue = Volley.newRequestQueue(requireContext())
+        //        val requestQueue = getMealDataFromDb.newRequestQueue(requireContext())
         //        val request = StringRequest(Request.Method.GET, url, { response ->
         //           var categories = Klaxon().parse<Items>(response)
         //                for(category in categories?.items!!){
@@ -130,9 +130,6 @@ class HomeFragment : Fragment() {
          *  my implementation
          */
 
-        //binding.buttonSecond.setOnClickListener {
-        //  findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-        //}
     }
 
     private val onCLicked  = object : MainCategoryAdapter.OnItemClickListener{

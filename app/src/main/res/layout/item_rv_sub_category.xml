@@ -15,7 +15,7 @@
         app:cardElevation="5dp">
 
         <ImageView
-            android:id="@+id/img_dish"
+            android:id="@+id/img_movie"
             android:layout_width="match_parent"
             android:scaleType="centerCrop"
             android:layout_height="match_parent"
@@ -30,7 +30,7 @@
 
 
         <TextView
-            android:id="@+id/tv_dish_name"
+            android:id="@+id/tv_movie_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Movie Title"

@@ -25,20 +25,19 @@ class SubCategoryAdapter() : RecyclerView.Adapter<SubCategoryAdapter.MovieViewHo
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         with(holder){
             with(arrSubCategory[position]) {
-                binding.tvDishName.text = arrSubCategory[position].dishName
-                if(arrSubCategory[position].dishImgPath != "https://imdb-api.com/images/128x176/nopicture.jpg"){
+                binding.tvMovieName.text = arrSubCategory[position].movieName
+                if(arrSubCategory[position].imgPath != "https://imdb-api.com/images/128x176/nopicture.jpg"){
                     Picasso.get()
-                        .load(arrSubCategory[position].dishImgPath).into(binding.imgDish)
+                        .load(arrSubCategory[position].imgPath).into(binding.imgMovie)
                 }else{
                     Picasso.get()
-                        .load("https://cdn2.vectorstock.com/i/1000x1000/00/61/movie-time-neon-logo-cinema-night-neon-vector-21560061.jpg").into(binding.imgDish)
+                        .load("https://cdn2.vectorstock.com/i/1000x1000/00/61/movie-time-neon-logo-cinema-night-neon-vector-21560061.jpg").into(binding.imgMovie)
 
                 }
 
             }
         }
     }
-
     override fun getItemCount(): Int {
         return arrSubCategory.size
     }
