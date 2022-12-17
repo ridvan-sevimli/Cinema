@@ -20,6 +20,7 @@ import ch.mov.cinema.cinemaapp.model.entities.Movies
 import ch.mov.cinema.databinding.FragmentHomeBinding
 import com.beust.klaxon.Klaxon
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /**
@@ -137,7 +138,19 @@ class HomeFragment : Fragment() {
     private val onCLicked  = object : MainCategoryAdapter.OnItemClickListener{
         override fun onClicked(categoryName: String) {
             binding.textViewCategory.text = categoryName
+            getMealDataFromDb("title")
         }
+    }
+
+    private fun getMealDataFromDb(categoryName:String){
+
+            var subCategoryAdapter = SubCategoryAdapter()
+            //var cat = RecipeDatabase.getDatabase(this@HomeFragment).recipeDao().getSpecificMealList(categoryName)
+            arrSubCategory =  ArrayList<Movies>()
+            arrSubCategory.add(Movies(1,"title","https://m.media-amazon.com/images/M/MV5BM2Q0ZGE2N2EtZGI5Zi00MTlhLTg1NDktY2M2ZmY4Zjk2ZmViXkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_UX128_CR0,12,128,176_AL_.jpg"))
+            subCategoryAdapter.setData(arrSubCategory)
+            binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+            binding.rvSubCategory.adapter = subCategoryAdapter
     }
 
     fun testAPISub(){
