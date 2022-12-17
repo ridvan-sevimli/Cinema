@@ -6,21 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import ch.mov.cinema.cinemaapp.model.MovieDataViewModel
 import ch.mov.cinema.cinemaapp.model.adapter.MainCategoryAdapter
 import ch.mov.cinema.cinemaapp.model.adapter.SubCategoryAdapter
-import ch.mov.cinema.cinemaapp.model.entities.Items
-import ch.mov.cinema.cinemaapp.model.entities.Main
-import ch.mov.cinema.cinemaapp.model.entities.MainCategory
-import ch.mov.cinema.cinemaapp.model.entities.Movies
+import ch.mov.cinema.cinemaapp.model.entities.*
 import ch.mov.cinema.databinding.FragmentHomeBinding
 import com.beust.klaxon.Klaxon
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /**
@@ -67,9 +62,11 @@ class HomeFragment : Fragment() {
         /**
          * Test API
          */
-        testAPIMain(requireContext())
+
         testAPISub()
 
+
+        initializeCategories(requireContext())
 
         var mainCategoryAdapter = MainCategoryAdapter()
         mainCategoryAdapter.setData(arrMainCategory)
@@ -150,21 +147,10 @@ class HomeFragment : Fragment() {
             binding.rvSubCategory.adapter = subCategoryAdapter
     }
 
-    fun testAPISub(){
-        val inputStream = requireContext().resources.openRawResource(R.raw.commingup)
-        val categories = Klaxon().parse<Items>(inputStream)
 
-        for(category in categories?.items!!){
-            var id : Int = category.id.subSequence(2,category.id.length).toString().toInt()
-            arrSubCategory.add(Movies(id,category.title,category.image))
-        }
-    }
-
-    fun testAPIMain(context : Context){
-        val inputStream = requireContext().resources.openRawResource(R.raw.maincategory)
-        val categories = Klaxon().parse<Main>(inputStream)
-
-
+    fun initializeCategories(context : Context){
+        val inputStream = requireContext().resources.openRawResource(R.raw.categories)
+        val categories = Klaxon().parse<CategoryItem>(inputStream)
         for(maincategories in categories?.maincategories!!){
             var resourceId = context.getResources().getIdentifier(maincategories.icon, "drawable", context.getPackageName()).toString();
             arrMainCategory.add(Movies(maincategories.m_id.toInt(),maincategories.title,resourceId))
@@ -173,6 +159,16 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun testAPISub(){
+        val inputStream = requireContext().resources.openRawResource(R.raw.commingup)
+        val movies = Klaxon().parse<MovieItem>(inputStream)
+
+        for(movie in movies?.items!!){
+            var id : Int = movie.id.subSequence(2,movie.id.length).toString().toInt()
+            arrSubCategory.add(Movies(id,movie.title,movie.image))
+        }
     }
 
 //    override fun onResume() {
