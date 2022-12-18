@@ -50,30 +50,39 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         model.initDB(requireContext())
-        val requestQueue = Volley.newRequestQueue(requireContext())
-                val request = StringRequest(
-                    Request.Method.GET, "https://imdb-api.com/en/API/Top250Movies/k_c5ew4idg", { response ->
-                   var movies = Klaxon().parse<MovieItem>(response)
-                        for(movie in movies?.items!!){
-                            var id : Int = movie.id.subSequence(2,movie.id.length).toString().toInt()
-                            arrSubCategory.add(Movie(id,movie.title,movie.image))
-                        }
 
-                        lifecycleScope.launchWhenStarted{
-                            withContext(Dispatchers.Default){
-                                model.insertMovies(arrSubCategory)
-                            }
-                        }
-                },
-                    {
-                        TODO("Error handling")
-                    })
 
-                requestQueue.add(request)
+        lifecycleScope.launchWhenStarted{
+            withContext(Dispatchers.Default){
+                fillDataBase()
+            }
+        }
 
         binding.btnGetStarted.setOnClickListener {
             findNavController().navigate(R.id.action_SplashFragment_to_HomeFragment)
         }
+    }
+
+    fun fillDataBase(){
+        val requestQueue = Volley.newRequestQueue(requireContext())
+        val request = StringRequest(
+            Request.Method.GET, "https://imdb-api.com/en/API/Top250Movies/k_c5ew4idg", { response ->
+                var movies = Klaxon().parse<MovieItem>(response)
+                for(movie in movies?.items!!){
+                    var id : Int = movie.id.subSequence(2,movie.id.length).toString().toInt()
+                    arrSubCategory.add(Movie(id,"top250movies",movie.title,movie.image))
+                }
+                lifecycleScope.launchWhenStarted{
+                    withContext(Dispatchers.Default){
+                        model.insertMovies(arrSubCategory)
+                    }
+                }
+            },
+            {
+                TODO("Error handling")
+            })
+
+        requestQueue.add(request)
     }
 
     override fun onDestroyView() {

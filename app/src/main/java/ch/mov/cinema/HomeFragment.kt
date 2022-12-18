@@ -142,7 +142,7 @@ class HomeFragment : Fragment() {
         arrSubCategory =  ArrayList<Movie>()
         for(movie in movies?.items!!){
             var id : Int = movie.id.subSequence(2,movie.id.length).toString().toInt()
-            arrSubCategory.add(Movie(id,movie.title,movie.image))
+            arrSubCategory.add(Movie(id,"top250movies",movie.title,movie.image))
         }
             var subCategoryAdapter = SubCategoryAdapter()
             subCategoryAdapter.setData(arrSubCategory)
@@ -170,7 +170,7 @@ class HomeFragment : Fragment() {
         val categories = Klaxon().parse<CategoryItem>(inputStream)
         for(maincategories in categories?.maincategories!!){
             var resourceId = context.getResources().getIdentifier(maincategories.icon, "drawable", context.getPackageName()).toString();
-            arrMainCategory.add(Movie(maincategories.m_id.toInt(),maincategories.title,resourceId))
+            arrMainCategory.add(Movie(maincategories.m_id.toInt(),"top250movies",maincategories.title,resourceId))
         }
     }
     override fun onDestroyView() {
@@ -184,7 +184,7 @@ class HomeFragment : Fragment() {
 
         for(movie in movies?.items!!){
             var id : Int = movie.id.subSequence(2,movie.id.length).toString().toInt()
-            arrSubCategory.add(Movie(id,movie.title,movie.image))
+            arrSubCategory.add(Movie(id,"top250movies",movie.title,movie.image))
         }
     }
 

@@ -10,6 +10,9 @@ data class Movie (
     @PrimaryKey(autoGenerate = true)
     var id: Int,
 
+    @ColumnInfo(name="category")
+    var category : String?,
+
     @ColumnInfo(name= "movieName")
     var movieName : String?,
 
