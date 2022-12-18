@@ -122,7 +122,7 @@ class HomeFragment : Fragment() {
                 })
         }
     }
-    
+
     fun getJsonMovies(categoryName: String) : Int{
         return when(categoryName){
             "Coming Soon" -> R.raw.comingsoon

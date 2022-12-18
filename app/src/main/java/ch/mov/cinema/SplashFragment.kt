@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import ch.mov.cinema.cinemaapp.model.CategoryHandler
 import ch.mov.cinema.cinemaapp.model.MovieDataViewModel
 import ch.mov.cinema.cinemaapp.model.adapter.MainCategoryAdapter
 import ch.mov.cinema.cinemaapp.model.adapter.SubCategoryAdapter
@@ -49,18 +50,11 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         model.initDB(requireContext())
-
+        var categoryHandler = CategoryHandler()
 
         lifecycleScope.launchWhenStarted{
             withContext(Dispatchers.IO){
-                var keymap = mapOf("https://imdb-api.com/en/API/Top250Movies/k_c5ew4idg" to "top_250_movies",
-                    "https://imdb-api.com/en/API/ComingSoon/k_c5ew4idg" to "coming_soon",
-                    "https://imdb-api.com/en/API/MostPopularMovies/k_c5ew4idg" to "most_popular_movies",
-                    "https://imdb-api.com/en/API/MostPopularTVs/k_c5ew4idg" to "most_popular_tv",
-                    "https://imdb-api.com/en/API/InTheaters/k_c5ew4idg" to "in_theaters"
-                    )
-
-                for(key in keymap) {
+                for(key in categoryHandler.getCategoryIds()) {
                     fillDataBase(key)
                 }
             }
