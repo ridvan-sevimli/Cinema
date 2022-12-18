@@ -12,6 +12,9 @@ interface MoviesDao {
     @Query("SELECT * FROM movies ORDER BY id DESC")
     fun allMovies(): List<Movie>
 
+    @Query("SELECT * FROM movies WHERE category ='top250movies'")
+    fun getTop250movies(): List<Movie>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMovies(recipes: Movie)
 

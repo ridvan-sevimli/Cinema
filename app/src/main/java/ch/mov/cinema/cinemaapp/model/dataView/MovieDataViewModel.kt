@@ -30,6 +30,11 @@ class MovieDataViewModel : ViewModel() {
             db?.movieDao()?.insertAll(movie)
         }
     }
+
+    suspend fun getTop250movies() : MutableList<Movie>?{
+        val data = db?.movieDao()?.getTop250movies()?.toMutableList()
+        return data
+    }
     suspend fun readMovies() : MutableList<Movie>?{
         val data = db?.movieDao()?.allMovies()?.toMutableList()
         return data

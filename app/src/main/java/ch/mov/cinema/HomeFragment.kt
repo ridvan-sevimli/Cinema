@@ -61,16 +61,6 @@ class HomeFragment : Fragment() {
 
         model.initDB(requireContext())
 
-
-
-
-        /**
-         * Test API
-         */
-
-        //testAPISub()
-
-
         initializeCategories(requireContext())
 
 
@@ -87,7 +77,7 @@ class HomeFragment : Fragment() {
 
         lifecycleScope.launchWhenStarted{
             withContext(Dispatchers.Default){
-                var movies = model.readMovies()
+                var movies = model.getTop250movies()
                 for(movie in movies!!){
                     arrSubCategory.add(movie)
                 }
@@ -102,12 +92,6 @@ class HomeFragment : Fragment() {
                 binding.rvSubCategory.adapter = subCategoryAdapter
             })
 
-
-//        lifecycleScope.launchWhenStarted{
-//            withContext(Dispatchers.Default){
-//                model.insertMovies()
-//            }
-//        }
 
         /**
          *  my implementation
@@ -176,16 +160,6 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    fun testAPISub(){
-        val inputStream = requireContext().resources.openRawResource(R.raw.comingsoon)
-        val movies = Klaxon().parse<MovieItem>(inputStream)
-
-        for(movie in movies?.items!!){
-            var id : Int = movie.id.subSequence(2,movie.id.length).toString().toInt()
-            arrSubCategory.add(Movie(id,"top250movies",movie.title,movie.image))
-        }
     }
 
 //    override fun onResume() {
