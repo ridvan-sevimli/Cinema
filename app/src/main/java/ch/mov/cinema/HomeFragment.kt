@@ -68,7 +68,7 @@ class HomeFragment : Fragment() {
          * Test API
          */
 
-        testAPISub()
+        //testAPISub()
 
 
         initializeCategories(requireContext())
@@ -84,44 +84,36 @@ class HomeFragment : Fragment() {
         binding.rvSubCategory.adapter = subCategoryAdapter
         binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
 
+
         lifecycleScope.launchWhenStarted{
             withContext(Dispatchers.Default){
-                model.insertMovies()
+                var movies = model.readMovies()
+                for(movie in movies!!){
+                    arrSubCategory.add(movie)
+                }
             }
         }
 
-
-//                val requestQueue = Volley.newRequestQueue(requireContext())
-//                val request = StringRequest(
-//                    Request.Method.GET, "https://imdb-api.com/en/API/Top250Movies/k_c5ew4idg", { response ->
-//                   var movies = Klaxon().parse<MovieItem>(response)
-//                        for(movie in movies?.items!!){
-//                            var id : Int = movie.id.subSequence(2,movie.id.length).toString().toInt()
-//                            arrSubCategory.add(Movies(id,movie.title,movie.image))
-//                        }
-//
-//                        var subCategoryAdapter = SubCategoryAdapter()
-//                        subCategoryAdapter.setData(arrSubCategory)
-//                        binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-//                        binding.rvSubCategory.adapter = subCategoryAdapter
-//                    subCategoryAdapter.setData(arrSubCategory)
-//                },
-//                    {
-//
-//                    })
-//
-//                requestQueue.add(request)
+        model.movies.observe(viewLifecycleOwner,
+            // note that the observer sends the new value as parameter
+            Observer<MutableList<Movie>>{newVal ->
+                subCategoryAdapter.setData(arrSubCategory)
+                binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                binding.rvSubCategory.adapter = subCategoryAdapter
+            })
 
 
-
-
+//        lifecycleScope.launchWhenStarted{
+//            withContext(Dispatchers.Default){
+//                model.insertMovies()
+//            }
+//        }
 
         /**
          *  my implementation
          */
 
     }
-
     private val onCLicked  = object : MainCategoryAdapter.OnItemClickListener{
         override fun onClicked(categoryName: String) {
             binding.textViewCategory.text = categoryName
@@ -134,17 +126,13 @@ class HomeFragment : Fragment() {
 
                 }
             }
-
             model.movies.observe(viewLifecycleOwner,
                 // note that the observer sends the new value as parameter
                 Observer<MutableList<Movie>>{newVal ->
-//                adapter?.clear()
-//                adapter?.addAll(newVal) // addAll will call notifyDatasetChanged
                     subCategoryAdapter.setData(arrSubCategory)
                     binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
                     binding.rvSubCategory.adapter = subCategoryAdapter
                 })
-
         }
     }
 

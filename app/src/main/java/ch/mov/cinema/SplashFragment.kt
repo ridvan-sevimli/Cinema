@@ -6,8 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import ch.mov.cinema.cinemaapp.model.MovieDataViewModel
+import ch.mov.cinema.cinemaapp.model.adapter.MainCategoryAdapter
+import ch.mov.cinema.cinemaapp.model.adapter.SubCategoryAdapter
+import ch.mov.cinema.cinemaapp.model.entities.Movie
+import ch.mov.cinema.cinemaapp.model.entities.MovieItem
 import ch.mov.cinema.databinding.SplaschScreenBinding
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.beust.klaxon.Klaxon
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -15,11 +29,14 @@ import ch.mov.cinema.databinding.SplaschScreenBinding
 class SplashFragment : Fragment() {
 
     private var _binding: SplaschScreenBinding? = null
-
+    val model: MovieDataViewModel by activityViewModels()
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
+    var subCategoryAdapter = SubCategoryAdapter()
+    var mainCategoryAdapter = MainCategoryAdapter()
+    var arrMainCategory = ArrayList<Movie>()
+    var arrSubCategory = ArrayList<Movie>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,6 +48,28 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        model.initDB(requireContext())
+        val requestQueue = Volley.newRequestQueue(requireContext())
+                val request = StringRequest(
+                    Request.Method.GET, "https://imdb-api.com/en/API/Top250Movies/k_c5ew4idg", { response ->
+                   var movies = Klaxon().parse<MovieItem>(response)
+                        for(movie in movies?.items!!){
+                            var id : Int = movie.id.subSequence(2,movie.id.length).toString().toInt()
+                            arrSubCategory.add(Movie(id,movie.title,movie.image))
+                        }
+
+                        lifecycleScope.launchWhenStarted{
+                            withContext(Dispatchers.Default){
+                                model.insertMovies(arrSubCategory)
+                            }
+                        }
+                },
+                    {
+                        TODO("Error handling")
+                    })
+
+                requestQueue.add(request)
 
         binding.btnGetStarted.setOnClickListener {
             findNavController().navigate(R.id.action_SplashFragment_to_HomeFragment)
