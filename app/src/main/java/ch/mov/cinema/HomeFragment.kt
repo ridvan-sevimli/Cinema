@@ -133,7 +133,7 @@ class HomeFragment : Fragment() {
 //            ft.replace(R.id.HomeFragment, detailFragment, "detailFragment");
 //            ft.commit();
 
-            findNavController().navigate(R.id.action_HomeFragment_to_SplashFragment)
+            findNavController().navigate(R.id.action_HomeFragment_to_DetailFragment)
         }
     }
 
