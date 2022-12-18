@@ -26,11 +26,11 @@ class MovieDataViewModel : ViewModel() {
 
     suspend fun insertMovies(){
         db?.movieDao()?.insertAll(
-
+            Movie(1,"title","https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_UX128_CR0,12,128,176_AL_.jpg")
         )
     }
-    suspend fun readMovies(){
+    suspend fun readMovies() : MutableList<Movie>?{
         val data = db?.movieDao()?.allMovies()?.toMutableList()
-        movies.postValue(data!!)
+        return data
     }
 }

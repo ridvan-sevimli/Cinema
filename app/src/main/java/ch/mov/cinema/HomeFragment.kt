@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import ch.mov.cinema.cinemaapp.model.MovieDataViewModel
 import ch.mov.cinema.cinemaapp.model.adapter.MainCategoryAdapter
 import ch.mov.cinema.cinemaapp.model.adapter.SubCategoryAdapter
+import ch.mov.cinema.cinemaapp.model.database.MoviesDatabase
 import ch.mov.cinema.cinemaapp.model.entities.*
 import ch.mov.cinema.databinding.FragmentHomeBinding
 import com.android.volley.Request
@@ -26,12 +28,15 @@ import kotlinx.coroutines.withContext
  */
 class HomeFragment : Fragment() {
 
+    val model: MovieDataViewModel by activityViewModels()
     private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
 
+    var subCategoryAdapter = SubCategoryAdapter()
+    var mainCategoryAdapter = MainCategoryAdapter()
     var arrMainCategory = ArrayList<Movie>()
     var arrSubCategory = ArrayList<Movie>()
 
@@ -53,14 +58,11 @@ class HomeFragment : Fragment() {
          *  my implementation
          */
 
-        val model: MovieDataViewModel by activityViewModels()
+
         model.initDB(requireContext())
 
-        lifecycleScope.launchWhenStarted{
-            withContext(Dispatchers.Default){
-                model.readMovies()
-            }
-        }
+
+
 
         /**
          * Test API
@@ -71,17 +73,22 @@ class HomeFragment : Fragment() {
 
         initializeCategories(requireContext())
 
-        var mainCategoryAdapter = MainCategoryAdapter()
+
         mainCategoryAdapter.setData(arrMainCategory)
         mainCategoryAdapter.setClickListener(onCLicked)
         binding.rvMainCategory.adapter = mainCategoryAdapter
         binding.rvMainCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
 
-        var subCategoryAdapter = SubCategoryAdapter()
+
         subCategoryAdapter.setData(arrSubCategory)
         binding.rvSubCategory.adapter = subCategoryAdapter
         binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
 
+        lifecycleScope.launchWhenStarted{
+            withContext(Dispatchers.Default){
+                model.insertMovies()
+            }
+        }
 
 
 //                val requestQueue = Volley.newRequestQueue(requireContext())
@@ -106,13 +113,7 @@ class HomeFragment : Fragment() {
 //                requestQueue.add(request)
 
 
-//        model.recipes.observe(viewLifecycleOwner,
-//            // note that the observer sends the new value as parameter
-//            Observer<MutableList<Recipes>>{newVal ->
-////                adapter?.clear()
-////                adapter?.addAll(newVal) // addAll will call notifyDatasetChanged
-//
-//            })
+
 
 
         /**
@@ -124,7 +125,26 @@ class HomeFragment : Fragment() {
     private val onCLicked  = object : MainCategoryAdapter.OnItemClickListener{
         override fun onClicked(categoryName: String) {
             binding.textViewCategory.text = categoryName
-            changeMovies(categoryName)
+            //changeMovies(categoryName)
+            arrSubCategory = ArrayList<Movie>()
+            lifecycleScope.launchWhenStarted{
+                withContext(Dispatchers.Default){
+                    var something = model.readMovies()
+                    arrSubCategory.add(something!![0])
+
+                }
+            }
+
+            model.movies.observe(viewLifecycleOwner,
+                // note that the observer sends the new value as parameter
+                Observer<MutableList<Movie>>{newVal ->
+//                adapter?.clear()
+//                adapter?.addAll(newVal) // addAll will call notifyDatasetChanged
+                    subCategoryAdapter.setData(arrSubCategory)
+                    binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                    binding.rvSubCategory.adapter = subCategoryAdapter
+                })
+
         }
     }
 
