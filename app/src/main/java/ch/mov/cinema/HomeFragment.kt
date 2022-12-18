@@ -32,8 +32,8 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    var arrMainCategory = ArrayList<Movies>()
-    var arrSubCategory = ArrayList<Movies>()
+    var arrMainCategory = ArrayList<Movie>()
+    var arrSubCategory = ArrayList<Movie>()
 
 
     override fun onCreateView(
@@ -131,10 +131,10 @@ class HomeFragment : Fragment() {
     private fun changeMovies(categoryName:String){
         val inputStream = requireContext().resources.openRawResource(getJsonMovies(categoryName))
         val movies = Klaxon().parse<MovieItem>(inputStream)
-        arrSubCategory =  ArrayList<Movies>()
+        arrSubCategory =  ArrayList<Movie>()
         for(movie in movies?.items!!){
             var id : Int = movie.id.subSequence(2,movie.id.length).toString().toInt()
-            arrSubCategory.add(Movies(id,movie.title,movie.image))
+            arrSubCategory.add(Movie(id,movie.title,movie.image))
         }
             var subCategoryAdapter = SubCategoryAdapter()
             subCategoryAdapter.setData(arrSubCategory)
@@ -162,7 +162,7 @@ class HomeFragment : Fragment() {
         val categories = Klaxon().parse<CategoryItem>(inputStream)
         for(maincategories in categories?.maincategories!!){
             var resourceId = context.getResources().getIdentifier(maincategories.icon, "drawable", context.getPackageName()).toString();
-            arrMainCategory.add(Movies(maincategories.m_id.toInt(),maincategories.title,resourceId))
+            arrMainCategory.add(Movie(maincategories.m_id.toInt(),maincategories.title,resourceId))
         }
     }
     override fun onDestroyView() {
@@ -176,7 +176,7 @@ class HomeFragment : Fragment() {
 
         for(movie in movies?.items!!){
             var id : Int = movie.id.subSequence(2,movie.id.length).toString().toInt()
-            arrSubCategory.add(Movies(id,movie.title,movie.image))
+            arrSubCategory.add(Movie(id,movie.title,movie.image))
         }
     }
 

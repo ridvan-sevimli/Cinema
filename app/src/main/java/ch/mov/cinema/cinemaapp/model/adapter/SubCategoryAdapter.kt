@@ -3,18 +3,18 @@ package ch.mov.cinema.cinemaapp.model.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ch.mov.cinema.cinemaapp.model.entities.Movies
+import ch.mov.cinema.cinemaapp.model.entities.Movie
 import ch.mov.cinema.databinding.ItemRvSubCategoryBinding
 import com.squareup.picasso.Picasso
 
 class SubCategoryAdapter() : RecyclerView.Adapter<SubCategoryAdapter.MovieViewHolder>(){
 
-    var arrSubCategory = ArrayList<Movies>()
+    var arrSubCategory = ArrayList<Movie>()
 
     class MovieViewHolder(val binding: ItemRvSubCategoryBinding): RecyclerView.ViewHolder(binding.root)
 
-    fun setData(arrData : List<Movies>){
-        arrSubCategory = arrData as ArrayList<Movies>
+    fun setData(arrData : List<Movie>){
+        arrSubCategory = arrData as ArrayList<Movie>
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {

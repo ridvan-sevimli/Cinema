@@ -3,7 +3,7 @@ package ch.mov.cinema.cinemaapp.model.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ch.mov.cinema.cinemaapp.model.entities.Movies
+import ch.mov.cinema.cinemaapp.model.entities.Movie
 import ch.mov.cinema.databinding.ItemRvMainCategoryBinding
 import com.squareup.picasso.Picasso
 
@@ -11,18 +11,18 @@ import com.squareup.picasso.Picasso
 class MainCategoryAdapter() : RecyclerView.Adapter<MainCategoryAdapter.MovieViewHolder>(){
 
     var listener : OnItemClickListener? = null
-    var arrMainCategory = ArrayList<Movies>()
+    var arrMainCategory = ArrayList<Movie>()
 
     class MovieViewHolder(val binding: ItemRvMainCategoryBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(appInfo: Movies) {
+        fun bind(appInfo: Movie) {
             binding.root.setOnClickListener {
                
             }
         }
     }
 
-    fun setData(arrData : List<Movies>){
-        arrMainCategory = arrData as ArrayList<Movies>
+    fun setData(arrData : List<Movie>){
+        arrMainCategory = arrData as ArrayList<Movie>
     }
 
     fun setClickListener(listener1: OnItemClickListener){

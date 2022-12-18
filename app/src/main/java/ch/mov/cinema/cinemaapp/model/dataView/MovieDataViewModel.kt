@@ -1,19 +1,20 @@
 package ch.mov.cinema.cinemaapp.model
 
 import android.content.Context
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.room.Room
 import ch.mov.cinema.cinemaapp.model.database.MoviesDatabase
-import ch.mov.cinema.cinemaapp.model.entities.Movies
+import ch.mov.cinema.cinemaapp.model.entities.Movie
 
 class MovieDataViewModel : ViewModel() {
 
     var db : MoviesDatabase? = null
-    var recipes = MutableLiveData<MutableList<Movies>>()
+    var movies = MutableLiveData<MutableList<Movie>>()
 
     init{
-        recipes.value = mutableListOf<Movies>()
+        movies.value = mutableListOf<Movie>()
     }
 
     fun initDB(context: Context){
@@ -30,6 +31,6 @@ class MovieDataViewModel : ViewModel() {
     }
     suspend fun readMovies(){
         val data = db?.movieDao()?.allMovies()?.toMutableList()
-        recipes.postValue(data!!)
+        movies.postValue(data!!)
     }
 }
