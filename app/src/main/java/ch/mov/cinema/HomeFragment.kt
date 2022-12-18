@@ -76,7 +76,7 @@ class HomeFragment : Fragment() {
 
 
         lifecycleScope.launchWhenStarted{
-            withContext(Dispatchers.Default){
+            withContext(Dispatchers.IO){
                 var movies = model.getComingSoon()
                 for(movie in movies!!){
                     arrSubCategory.add(movie)
@@ -104,7 +104,7 @@ class HomeFragment : Fragment() {
             //changeMovies(categoryName)
             arrSubCategory = ArrayList<Movie>()
             lifecycleScope.launchWhenStarted{
-                withContext(Dispatchers.Default){
+                withContext(Dispatchers.IO){
                     var something = model.getTop250movies()
                     if (something != null) {
                         for(movie in something){
@@ -122,21 +122,7 @@ class HomeFragment : Fragment() {
                 })
         }
     }
-
-    private fun changeMovies(categoryName:String){
-        val inputStream = requireContext().resources.openRawResource(getJsonMovies(categoryName))
-        val movies = Klaxon().parse<MovieItem>(inputStream)
-        arrSubCategory =  ArrayList<Movie>()
-        for(movie in movies?.items!!){
-            var id : Int = movie.id.subSequence(2,movie.id.length).toString().toInt()
-            arrSubCategory.add(Movie(id,"top250movies",movie.title,movie.image))
-        }
-            var subCategoryAdapter = SubCategoryAdapter()
-            subCategoryAdapter.setData(arrSubCategory)
-            binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-            binding.rvSubCategory.adapter = subCategoryAdapter
-    }
-
+    
     fun getJsonMovies(categoryName: String) : Int{
         return when(categoryName){
             "Coming Soon" -> R.raw.comingsoon
@@ -157,7 +143,7 @@ class HomeFragment : Fragment() {
         val categories = Klaxon().parse<CategoryItem>(inputStream)
         for(maincategories in categories?.maincategories!!){
             var resourceId = context.getResources().getIdentifier(maincategories.icon, "drawable", context.getPackageName()).toString();
-            arrMainCategory.add(Movie(maincategories.m_id.toInt(),"top250movies",maincategories.title,resourceId))
+            arrMainCategory.add(Movie(maincategories.m_id.toInt(),"coming_soon",maincategories.title,resourceId))
         }
     }
     override fun onDestroyView() {

@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import ch.mov.cinema.cinemaapp.model.MovieDataViewModel
 import ch.mov.cinema.cinemaapp.model.adapter.MainCategoryAdapter
 import ch.mov.cinema.cinemaapp.model.adapter.SubCategoryAdapter
@@ -53,8 +52,17 @@ class SplashFragment : Fragment() {
 
 
         lifecycleScope.launchWhenStarted{
-            withContext(Dispatchers.Default){
-                fillDataBase()
+            withContext(Dispatchers.IO){
+                var keymap = mapOf("https://imdb-api.com/en/API/Top250Movies/k_c5ew4idg" to "top_250_movies",
+                    "https://imdb-api.com/en/API/ComingSoon/k_c5ew4idg" to "coming_soon",
+                    "https://imdb-api.com/en/API/MostPopularMovies/k_c5ew4idg" to "most_popular_movies",
+                    "https://imdb-api.com/en/API/MostPopularTVs/k_c5ew4idg" to "most_popular_tv",
+                    "https://imdb-api.com/en/API/InTheaters/k_c5ew4idg" to "in_theaters"
+                    )
+
+                for(key in keymap) {
+                    fillDataBase(key)
+                }
             }
         }
 
@@ -63,12 +71,7 @@ class SplashFragment : Fragment() {
         }
     }
 
-    fun fillDataBase(){
-        var keymap = mapOf("https://imdb-api.com/en/API/Top250Movies/k_c5ew4idg" to "top_250_movies",
-            "https://imdb-api.com/en/API/ComingSoon/k_c5ew4idg" to "coming_soon"
-            )
-
-        for(key in keymap){
+  suspend fun fillDataBase(key: Map.Entry<String, String>){
             val requestQueue = Volley.newRequestQueue(requireContext())
             val request = StringRequest(
                 Request.Method.GET, key.key, { response ->
@@ -88,8 +91,6 @@ class SplashFragment : Fragment() {
                 })
 
             requestQueue.add(request)
-        }
-
     }
 
     override fun onDestroyView() {
