@@ -1,5 +1,6 @@
 package ch.mov.cinema
 
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -57,8 +58,14 @@ class SplashFragment : Fragment() {
                 for(key in categoryHandler.getCategoryIds()) {
                     fillDataBase(key)
                 }
+
+
             }
+
         }
+
+        //binding.btnGetStarted.visibility = View.VISIBLE
+
 
         binding.btnGetStarted.setOnClickListener {
             findNavController().navigate(R.id.action_SplashFragment_to_HomeFragment)
@@ -85,6 +92,7 @@ class SplashFragment : Fragment() {
                 })
 
             requestQueue.add(request)
+
     }
 
     override fun onDestroyView() {

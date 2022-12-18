@@ -16,7 +16,7 @@ class MainCategoryAdapter() : RecyclerView.Adapter<MainCategoryAdapter.MovieView
     class MovieViewHolder(val binding: ItemRvMainCategoryBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(appInfo: Movie) {
             binding.root.setOnClickListener {
-               
+
             }
         }
     }

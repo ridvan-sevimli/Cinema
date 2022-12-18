@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import ch.mov.cinema.cinemaapp.model.MovieDataViewModel
 import ch.mov.cinema.cinemaapp.model.adapter.MainCategoryAdapter
@@ -65,13 +66,13 @@ class HomeFragment : Fragment() {
 
 
         mainCategoryAdapter.setData(arrMainCategory)
-        mainCategoryAdapter.setClickListener(onCLicked)
+        mainCategoryAdapter.setClickListener(onClickedMainCateogry)
         binding.rvMainCategory.adapter = mainCategoryAdapter
         binding.rvMainCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
 
 
         subCategoryAdapter.setData(arrSubCategory)
-        binding.rvSubCategory.adapter = subCategoryAdapter
+        subCategoryAdapter.setClickListener(onCLickedSubCategory)
         binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
 
 
@@ -98,7 +99,7 @@ class HomeFragment : Fragment() {
          */
 
     }
-    private val onCLicked  = object : MainCategoryAdapter.OnItemClickListener{
+    private val onClickedMainCateogry  = object : MainCategoryAdapter.OnItemClickListener{
         override fun onClicked(categoryName: String) {
             binding.textViewCategory.text = categoryName
             //changeMovies(categoryName)
@@ -120,8 +121,22 @@ class HomeFragment : Fragment() {
                     binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
                     binding.rvSubCategory.adapter = subCategoryAdapter
                 })
+
+
         }
     }
+
+    private val onCLickedSubCategory  = object : SubCategoryAdapter.OnItemClickListener{
+        override fun onClicked(categoryName: String) {
+//            val detailFragment: Fragment = DetailFragment()
+//            var ft = childFragmentManager.beginTransaction();
+//            ft.replace(R.id.HomeFragment, detailFragment, "detailFragment");
+//            ft.commit();
+
+            findNavController().navigate(R.id.action_HomeFragment_to_SplashFragment)
+        }
+    }
+
 
     fun getJsonMovies(categoryName: String) : Int{
         return when(categoryName){

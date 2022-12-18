@@ -1,28 +1,50 @@
 package ch.mov.cinema.cinemaapp.model.adapter
 
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import ch.mov.cinema.DetailFragment
+import ch.mov.cinema.HomeFragment
+import ch.mov.cinema.R
 import ch.mov.cinema.cinemaapp.model.entities.Movie
+import ch.mov.cinema.databinding.FragmentHomeBinding
 import ch.mov.cinema.databinding.ItemRvSubCategoryBinding
 import com.squareup.picasso.Picasso
 
+
 class SubCategoryAdapter() : RecyclerView.Adapter<SubCategoryAdapter.MovieViewHolder>(){
 
+
+    var listener : OnItemClickListener? = null
     var arrSubCategory = ArrayList<Movie>()
 
-    class MovieViewHolder(val binding: ItemRvSubCategoryBinding): RecyclerView.ViewHolder(binding.root)
+    class MovieViewHolder(val binding: ItemRvSubCategoryBinding): RecyclerView.ViewHolder(binding.root) {
+        fun bind(appInfo: Movie) {
+            binding.root.setOnClickListener {
+
+            }
+        }
+    }
 
     fun setData(arrData : List<Movie>){
         arrSubCategory = arrData as ArrayList<Movie>
     }
 
+    fun setClickListener(listener2: OnItemClickListener){
+        listener = listener2
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+
         val binding = ItemRvSubCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MovieViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+        holder.bind(arrSubCategory[position]) // <<< Change here
         with(holder){
             with(arrSubCategory[position]) {
                 binding.tvMovieName.text = arrSubCategory[position].movieName
@@ -34,10 +56,18 @@ class SubCategoryAdapter() : RecyclerView.Adapter<SubCategoryAdapter.MovieViewHo
                         .load("https://cdn2.vectorstock.com/i/1000x1000/00/61/movie-time-neon-logo-cinema-night-neon-vector-21560061.jpg").into(binding.imgMovie)
 
                 }
+                holder.itemView.rootView.setOnClickListener {
+                    arrSubCategory[position].movieName?.let { it1 -> listener!!.onClicked(it1) }
+                }
 
             }
         }
     }
+
+    interface OnItemClickListener{
+        fun onClicked(categoryName:String)
+    }
+
     override fun getItemCount(): Int {
         return arrSubCategory.size
     }

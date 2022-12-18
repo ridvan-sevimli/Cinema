@@ -25,6 +25,16 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:text="Get Started"
+        android:visibility="visible"
         android:textColor="@color/yellow" />
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/loader"-->
+<!--        android:layout_width="173dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignBottom="@+id/btnGetStarted"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginBottom="8dp"-->
+<!--        android:outlineAmbientShadowColor="@color/brown" />-->
 
 </RelativeLayout>
