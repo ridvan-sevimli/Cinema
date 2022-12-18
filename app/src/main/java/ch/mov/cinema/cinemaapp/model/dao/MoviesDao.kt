@@ -12,14 +12,17 @@ interface MoviesDao {
     @Query("SELECT * FROM movies ORDER BY id DESC")
     fun allMovies(): List<Movie>
 
-    @Query("SELECT * FROM movies WHERE category ='top250movies'")
+    @Query("SELECT * FROM movies WHERE category ='top_250_movies'")
     fun getTop250movies(): List<Movie>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Query("SELECT * FROM movies WHERE category ='coming_soon'")
+    fun getComingSoon(): List<Movie>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertMovies(recipes: Movie)
 
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertAll(vararg recipes: Movie)
 
 }

@@ -77,7 +77,7 @@ class HomeFragment : Fragment() {
 
         lifecycleScope.launchWhenStarted{
             withContext(Dispatchers.Default){
-                var movies = model.getTop250movies()
+                var movies = model.getComingSoon()
                 for(movie in movies!!){
                     arrSubCategory.add(movie)
                 }
@@ -105,9 +105,12 @@ class HomeFragment : Fragment() {
             arrSubCategory = ArrayList<Movie>()
             lifecycleScope.launchWhenStarted{
                 withContext(Dispatchers.Default){
-                    var something = model.readMovies()
-                    arrSubCategory.add(something!![0])
-
+                    var something = model.getTop250movies()
+                    if (something != null) {
+                        for(movie in something){
+                            arrSubCategory.add(movie)
+                        }
+                    }
                 }
             }
             model.movies.observe(viewLifecycleOwner,

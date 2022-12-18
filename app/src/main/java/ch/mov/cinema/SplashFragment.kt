@@ -64,25 +64,32 @@ class SplashFragment : Fragment() {
     }
 
     fun fillDataBase(){
-        val requestQueue = Volley.newRequestQueue(requireContext())
-        val request = StringRequest(
-            Request.Method.GET, "https://imdb-api.com/en/API/Top250Movies/k_c5ew4idg", { response ->
-                var movies = Klaxon().parse<MovieItem>(response)
-                for(movie in movies?.items!!){
-                    var id : Int = movie.id.subSequence(2,movie.id.length).toString().toInt()
-                    arrSubCategory.add(Movie(id,"top250movies",movie.title,movie.image))
-                }
-                lifecycleScope.launchWhenStarted{
-                    withContext(Dispatchers.Default){
-                        model.insertMovies(arrSubCategory)
-                    }
-                }
-            },
-            {
-                TODO("Error handling")
-            })
+        var keymap = mapOf("https://imdb-api.com/en/API/Top250Movies/k_c5ew4idg" to "top_250_movies",
+            "https://imdb-api.com/en/API/ComingSoon/k_c5ew4idg" to "coming_soon"
+            )
 
-        requestQueue.add(request)
+        for(key in keymap){
+            val requestQueue = Volley.newRequestQueue(requireContext())
+            val request = StringRequest(
+                Request.Method.GET, key.key, { response ->
+                    var movies = Klaxon().parse<MovieItem>(response)
+                    for(movie in movies?.items!!){
+                        var id : Int = movie.id.subSequence(2,movie.id.length).toString().toInt()
+                        arrSubCategory.add(Movie(id,key.value,movie.title,movie.image))
+                    }
+                    lifecycleScope.launchWhenStarted{
+                        withContext(Dispatchers.Default){
+                            model.insertMovies(arrSubCategory)
+                        }
+                    }
+                },
+                {
+                    TODO("Error handling")
+                })
+
+            requestQueue.add(request)
+        }
+
     }
 
     override fun onDestroyView() {
