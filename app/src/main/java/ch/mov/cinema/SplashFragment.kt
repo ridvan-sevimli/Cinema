@@ -35,9 +35,6 @@ class SplashFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    var subCategoryAdapter = SubCategoryAdapter()
-    var mainCategoryAdapter = MainCategoryAdapter()
-    var arrMainCategory = ArrayList<Movie>()
     var arrSubCategory = ArrayList<Movie>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,17 +50,7 @@ class SplashFragment : Fragment() {
 
         model.initDB(requireContext())
 
-
-
         fillDataBase()
-
-
-
-
-
-
-        //binding.btnGetStarted.visibility = View.VISIBLE
-
 
         binding.btnGetStarted.setOnClickListener {
             findNavController().navigate(R.id.action_SplashFragment_to_HomeFragment)

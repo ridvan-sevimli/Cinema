@@ -62,6 +62,7 @@ class HomeFragment : Fragment() {
 
         model.initDB(requireContext())
 
+
         initializeCategories(requireContext())
 
 
@@ -162,11 +163,22 @@ class HomeFragment : Fragment() {
     }
 
     fun initializeCategories(context : Context){
-        val inputStream = requireContext().resources.openRawResource(R.raw.categories)
-        val categories = Klaxon().parse<CategoryItem>(inputStream)
-        for(maincategories in categories?.maincategories!!){
-            var resourceId = context.getResources().getIdentifier(maincategories.icon, "drawable", context.getPackageName()).toString();
-            arrMainCategory.add(Movie(maincategories.m_id.toInt(),"coming_soon",maincategories.title,resourceId))
+        if(arrMainCategory.size == 0) {
+            val inputStream = requireContext().resources.openRawResource(R.raw.categories)
+            val categories = Klaxon().parse<CategoryItem>(inputStream)
+            for (maincategories in categories?.maincategories!!) {
+                var resourceId = context.getResources()
+                    .getIdentifier(maincategories.icon, "drawable", context.getPackageName())
+                    .toString();
+                arrMainCategory.add(
+                    Movie(
+                        maincategories.m_id.toInt(),
+                        "coming_soon",
+                        maincategories.title,
+                        resourceId
+                    )
+                )
+            }
         }
     }
     override fun onDestroyView() {
