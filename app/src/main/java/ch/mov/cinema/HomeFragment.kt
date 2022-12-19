@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
 
     var subCategoryAdapter = SubCategoryAdapter()
     var mainCategoryAdapter = MainCategoryAdapter()
-    var arrMainCategory = ArrayList<Movie>()
+    var arrMainCategory = ArrayList<Category>()
     var arrSubCategory = ArrayList<Movie>()
 
 
@@ -171,9 +171,8 @@ class HomeFragment : Fragment() {
                     .getIdentifier(maincategories.icon, "drawable", context.getPackageName())
                     .toString();
                 arrMainCategory.add(
-                    Movie(
-                        maincategories.m_id.toInt(),
-                        "coming_soon",
+                    Category(
+                        maincategories.m_id,
                         maincategories.title,
                         resourceId
                     )
