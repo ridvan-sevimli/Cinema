@@ -9,23 +9,29 @@ import ch.mov.cinema.cinemaapp.model.entities.Movie
 
 
 @Database(entities = [Movie::class],version = 1,exportSchema = false)
-abstract class MoviesDatabase : RoomDatabase(){
+abstract class MoviesDatabase : RoomDatabase() {
 
-    companion object{
-        var moviesDatabase: MoviesDatabase? = null
+    abstract fun movieDao(): MoviesDao
 
-        @Synchronized
+    companion object {
+        @Volatile
+        private var INSTANCE: MoviesDatabase? = null
+
+
         fun getDatabase(context: Context): MoviesDatabase {
-            if(moviesDatabase != null){
-                moviesDatabase = Room.databaseBuilder(
+            val tempInstance = INSTANCE
+            if (tempInstance != null) {
+                return tempInstance
+            }
+            synchronized(this) {
+                val instance = Room.databaseBuilder(
                     context,
                     MoviesDatabase::class.java,
                     "movie.db"
                 ).build()
+                INSTANCE = instance
+                return instance
             }
-            return moviesDatabase!!
         }
     }
-
-    abstract fun movieDao(): MoviesDao
 }

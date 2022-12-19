@@ -50,7 +50,7 @@ class SplashFragment : Fragment() {
 
         model.initDB(requireContext())
 
-        //fillDataBase()
+        fillDataBase()
 
         binding.btnGetStarted.setOnClickListener {
             findNavController().navigate(R.id.action_SplashFragment_to_HomeFragment)
@@ -76,10 +76,12 @@ class SplashFragment : Fragment() {
                       })
                   requestQueue.add(request)
 
-                  lifecycleScope.launchWhenStarted {
-                      withContext(Dispatchers.Default) {
-                          model.insertMovies(arrSubCategory)
-                      }
+              }
+
+
+              lifecycleScope.launchWhenStarted {
+                  withContext(Dispatchers.Default) {
+                      model.insertMovies(arrSubCategory)
                   }
               }
           }

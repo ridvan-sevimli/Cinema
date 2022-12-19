@@ -3,14 +3,9 @@ package ch.mov.cinema.cinemaapp.model.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import ch.mov.cinema.DetailFragment
-import ch.mov.cinema.HomeFragment
 import ch.mov.cinema.R
 import ch.mov.cinema.cinemaapp.model.entities.Movie
-import ch.mov.cinema.databinding.FragmentHomeBinding
 import ch.mov.cinema.databinding.ItemRvSubCategoryBinding
 import com.squareup.picasso.Picasso
 
