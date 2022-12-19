@@ -50,7 +50,7 @@ class SplashFragment : Fragment() {
 
         model.initDB(requireContext())
 
-        fillDataBase()
+        //fillDataBase()
 
         binding.btnGetStarted.setOnClickListener {
             findNavController().navigate(R.id.action_SplashFragment_to_HomeFragment)

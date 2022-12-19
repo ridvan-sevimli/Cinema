@@ -47,26 +47,15 @@ class DetailFragment : Fragment() {
 
 
         val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
-        var movieId = settings?.getString("MOVIE_ID","234")
+        var imagePath = settings?.getString("IMAGE_PATH","234")
 
 
         val inputStream = requireContext().resources.openRawResource(R.raw.poster)
         val poster = Klaxon().parse<PosterItem>(inputStream)
 
-//        val requestQueue = Volley.newRequestQueue(requireContext())
-//        val request = StringRequest(
-//            Request.Method.GET,, { response ->
-//
-//
-//
-//            },
-//            {
-//                TODO("Error handling")
-//            })
-
 
         Picasso.get()
-            .load(poster?.posters!!.get(15).link).into(binding.poster)
+            .load(imagePath).into(binding.poster)
 
 
 //        binding.btnGetStarted.setOnClickListener {

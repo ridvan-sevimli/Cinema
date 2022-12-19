@@ -55,7 +55,7 @@ class SubCategoryAdapter() : RecyclerView.Adapter<SubCategoryAdapter.MovieViewHo
                     binding.imgMovie.setImageResource(R.drawable.default_poster)
                 }
                 holder.itemView.rootView.setOnClickListener {
-                    arrSubCategory[position].id.toString()?.let { it1 -> listener!!.onClicked(it1) }
+                    arrSubCategory[position].imgPath.toString()?.let { it1 -> listener!!.onClicked(it1) }
                 }
 
             }

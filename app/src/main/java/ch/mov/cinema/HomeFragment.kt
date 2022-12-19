@@ -137,10 +137,10 @@ class HomeFragment : Fragment() {
     }
 
     private val onCLickedSubCategory  = object : SubCategoryAdapter.OnItemClickListener{
-        override fun onClicked(id: String) {
+        override fun onClicked(imagePath: String) {
             val setting = context?.getSharedPreferences("prefsfile",Context.MODE_PRIVATE)
             val editor = setting?.edit()
-            editor?.putString("MOVIE_ID",id)
+            editor?.putString("IMAGE_PATH",imagePath)
             editor?.commit()
             findNavController().navigate(R.id.action_HomeFragment_to_DetailFragment)
         }
