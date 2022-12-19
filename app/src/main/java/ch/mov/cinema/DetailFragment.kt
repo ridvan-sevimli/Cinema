@@ -1,5 +1,6 @@
 package ch.mov.cinema
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -33,6 +34,10 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
+        var movieId = settings?.getString("MOVIE_ID","234")
+
+        var string  = "hallo"
 //        binding.btnGetStarted.setOnClickListener {
 //            findNavController().navigate(R.id.action_SplashFragment_to_HomeFragment)
 //        }

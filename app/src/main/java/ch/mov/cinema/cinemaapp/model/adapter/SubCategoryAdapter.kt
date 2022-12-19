@@ -57,7 +57,7 @@ class SubCategoryAdapter() : RecyclerView.Adapter<SubCategoryAdapter.MovieViewHo
 
                 }
                 holder.itemView.rootView.setOnClickListener {
-                    arrSubCategory[position].movieName?.let { it1 -> listener!!.onClicked(it1) }
+                    arrSubCategory[position].id.toString()?.let { it1 -> listener!!.onClicked(it1) }
                 }
 
             }
