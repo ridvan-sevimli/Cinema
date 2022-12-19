@@ -105,10 +105,21 @@ class HomeFragment : Fragment() {
             //changeMovies(categoryName)
             arrSubCategory = ArrayList<Movie>()
             lifecycleScope.launchWhenStarted{
-                withContext(Dispatchers.IO){
-                    var something = model.getTop250movies()
-                    if (something != null) {
-                        for(movie in something){
+                withContext(Dispatchers.Default){
+                    var movies : MutableList<Movie>? = null
+                    if(categoryName == "Coming Soon"){
+                        movies = model.getComingSoon()!!
+                    } else if (categoryName == "Top 250 Movies") {
+                        movies = model.getTop250movies()!!
+                    }else if(categoryName == "Most Popular Movies"){
+                        movies = model.getMostPopularMovies()!!
+                    }else if(categoryName == "Most Popular Tv's"){
+                        movies = model.getMostPopularTv()!!
+                    }else if(categoryName == "In Theaters"){
+                        movies = model.getInTheaters()!!
+                    }
+                    if (movies != null) {
+                        for(movie in movies){
                             arrSubCategory.add(movie)
                         }
                     }
@@ -121,8 +132,6 @@ class HomeFragment : Fragment() {
                     binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
                     binding.rvSubCategory.adapter = subCategoryAdapter
                 })
-
-
         }
     }
 

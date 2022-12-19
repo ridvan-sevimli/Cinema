@@ -38,6 +38,22 @@ class MovieDataViewModel : ViewModel() {
         val data = db?.movieDao()?.getTop250movies()?.toMutableList()
         return data
     }
+
+    suspend fun getMostPopularMovies() : MutableList<Movie>?{
+        val data = db?.movieDao()?.getMostPopularMovies()?.toMutableList()
+        return data
+    }
+
+    suspend fun getMostPopularTv() : MutableList<Movie>?{
+        val data = db?.movieDao()?.getMostPopularTv()?.toMutableList()
+        return data
+    }
+
+    suspend fun getInTheaters() : MutableList<Movie>?{
+        val data = db?.movieDao()?.getInTheaters()?.toMutableList()
+        return data
+    }
+
     suspend fun readMovies() : MutableList<Movie>?{
         val data = db?.movieDao()?.allMovies()?.toMutableList()
         return data

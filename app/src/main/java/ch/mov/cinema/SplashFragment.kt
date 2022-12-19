@@ -53,16 +53,16 @@ class SplashFragment : Fragment() {
         model.initDB(requireContext())
         var categoryHandler = CategoryHandler()
 
-        lifecycleScope.launchWhenStarted{
-            withContext(Dispatchers.IO){
-                for(key in categoryHandler.getCategoryIds()) {
-                    fillDataBase(key)
-                }
-
-
-            }
-
-        }
+//        lifecycleScope.launchWhenStarted{
+//            withContext(Dispatchers.IO){
+//                for(key in categoryHandler.getCategoryIds()) {
+//                    fillDataBase(key)
+//                }
+//
+//
+//            }
+//
+//        }
 
         //binding.btnGetStarted.visibility = View.VISIBLE
 

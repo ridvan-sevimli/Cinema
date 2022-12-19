@@ -18,6 +18,15 @@ interface MoviesDao {
     @Query("SELECT * FROM movies WHERE category ='coming_soon'")
     fun getComingSoon(): List<Movie>
 
+    @Query("SELECT * FROM movies WHERE category ='most_popular_movies'")
+    fun getMostPopularMovies(): List<Movie>
+
+    @Query("SELECT * FROM movies WHERE category ='most_popular_tv'")
+    fun getMostPopularTv(): List<Movie>
+
+    @Query("SELECT * FROM movies WHERE category ='in_theaters'")
+    fun getInTheaters(): List<Movie>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertMovies(recipes: Movie)
 
