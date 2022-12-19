@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -14,6 +15,7 @@ import ch.mov.cinema.cinemaapp.model.CategoryHandler
 import ch.mov.cinema.cinemaapp.model.MovieDataViewModel
 import ch.mov.cinema.cinemaapp.model.adapter.MainCategoryAdapter
 import ch.mov.cinema.cinemaapp.model.adapter.SubCategoryAdapter
+import ch.mov.cinema.cinemaapp.model.database.MoviesDatabase
 import ch.mov.cinema.cinemaapp.model.entities.Movie
 import ch.mov.cinema.cinemaapp.model.entities.MovieItem
 import ch.mov.cinema.databinding.SplaschScreenBinding
@@ -22,7 +24,11 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.beust.klaxon.Klaxon
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -58,12 +64,13 @@ class SplashFragment : Fragment() {
     }
 
    fun fillDataBase(){
-      lifecycleScope.launchWhenStarted{
+       var apiKey = "k_1uv0dwir"
+     var job =  lifecycleScope.launchWhenStarted {
           withContext(Dispatchers.Default) {
               for(key in categoryHandler.getCategoryIds()) {
                   val requestQueue = Volley.newRequestQueue(requireContext())
                   val request = StringRequest(
-                      Request.Method.GET, key.key, { response ->
+                      Request.Method.GET, key.key + apiKey, { response ->
                           var movies = Klaxon().parse<MovieItem>(response)
                           for (movie in movies?.items!!) {
                               var id: Int = movie.id.subSequence(2, movie.id.length).toString().toInt()
@@ -78,15 +85,19 @@ class SplashFragment : Fragment() {
 
               }
 
-
-              lifecycleScope.launchWhenStarted {
-                  withContext(Dispatchers.Default) {
-                      model.insertMovies(arrSubCategory)
-                  }
-              }
           }
       }
-    }
+
+       lifecycleScope.launchWhenStarted {
+           withContext(Dispatchers.Default) {
+               while(!job.isCompleted){
+
+               }
+               model.insertMovies(arrSubCategory)
+           }
+       }
+  }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

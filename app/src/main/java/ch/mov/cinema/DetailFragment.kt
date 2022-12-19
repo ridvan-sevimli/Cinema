@@ -7,20 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import ch.mov.cinema.cinemaapp.model.MovieDataViewModel
-import ch.mov.cinema.cinemaapp.model.entities.CategoryItem
-import ch.mov.cinema.cinemaapp.model.entities.Movie
-import ch.mov.cinema.cinemaapp.model.entities.MovieItem
-import ch.mov.cinema.cinemaapp.model.entities.PosterItem
 import ch.mov.cinema.databinding.DetailViewBinding
-import com.android.volley.Request
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.beust.klaxon.Klaxon
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 
 /**
@@ -48,10 +38,6 @@ class DetailFragment : Fragment() {
 
         val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
         var imagePath = settings?.getString("IMAGE_PATH","234")
-
-
-        val inputStream = requireContext().resources.openRawResource(R.raw.poster)
-        val poster = Klaxon().parse<PosterItem>(inputStream)
 
 
         Picasso.get()
