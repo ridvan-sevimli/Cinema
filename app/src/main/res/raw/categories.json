@@ -24,16 +24,6 @@
       "m_id": "5",
       "title": "In Theaters",
       "icon": "icons8_cinema_100"
-    },
-    {
-      "m_id": "6",
-      "title": "Box Office",
-      "icon": "icons8_like_100"
-    },
-    {
-      "m_id": "7",
-      "title": "Box Office All Time",
-      "icon": "icons8_star_100"
     }
   ]
 }

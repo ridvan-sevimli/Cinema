@@ -31,6 +31,7 @@ class SplashFragment : Fragment() {
 
     private var _binding: SplaschScreenBinding? = null
     val model: MovieDataViewModel by activityViewModels()
+    var categoryHandler = CategoryHandler()
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -51,18 +52,15 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         model.initDB(requireContext())
-        var categoryHandler = CategoryHandler()
 
-//        lifecycleScope.launchWhenStarted{
-//            withContext(Dispatchers.IO){
-//                for(key in categoryHandler.getCategoryIds()) {
-//                    fillDataBase(key)
-//                }
-//
-//
-//            }
-//
-//        }
+
+
+        fillDataBase()
+
+
+
+
+
 
         //binding.btnGetStarted.visibility = View.VISIBLE
 
@@ -72,27 +70,33 @@ class SplashFragment : Fragment() {
         }
     }
 
-  suspend fun fillDataBase(key: Map.Entry<String, String>){
-            val requestQueue = Volley.newRequestQueue(requireContext())
-            val request = StringRequest(
-                Request.Method.GET, key.key, { response ->
-                    var movies = Klaxon().parse<MovieItem>(response)
-                    for(movie in movies?.items!!){
-                        var id : Int = movie.id.subSequence(2,movie.id.length).toString().toInt()
-                        arrSubCategory.add(Movie(id,key.value,movie.title,movie.image))
-                    }
-                    lifecycleScope.launchWhenStarted{
-                        withContext(Dispatchers.Default){
-                            model.insertMovies(arrSubCategory)
-                        }
-                    }
-                },
-                {
-                    TODO("Error handling")
-                })
+   fun fillDataBase(){
+      lifecycleScope.launchWhenStarted{
+          withContext(Dispatchers.Default) {
+              for(key in categoryHandler.getCategoryIds()) {
+                  val requestQueue = Volley.newRequestQueue(requireContext())
+                  val request = StringRequest(
+                      Request.Method.GET, key.key, { response ->
+                          var movies = Klaxon().parse<MovieItem>(response)
+                          for (movie in movies?.items!!) {
+                              var id: Int = movie.id.subSequence(2, movie.id.length).toString().toInt()
+                              arrSubCategory.add(Movie(id, key.value, movie.title, movie.image))
+                          }
 
-            requestQueue.add(request)
+                      },
+                      {
+                          TODO("Error handling")
+                      })
+                  requestQueue.add(request)
 
+                  lifecycleScope.launchWhenStarted {
+                      withContext(Dispatchers.Default) {
+                          model.insertMovies(arrSubCategory)
+                      }
+                  }
+              }
+          }
+      }
     }
 
     override fun onDestroyView() {
