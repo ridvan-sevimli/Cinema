@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
-        android:src="@drawable/splash" />
+        android:src="@drawable/default_poster" />
 
     <Button
         android:id="@+id/btnGetStarted"

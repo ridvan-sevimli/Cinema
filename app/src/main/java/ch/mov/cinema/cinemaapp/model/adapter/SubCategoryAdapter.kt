@@ -44,7 +44,7 @@ class SubCategoryAdapter() : RecyclerView.Adapter<SubCategoryAdapter.MovieViewHo
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.bind(arrSubCategory[position]) // <<< Change here
+        holder.bind(arrSubCategory[position])
         with(holder){
             with(arrSubCategory[position]) {
                 binding.tvMovieName.text = arrSubCategory[position].movieName
@@ -52,9 +52,7 @@ class SubCategoryAdapter() : RecyclerView.Adapter<SubCategoryAdapter.MovieViewHo
                     Picasso.get()
                         .load(arrSubCategory[position].imgPath).into(binding.imgMovie)
                 }else{
-                    Picasso.get()
-                        .load("https://cdn2.vectorstock.com/i/1000x1000/00/61/movie-time-neon-logo-cinema-night-neon-vector-21560061.jpg").into(binding.imgMovie)
-
+                    binding.imgMovie.setImageResource(R.drawable.default_poster)
                 }
                 holder.itemView.rootView.setOnClickListener {
                     arrSubCategory[position].id.toString()?.let { it1 -> listener!!.onClicked(it1) }
