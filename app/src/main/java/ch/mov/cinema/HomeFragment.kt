@@ -14,13 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ch.mov.cinema.cinemaapp.model.MovieDataViewModel
 import ch.mov.cinema.cinemaapp.model.adapter.MainCategoryAdapter
 import ch.mov.cinema.cinemaapp.model.adapter.SubCategoryAdapter
-import ch.mov.cinema.cinemaapp.model.database.MoviesDatabase
 import ch.mov.cinema.cinemaapp.model.entities.*
 import ch.mov.cinema.databinding.FragmentHomeBinding
 import ch.mov.cinema.enums.MovieKeyIds
-import com.android.volley.Request
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.beust.klaxon.Klaxon
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

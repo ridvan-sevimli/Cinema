@@ -5,7 +5,6 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.room.Room
-import ch.mov.cinema.cinemaapp.model.dao.MoviesDao
 import ch.mov.cinema.cinemaapp.model.database.MoviesDatabase
 import ch.mov.cinema.cinemaapp.model.entities.Movie
 

@@ -1,22 +1,16 @@
 package ch.mov.cinema
 
-import android.content.Context
-import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import ch.mov.cinema.cinemaapp.model.CategoryHandler
 import ch.mov.cinema.cinemaapp.model.MovieDataViewModel
-import ch.mov.cinema.cinemaapp.model.adapter.MainCategoryAdapter
-import ch.mov.cinema.cinemaapp.model.adapter.SubCategoryAdapter
-import ch.mov.cinema.cinemaapp.model.database.MoviesDatabase
 import ch.mov.cinema.cinemaapp.model.entities.Movie
 import ch.mov.cinema.cinemaapp.model.entities.MovieItem
 import ch.mov.cinema.databinding.SplaschScreenBinding
@@ -25,13 +19,8 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.beust.klaxon.Klaxon
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.time.LocalDate
-import java.time.LocalDateTime
+
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.

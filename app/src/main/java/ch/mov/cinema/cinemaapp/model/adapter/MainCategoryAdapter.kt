@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ch.mov.cinema.cinemaapp.model.entities.Category
 import ch.mov.cinema.databinding.ItemRvMainCategoryBinding
-import com.squareup.picasso.Picasso
 
 
 class MainCategoryAdapter() : RecyclerView.Adapter<MainCategoryAdapter.CategoryViewHolder>(){
