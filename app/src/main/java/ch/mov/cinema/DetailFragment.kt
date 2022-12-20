@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import ch.mov.cinema.cinemaapp.model.MovieDataViewModel
 import ch.mov.cinema.databinding.DetailViewBinding
+import ch.mov.cinema.enums.MovieKeyIds
 import com.beust.klaxon.Klaxon
 import com.squareup.picasso.Picasso
 
@@ -37,7 +38,8 @@ class DetailFragment : Fragment() {
 
 
         val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
-        var imagePath = settings?.getString("IMAGE_PATH","234")
+        var imagePath = settings?.getString(MovieKeyIds.IMAGE_PATH.movieKey,"234")
+        var imageId = settings?.getString(MovieKeyIds.MOVIE_ID.movieKey,"234")
 
 
         Picasso.get()

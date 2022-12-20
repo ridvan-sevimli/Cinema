@@ -17,6 +17,7 @@ import ch.mov.cinema.cinemaapp.model.adapter.SubCategoryAdapter
 import ch.mov.cinema.cinemaapp.model.database.MoviesDatabase
 import ch.mov.cinema.cinemaapp.model.entities.*
 import ch.mov.cinema.databinding.FragmentHomeBinding
+import ch.mov.cinema.enums.MovieKeyIds
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -137,10 +138,11 @@ class HomeFragment : Fragment() {
     }
 
     private val onCLickedSubCategory  = object : SubCategoryAdapter.OnItemClickListener{
-        override fun onClicked(imagePath: String) {
+        override fun onClicked(imagePath: String, movieId: String) {
             val setting = context?.getSharedPreferences("prefsfile",Context.MODE_PRIVATE)
             val editor = setting?.edit()
-            editor?.putString("IMAGE_PATH",imagePath)
+            editor?.putString(MovieKeyIds.IMAGE_PATH.movieKey,imagePath)
+            editor?.putString(MovieKeyIds.MOVIE_ID.movieKey,movieId)
             editor?.commit()
             findNavController().navigate(R.id.action_HomeFragment_to_DetailFragment)
         }

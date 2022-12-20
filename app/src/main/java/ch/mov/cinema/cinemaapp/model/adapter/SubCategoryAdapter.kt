@@ -50,7 +50,10 @@ class SubCategoryAdapter() : RecyclerView.Adapter<SubCategoryAdapter.MovieViewHo
                     binding.imgMovie.setImageResource(R.drawable.default_poster)
                 }
                 holder.itemView.rootView.setOnClickListener {
-                    arrSubCategory[position].imgPath.toString()?.let { it1 -> listener!!.onClicked(it1) }
+                    //arrSubCategory[position].imgPath.toString()?.let { it1 -> listener!!.onClicked(it1) }
+                    var imagePath = arrSubCategory[position].imgPath.toString()
+                    var imageId = arrSubCategory[position].id.toString()
+                    listener!!.onClicked(imagePath,imageId)
                 }
 
             }
@@ -58,7 +61,7 @@ class SubCategoryAdapter() : RecyclerView.Adapter<SubCategoryAdapter.MovieViewHo
     }
 
     interface OnItemClickListener{
-        fun onClicked(categoryName:String)
+        fun onClicked(categoryName:String, movieId: String)
     }
 
     override fun getItemCount(): Int {

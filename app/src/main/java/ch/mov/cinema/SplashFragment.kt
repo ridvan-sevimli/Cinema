@@ -1,5 +1,6 @@
 package ch.mov.cinema
 
+import android.content.Context
 import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -29,6 +30,8 @@ import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -56,7 +59,21 @@ class SplashFragment : Fragment() {
 
         model.initDB(requireContext())
 
-        fillDataBase()
+//        val currentTime = LocalDateTime.now()
+//        val setting = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
+//        val editor = setting?.edit()
+//        editor?.putString("UPDATE_DB",currentTime.toString())
+//        editor?.commit()
+//
+//        val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
+//        var lastUpdatedDbStr = settings?.getString("UPDATE_DB","234")
+//
+//        var lastUpdatedDb = LocalDate.parse(lastUpdatedDbStr)
+
+//        if(lastUpdatedDb > currentTime ){
+//            fillDataBase()
+//        }
+
 
         binding.btnGetStarted.setOnClickListener {
             findNavController().navigate(R.id.action_SplashFragment_to_HomeFragment)
@@ -64,39 +81,33 @@ class SplashFragment : Fragment() {
     }
 
    fun fillDataBase(){
-       var apiKey = "k_1uv0dwir"
-     var job =  lifecycleScope.launchWhenStarted {
-          withContext(Dispatchers.Default) {
-              for(key in categoryHandler.getCategoryIds()) {
-                  val requestQueue = Volley.newRequestQueue(requireContext())
-                  val request = StringRequest(
-                      Request.Method.GET, key.key + apiKey, { response ->
-                          var movies = Klaxon().parse<MovieItem>(response)
-                          for (movie in movies?.items!!) {
-                              var id: Int = movie.id.subSequence(2, movie.id.length).toString().toInt()
-                              arrSubCategory.add(Movie(id, key.value, movie.title, movie.image))
-                          }
-
-                      },
-                      {
-                          TODO("Error handling")
-                      })
-                  requestQueue.add(request)
-
-              }
-
-          }
-      }
-
        lifecycleScope.launchWhenStarted {
            withContext(Dispatchers.Default) {
-               while(!job.isCompleted){
+            var apiKey = "k_jgnr0rjd"
+            for(key in categoryHandler.getCategoryIds()) {
+                val requestQueue = Volley.newRequestQueue(requireContext())
+                val request = StringRequest(
+                    Request.Method.GET,
+                    key.key + apiKey,
+                    { response ->
+                        var movies = Klaxon().parse<MovieItem>(response)
+                        for (movie in movies?.items!!) {
+                            var id: Int =
+                                movie.id.subSequence(2, movie.id.length).toString().toInt()
+                            arrSubCategory.add(Movie(id, key.value, movie.title, movie.image))
+                        }
+                    },
+                    {
 
-               }
-               model.insertMovies(arrSubCategory)
-           }
-       }
-  }
+                    })
+
+                requestQueue.add(request)
+                model.insertMovies(arrSubCategory)
+
+                    }
+                }
+            }
+   }
 
 
     override fun onDestroyView() {
