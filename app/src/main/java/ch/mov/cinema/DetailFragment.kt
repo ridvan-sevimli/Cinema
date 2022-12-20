@@ -65,12 +65,15 @@ class DetailFragment : Fragment() {
                         var title = Klaxon().parse<Title>(string)
                         var rating = Klaxon().parse<Rating>(string)
                         var poster = Klaxon().parse<Poster>(string)
+                        var tagline = Klaxon().parse<Tagline>(string)
 
                         binding.fullTitle.text = title?.title
                         binding.releaseDate.text = realeaseDate?.release_date
                         binding.runTime.text = "${run_time?.runtime} min"
                         binding.rating.text = rating?.vote_average?.toString()
+                        binding.tagLine.text= tagline?.tagline
                         binding.information.text = overview?.overview
+
 
                         Picasso.get().load("https://image.tmdb.org/t/p/original/${poster?.poster_path}").into(binding.poster)
 

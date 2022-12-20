@@ -8,7 +8,7 @@ app:startDestination="@id/SplashFragment">
 <fragment
     android:id="@+id/SplashFragment"
     android:name="ch.mov.cinema.SplashFragment"
-    android:label="@string/first_fragment_label"
+    android:label="@string/splash_screen_label"
     tools:layout="@layout/splasch_screen">
 
     <action
@@ -18,7 +18,7 @@ app:startDestination="@id/SplashFragment">
 <fragment
     android:id="@+id/HomeFragment"
     android:name="ch.mov.cinema.HomeFragment"
-    android:label="@string/second_fragment_label"
+    android:label="@string/dash_boad_label"
     tools:layout="@layout/fragment_home">
     <action
         android:id="@+id/action_HomeFragment_to_DetailFragment"
@@ -27,7 +27,7 @@ app:startDestination="@id/SplashFragment">
     <fragment
         android:id="@+id/DetailFragment"
         android:name="ch.mov.cinema.DetailFragment"
-        android:label="@string/second_fragment_label"
+        android:label="@string/detal_view_label"
         tools:layout="@layout/detail_view">
     </fragment>
 </navigation>

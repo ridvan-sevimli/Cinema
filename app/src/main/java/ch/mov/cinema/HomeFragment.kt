@@ -148,22 +148,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-
-    fun getJsonMovies(categoryName: String) : Int{
-        return when(categoryName){
-            "Coming Soon" -> R.raw.comingsoon
-            "Top 250 Movies" -> R.raw.top_250_movies
-            "Most Popular Movies" -> R.raw.most_popular_movies
-            "Most Popular Tv's" -> R.raw.most_popular_tv
-            "In Theaters" -> R.raw.in_theaters
-            "Box Office" -> R.raw.box_office
-            "Box Office All Time" -> R.raw.box_office_all_time
-            else -> {
-                R.raw.comingsoon
-            }
-        }
-    }
-
     fun initializeCategories(context : Context){
         if(arrMainCategory.size == 0) {
             val inputStream = requireContext().resources.openRawResource(R.raw.categories)
