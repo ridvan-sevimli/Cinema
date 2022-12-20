@@ -59,7 +59,7 @@ class SplashFragment : Fragment() {
 
         model.initDB(requireContext())
 
-        fillDataBase()
+        //fillDataBase()
 
 
         binding.btnGetStarted.setOnClickListener {

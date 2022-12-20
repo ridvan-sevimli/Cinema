@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import ch.mov.cinema.cinemaapp.model.DetailViewEntities.*
 import ch.mov.cinema.cinemaapp.model.MovieDataViewModel
-import ch.mov.cinema.cinemaapp.model.entities.DetailItem
 import ch.mov.cinema.databinding.DetailViewBinding
 import ch.mov.cinema.enums.MovieKeyIds
 import com.android.volley.Request
@@ -17,10 +17,10 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.beust.klaxon.Klaxon
+import com.beust.klaxon.Parser
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.json.JSONObject
 
 
 /**
@@ -48,18 +48,33 @@ class DetailFragment : Fragment() {
 
         val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
         var imagePath = settings?.getString(MovieKeyIds.IMAGE_PATH.movieKey, "234")
-        var imageId = settings?.getString(MovieKeyIds.MOVIE_ID.movieKey, "234")
+        var movieId = settings?.getString(MovieKeyIds.MOVIE_ID.movieKey, "234")
 
-        var movies: String? = null
 
         lifecycleScope.launchWhenStarted {
             withContext(Dispatchers.Default) {
                 val requestQueue = Volley.newRequestQueue(requireContext())
                 val request = StringRequest(
                     Request.Method.GET,
-                    "https://api.themoviedb.org/3/movie/0111161?api_key=75fb8838189fad79cf4dab173ae0245a&language=en-US",
+                    "https://api.themoviedb.org/3/movie/tt$movieId?api_key=75fb8838189fad79cf4dab173ae0245a&language=en-US",
                     Response.Listener<String> { response ->
-                        binding.information.text =  response
+                        var string = response
+                        var overview = Klaxon().parse<Overview>(string)
+                        var run_time = Klaxon().parse<RunTime>(string)
+                        var realeaseDate = Klaxon().parse<ReleaseDate>(string)
+                        var title = Klaxon().parse<Title>(string)
+                        var rating = Klaxon().parse<Rating>(string)
+                        var poster = Klaxon().parse<Poster>(string)
+
+                        binding.fullTitle.text = title?.title
+                        binding.releaseDate.text = realeaseDate?.release_date
+                        binding.runTime.text = "${run_time?.runtime} min"
+                        binding.rating.text = rating?.vote_average?.toString()
+                        binding.information.text = overview?.overview
+
+                        Picasso.get().load("https://image.tmdb.org/t/p/original/${poster?.poster_path}").into(binding.poster)
+
+
                     },
                     Response.ErrorListener {
 
@@ -70,15 +85,8 @@ class DetailFragment : Fragment() {
 
 
 
-//        while(!job.isCompleted){
-//
-//        }
 
 
-        var ms = movies
-
-                Picasso.get()
-                    .load(imagePath).into(binding.poster)
 
 
 //        binding.btnGetStarted.setOnClickListener {
@@ -86,7 +94,9 @@ class DetailFragment : Fragment() {
 //        }
     }
 
+    fun getRequest(){
 
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
