@@ -59,20 +59,7 @@ class SplashFragment : Fragment() {
 
         model.initDB(requireContext())
 
-//        val currentTime = LocalDateTime.now()
-//        val setting = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
-//        val editor = setting?.edit()
-//        editor?.putString("UPDATE_DB",currentTime.toString())
-//        editor?.commit()
-//
-//        val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
-//        var lastUpdatedDbStr = settings?.getString("UPDATE_DB","234")
-//
-//        var lastUpdatedDb = LocalDate.parse(lastUpdatedDbStr)
-
-//        if(lastUpdatedDb > currentTime ){
-//            fillDataBase()
-//        }
+        fillDataBase()
 
 
         binding.btnGetStarted.setOnClickListener {
@@ -83,30 +70,33 @@ class SplashFragment : Fragment() {
    fun fillDataBase(){
        lifecycleScope.launchWhenStarted {
            withContext(Dispatchers.Default) {
-            var apiKey = "k_jgnr0rjd"
-            for(key in categoryHandler.getCategoryIds()) {
-                val requestQueue = Volley.newRequestQueue(requireContext())
-                val request = StringRequest(
-                    Request.Method.GET,
-                    key.key + apiKey,
-                    { response ->
-                        var movies = Klaxon().parse<MovieItem>(response)
-                        for (movie in movies?.items!!) {
-                            var id: Int =
-                                movie.id.subSequence(2, movie.id.length).toString().toInt()
-                            arrSubCategory.add(Movie(id, key.value, movie.title, movie.image))
-                        }
-                    },
-                    {
+               var apiKey = "k_jgnr0rjd"
+               for (key in categoryHandler.getCategoryIds()) {
+                   val requestQueue = Volley.newRequestQueue(requireContext())
+                   val request = StringRequest(
+                       Request.Method.GET,
+                       key.key + apiKey,
+                       com.android.volley.Response.Listener<String> { response ->
+                           var movies = Klaxon().parse<MovieItem>(response)
+                           for (movie in movies?.items!!) {
+                               var id: Int =
+                                   movie.id.subSequence(2, movie.id.length).toString().toInt()
+                               arrSubCategory.add(Movie(id, key.value, movie.title, movie.image))
+                           }
 
-                    })
+                       },
+                       com.android.volley.Response.ErrorListener {
 
-                requestQueue.add(request)
-                model.insertMovies(arrSubCategory)
-
-                    }
-                }
-            }
+                       })
+                   requestQueue.add(request)
+                   lifecycleScope.launchWhenStarted {
+                       withContext(Dispatchers.Default) {
+                           model.insertMovies(arrSubCategory)
+                       }
+                   }
+               }
+           }
+       }
    }
 
 
