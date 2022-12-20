@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -75,7 +76,7 @@ class HomeFragment : Fragment() {
 
 
         lifecycleScope.launchWhenStarted{
-            withContext(Dispatchers.IO){
+            withContext(Dispatchers.Default){
                 var movies = model.getComingSoon()
                 for(movie in movies!!){
                     arrSubCategory.add(movie)
@@ -90,6 +91,7 @@ class HomeFragment : Fragment() {
                 binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
                 binding.rvSubCategory.adapter = subCategoryAdapter
             })
+
 
 
         /**
@@ -169,11 +171,12 @@ class HomeFragment : Fragment() {
 
 //    override fun onResume() {
 //        super.onResume()
-//        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+////        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+//
 //    }
 //
 //    override fun onStop() {
 //        super.onStop()
-//        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+//        //(activity as AppCompatActivity?)!!.supportActionBar!!.show()
 //    }
 }
