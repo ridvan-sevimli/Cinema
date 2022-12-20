@@ -1,3 +1,3 @@
 package ch.mov.cinema.cinemaapp.model.DetailViewEntities
 
-class Tagline(val tagline: String)
+data class Tagline(val tagline: String)

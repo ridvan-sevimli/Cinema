@@ -27,11 +27,11 @@ interface MoviesDao {
     @Query("SELECT * FROM movies WHERE category ='in_theaters'")
     fun getInTheaters(): List<Movie>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertMovies(movies: Movie)
 
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertAll(vararg movies: Movie)
 
 }

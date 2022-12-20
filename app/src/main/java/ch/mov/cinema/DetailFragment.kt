@@ -17,7 +17,6 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.beust.klaxon.Klaxon
-import com.beust.klaxon.Parser
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -30,9 +29,10 @@ class DetailFragment : Fragment() {
 
     private var _binding: DetailViewBinding? = null
     val model: MovieDataViewModel by activityViewModels()
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+
+    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,8 +47,7 @@ class DetailFragment : Fragment() {
 
 
         val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
-        var imagePath = settings?.getString(MovieKeyIds.IMAGE_PATH.movieKey, "234")
-        var movieId = settings?.getString(MovieKeyIds.MOVIE_ID.movieKey, "234")
+        var movieId = settings?.getString(MovieKeyIds.MOVIE_ID.movieKey, "00000")
 
 
         lifecycleScope.launchWhenStarted {
@@ -71,11 +70,13 @@ class DetailFragment : Fragment() {
                         binding.releaseDate.text = realeaseDate?.release_date
                         binding.runTime.text = "${run_time?.runtime} min"
                         binding.rating.text = rating?.vote_average?.toString()
-                        binding.tagLine.text= tagline?.tagline
+                        binding.tagLine.text = tagline?.tagline
                         binding.information.text = overview?.overview
 
 
-                        Picasso.get().load("https://image.tmdb.org/t/p/original/${poster?.poster_path}").into(binding.poster)
+                        Picasso.get()
+                            .load("https://image.tmdb.org/t/p/original/${poster?.poster_path}")
+                            .into(binding.poster)
 
 
                     },
@@ -85,19 +86,6 @@ class DetailFragment : Fragment() {
                 requestQueue.add(request)
             }
         }
-
-
-
-
-
-
-
-//        binding.btnGetStarted.setOnClickListener {
-//            findNavController().navigate(R.id.action_SplashFragment_to_HomeFragment)
-//        }
-    }
-
-    fun getRequest(){
 
     }
 

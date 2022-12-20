@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -30,8 +29,7 @@ class HomeFragment : Fragment() {
     val model: MovieDataViewModel by activityViewModels()
     private var _binding: FragmentHomeBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
     var subCategoryAdapter = SubCategoryAdapter()
@@ -52,10 +50,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        /**
-         *  my implementation
-         */
 
 
         model.initDB(requireContext())
@@ -91,18 +85,12 @@ class HomeFragment : Fragment() {
                 binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
                 binding.rvSubCategory.adapter = subCategoryAdapter
             })
-
-
-
-        /**
-         *  my implementation
-         */
-
     }
+
+
     private val onClickedMainCateogry  = object : MainCategoryAdapter.OnItemClickListener{
         override fun onClicked(categoryName: String) {
             binding.textViewCategory.text = categoryName
-            //changeMovies(categoryName)
             arrSubCategory = ArrayList<Movie>()
             lifecycleScope.launchWhenStarted{
                 withContext(Dispatchers.Default){
@@ -164,19 +152,9 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-//    override fun onResume() {
-//        super.onResume()
-////        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
-//
-//    }
-//
-//    override fun onStop() {
-//        super.onStop()
-//        //(activity as AppCompatActivity?)!!.supportActionBar!!.show()
-//    }
 }

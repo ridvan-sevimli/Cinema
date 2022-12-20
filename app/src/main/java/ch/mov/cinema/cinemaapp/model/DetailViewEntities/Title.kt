@@ -1,3 +1,3 @@
 package ch.mov.cinema.cinemaapp.model.DetailViewEntities
 
-class Title(val title: String)
+data class Title(val title: String)
