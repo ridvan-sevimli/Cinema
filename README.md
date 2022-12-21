@@ -1,5 +1,13 @@
 # Cinema
 
+
+(Alpha Release)
+Cinema is the ultimate app for avid movie watchers! With Cinema, you can easily find upcoming movies and those currently playing in theaters, as well as the top 250 movies and most popular movies. 
+
+The app also offers movie trailers, reviews and ratings, showtimes, and theater locations, so you can plan the perfect movie night. You can also add movies to your watch list, so you don't miss out on any of the latest releases. 
+
+Cinema is the perfect app for movie lovers to stay up to date with the latest releases and plan the perfect movie night. Download Cinema today and find your movie!
+
 ![Branching Modell](doc/getStarted.png) ![Branching Modell](doc/firstPage.png) ![Branching Modell](doc/firstPage2.png) ![Branching Modell](doc/detailView.png)
 
 ## Branching-Modell
