@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import ch.mov.cinema.cinemaapp.model.CategoryHandler
 import ch.mov.cinema.cinemaapp.model.TriviaDataViewModel
+import ch.mov.cinema.cinemaapp.model.entities.QuestionItem
 import ch.mov.cinema.cinemaapp.model.entities.Questions
 import ch.mov.cinema.databinding.SplaschScreenBinding
 import com.android.volley.Request
@@ -47,7 +48,7 @@ class SplashFragment : Fragment() {
 
         model.initDB(requireContext())
 
-        //fillDataBase()
+        fillDataBase()
 
 
         binding.btnGetStarted.setOnClickListener {
@@ -55,38 +56,25 @@ class SplashFragment : Fragment() {
         }
     }
 
-//   fun fillDataBase(){
-//       lifecycleScope.launchWhenStarted {
-//           withContext(Dispatchers.Default) {
-//               var apiKey = "k_jgnr0rjd"
-//               for (key in categoryHandler.getCategoryIds()) {
-//                   val requestQueue = Volley.newRequestQueue(requireContext())
-//                   val request = StringRequest(
-//                       Request.Method.GET,
-//                       key.key + apiKey,
-//                       com.android.volley.Response.Listener<String> { response ->
-//                           var movies = Klaxon().parse<MovieItem>(response)
-//                           for (movie in movies?.items!!) {
-//                               var id: Int =
-//                                   movie.id.subSequence(2, movie.id.length).toString().toInt()
-//                               //arrSubCategory.add(Questions(id, key.value, movie.title, movie.))
-//                           }
-//
-//                       },
-//                       com.android.volley.Response.ErrorListener {
-//
-//                       })
-//                   requestQueue.add(request)
-//                   lifecycleScope.launchWhenStarted {
-//                       withContext(Dispatchers.Default) {
-//                           model.insertMovies(arrSubCategory)
-//                       }
-//                   }
-//               }
-//           }
-//       }
-//   }
-
+   fun fillDataBase(){
+       val inputStream = requireContext().resources.openRawResource(R.raw.questions)
+       val questions = Klaxon().parse<QuestionItem>(inputStream)
+       for (question in questions?.questions!!) {
+           arrSubCategory.add(
+               Questions(
+                   question.q_id,
+                   question.category,
+                   question.question,
+                   question.poster
+               )
+           )
+       }
+        lifecycleScope.launchWhenStarted {
+            withContext(Dispatchers.Default) {
+                model.insertQuestions(arrSubCategory)
+                }
+            }
+        }
 
     override fun onDestroyView() {
         super.onDestroyView()

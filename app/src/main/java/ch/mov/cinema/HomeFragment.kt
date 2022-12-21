@@ -58,19 +58,15 @@ class HomeFragment : Fragment() {
         initializeCategories(requireContext())
 
 
-
-        val inputStream = requireContext().resources.openRawResource(R.raw.questions)
-        val questions = Klaxon().parse<QuestionItem>(inputStream)
-        for (question in questions?.questions!!) {
-            arrSubCategory.add(
-                Questions(
-                    question.q_id,
-                    question.category,
-                    question.question,
-                    question.poster
-                )
-            )
+        lifecycleScope.launchWhenStarted {
+            withContext(Dispatchers.Default) {
+                arrSubCategory = model.getComingSoon() as ArrayList<Questions>
+                subCategoryAdapter.setData(arrSubCategory)
+                subCategoryAdapter.setClickListener(onCLickedSubCategory)
+                binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+            }
         }
+
 
 
         mainCategoryAdapter.setData(arrMainCategory)
@@ -79,21 +75,8 @@ class HomeFragment : Fragment() {
         binding.rvMainCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
 
 
-        subCategoryAdapter.setData(arrSubCategory)
-        subCategoryAdapter.setClickListener(onCLickedSubCategory)
-        binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
 
-
-//        lifecycleScope.launchWhenStarted{
-//            withContext(Dispatchers.Default){
-//                var movies = model.getComingSoon()
-//                for(movie in movies!!){
-//                    arrSubCategory.add(movie)
-//                }
-//            }
-//        }
-
-        model.movies.observe(viewLifecycleOwner,
+        model.questions.observe(viewLifecycleOwner,
             // note that the observer sends the new value as parameter
             Observer<MutableList<Questions>>{newVal ->
                 subCategoryAdapter.setData(arrSubCategory)
@@ -110,7 +93,7 @@ class HomeFragment : Fragment() {
             lifecycleScope.launchWhenStarted{
                 withContext(Dispatchers.Default){
                     var movies : MutableList<Questions>? = null
-                    if(categoryName == "Coming Soon"){
+                    if(categoryName == "Mixed"){
                         movies = model.getComingSoon()!!
                     } else if (categoryName == "Top 250 Movies") {
                         movies = model.getTop250movies()!!
@@ -128,7 +111,7 @@ class HomeFragment : Fragment() {
                     }
                 }
             }
-            model.movies.observe(viewLifecycleOwner,
+            model.questions.observe(viewLifecycleOwner,
                 // note that the observer sends the new value as parameter
                 Observer<MutableList<Questions>>{newVal ->
                     subCategoryAdapter.setData(arrSubCategory)

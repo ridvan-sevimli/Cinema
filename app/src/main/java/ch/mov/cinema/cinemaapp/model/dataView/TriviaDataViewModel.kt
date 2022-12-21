@@ -11,10 +11,10 @@ import ch.mov.cinema.cinemaapp.model.entities.Questions
 class TriviaDataViewModel : ViewModel() {
 
     var db : TriviaDatabase? = null
-    var movies = MutableLiveData<MutableList<Questions>>()
+    var questions = MutableLiveData<MutableList<Questions>>()
 
     init{
-        movies.value = mutableListOf<Questions>()
+        questions.value = mutableListOf<Questions>()
     }
 
     fun initDB(context: Context){
@@ -24,9 +24,9 @@ class TriviaDataViewModel : ViewModel() {
         ).build()
     }
 
-    suspend fun insertMovies(movies: MutableList<Questions>){
-        for(movie in movies){
-            db?.triviaDao()?.insertAll(movie)
+    suspend fun insertQuestions(questions: MutableList<Questions>){
+        for(question in questions){
+            db?.triviaDao()?.insertAll(question)
         }
     }
     suspend fun getComingSoon() : MutableList<Questions>?{
