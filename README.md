@@ -1,5 +1,7 @@
 # Cinema
 
+![Branching Modell](doc/getStarted.png) ![Branching Modell](doc/firstPage.png) ![Branching Modell](doc/firstPage2.png) ![Branching Modell](doc/detailView.png)
+
 ## Branching-Modell
 
 Die Entwickler erstellen für jedes Issue einen Feature-Branch direkt vom dev-branch.
