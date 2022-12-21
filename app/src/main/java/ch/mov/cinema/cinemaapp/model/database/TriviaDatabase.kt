@@ -4,21 +4,22 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import ch.mov.cinema.cinemaapp.model.dao.MoviesDao
-import ch.mov.cinema.cinemaapp.model.entities.Movie
+import ch.mov.cinema.cinemaapp.model.dao.TriviaDao
+import ch.mov.cinema.cinemaapp.model.entities.Answers
+import ch.mov.cinema.cinemaapp.model.entities.Questions
 
 
-@Database(entities = [Movie::class],version = 1,exportSchema = false)
-abstract class MoviesDatabase : RoomDatabase() {
+@Database(entities = [Questions::class,Answers::class],version = 1,exportSchema = false)
+abstract class TriviaDatabase : RoomDatabase() {
 
-    abstract fun movieDao(): MoviesDao
+    abstract fun triviaDao(): TriviaDao
 
     companion object {
         @Volatile
-        private var INSTANCE: MoviesDatabase? = null
+        private var INSTANCE: TriviaDatabase? = null
 
 
-        fun getDatabase(context: Context): MoviesDatabase {
+        fun getDatabase(context: Context): TriviaDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance
@@ -26,8 +27,8 @@ abstract class MoviesDatabase : RoomDatabase() {
             synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context,
-                    MoviesDatabase::class.java,
-                    "movie.db"
+                    TriviaDatabase::class.java,
+                    "trivia.db"
                 ).build()
                 INSTANCE = instance
                 return instance

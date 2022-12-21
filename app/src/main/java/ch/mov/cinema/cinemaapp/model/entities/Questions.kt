@@ -5,18 +5,18 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
-@Entity(tableName = "Movies")
-data class Movie (
+@Entity(tableName = "Questions")
+data class Questions (
     @PrimaryKey(autoGenerate = true)
     var id: Int,
 
     @ColumnInfo(name="category")
     var category : String?,
 
-    @ColumnInfo(name= "movieName")
-    var movieName : String?,
+    @ColumnInfo(name="question")
+    var questions : String?,
 
-    @ColumnInfo(name= "imgPath")
-    var imgPath : String?
+    @ColumnInfo(name= "poster")
+    var poster : String?
 
 ): Serializable

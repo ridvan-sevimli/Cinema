@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import ch.mov.cinema.cinemaapp.model.MovieDataViewModel
+import ch.mov.cinema.cinemaapp.model.TriviaDataViewModel
 import ch.mov.cinema.cinemaapp.model.adapter.MainCategoryAdapter
 import ch.mov.cinema.cinemaapp.model.adapter.SubCategoryAdapter
 import ch.mov.cinema.cinemaapp.model.entities.*
@@ -26,7 +26,7 @@ import kotlinx.coroutines.withContext
  */
 class HomeFragment : Fragment() {
 
-    val model: MovieDataViewModel by activityViewModels()
+    val model: TriviaDataViewModel by activityViewModels()
     private var _binding: FragmentHomeBinding? = null
 
     // This property is only valid between onCreateView and onDestroyView.
@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
     var subCategoryAdapter = SubCategoryAdapter()
     var mainCategoryAdapter = MainCategoryAdapter()
     var arrMainCategory = ArrayList<Category>()
-    var arrSubCategory = ArrayList<Movie>()
+    var arrSubCategory = ArrayList<Questions>()
 
 
     override fun onCreateView(
@@ -58,6 +58,21 @@ class HomeFragment : Fragment() {
         initializeCategories(requireContext())
 
 
+
+        val inputStream = requireContext().resources.openRawResource(R.raw.questions)
+        val questions = Klaxon().parse<QuestionItem>(inputStream)
+        for (question in questions?.questions!!) {
+            arrSubCategory.add(
+                Questions(
+                    question.q_id,
+                    question.category,
+                    question.question,
+                    question.poster
+                )
+            )
+        }
+
+
         mainCategoryAdapter.setData(arrMainCategory)
         mainCategoryAdapter.setClickListener(onClickedMainCateogry)
         binding.rvMainCategory.adapter = mainCategoryAdapter
@@ -69,18 +84,18 @@ class HomeFragment : Fragment() {
         binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
 
 
-        lifecycleScope.launchWhenStarted{
-            withContext(Dispatchers.Default){
-                var movies = model.getComingSoon()
-                for(movie in movies!!){
-                    arrSubCategory.add(movie)
-                }
-            }
-        }
+//        lifecycleScope.launchWhenStarted{
+//            withContext(Dispatchers.Default){
+//                var movies = model.getComingSoon()
+//                for(movie in movies!!){
+//                    arrSubCategory.add(movie)
+//                }
+//            }
+//        }
 
         model.movies.observe(viewLifecycleOwner,
             // note that the observer sends the new value as parameter
-            Observer<MutableList<Movie>>{newVal ->
+            Observer<MutableList<Questions>>{newVal ->
                 subCategoryAdapter.setData(arrSubCategory)
                 binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
                 binding.rvSubCategory.adapter = subCategoryAdapter
@@ -91,10 +106,10 @@ class HomeFragment : Fragment() {
     private val onClickedMainCateogry  = object : MainCategoryAdapter.OnItemClickListener{
         override fun onClicked(categoryName: String) {
             binding.textViewCategory.text = categoryName
-            arrSubCategory = ArrayList<Movie>()
+            arrSubCategory = ArrayList<Questions>()
             lifecycleScope.launchWhenStarted{
                 withContext(Dispatchers.Default){
-                    var movies : MutableList<Movie>? = null
+                    var movies : MutableList<Questions>? = null
                     if(categoryName == "Coming Soon"){
                         movies = model.getComingSoon()!!
                     } else if (categoryName == "Top 250 Movies") {
@@ -115,7 +130,7 @@ class HomeFragment : Fragment() {
             }
             model.movies.observe(viewLifecycleOwner,
                 // note that the observer sends the new value as parameter
-                Observer<MutableList<Movie>>{newVal ->
+                Observer<MutableList<Questions>>{newVal ->
                     subCategoryAdapter.setData(arrSubCategory)
                     binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
                     binding.rvSubCategory.adapter = subCategoryAdapter

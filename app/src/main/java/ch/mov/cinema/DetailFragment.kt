@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import ch.mov.cinema.cinemaapp.model.DetailViewEntities.*
-import ch.mov.cinema.cinemaapp.model.MovieDataViewModel
+import ch.mov.cinema.cinemaapp.model.TriviaDataViewModel
 import ch.mov.cinema.databinding.DetailViewBinding
 import ch.mov.cinema.enums.MovieKeyIds
 import com.android.volley.Request
@@ -28,7 +28,7 @@ import kotlinx.coroutines.withContext
 class DetailFragment : Fragment() {
 
     private var _binding: DetailViewBinding? = null
-    val model: MovieDataViewModel by activityViewModels()
+    val model: TriviaDataViewModel by activityViewModels()
 
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!

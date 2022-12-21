@@ -1,7 +1,7 @@
 {
   "answers": [
     {
-      "q_id": "1",
+      "q_id": 1,
       "type": "multiple",
       "a":"Sushi recipes",
       "b":"Dumpling recipes",
@@ -10,7 +10,7 @@
       "answer":"Sushi recipes"
     },
     {
-      "q_id": "2",
+      "q_id": 2,
       "type":"multiple",
       "a":"Henry",
       "b":"Eddie",
@@ -19,7 +19,7 @@
       "answer":"Eddie"
     },
     {
-      "q_id": "3",
+      "q_id": 3,
       "type":"multiple",
       "a":"Leonardo DiCaprio",
       "b":"Billy Zane",
@@ -28,7 +28,7 @@
       "answer":"James Cameron"
     },
     {
-      "q_id": "4",
+      "q_id": 4,
       "type":"multiple",
       "a":"Tina Fey",
       "b":"Kathryn Hahn",
@@ -37,7 +37,7 @@
       "answer":"Amy Poehler"
     },
     {
-      "q_id": "5",
+      "q_id": 5,
       "type":"multiple",
       "a":"Ireland",
       "b":" Iceland",
@@ -46,7 +46,7 @@
       "answer":"New Zealand"
     },
     {
-      "q_id": "6",
+      "q_id": 6,
       "type":"multiple",
       "a":"Vietnam",
       "b":"China",
@@ -55,7 +55,7 @@
       "answer":"China"
     },
     {
-      "q_id": "7",
+      "q_id": 7,
       "type":"multiple",
       "a":"Vincent and Mia’s dance scene",
       "b":"Mia’s overdose scene",
@@ -64,7 +64,7 @@
       "answer":"Mia’s overdose scene"
     },
     {
-      "q_id": "8",
+      "q_id": 8,
       "type":"multiple",
       "a":"Tom Cruise",
       "b":"Matt Dillon",
@@ -73,7 +73,7 @@
       "answer":"Rob Lowe"
     },
     {
-      "q_id": "9",
+      "q_id": 9,
       "type":"multiple",
       "a":"Hattie McDaniel",
       "b":"Sidney Poitier",
@@ -82,7 +82,7 @@
       "answer":"Hattie McDaniel"
     },
     {
-      "q_id": "10",
+      "q_id": 10,
       "type":"multiple",
       "a":"Billy Warp",
       "b":"Veruca Salt",
@@ -91,7 +91,7 @@
       "answer":"Billy Warp"
     },
     {
-      "q_id": "11",
+      "q_id": 11,
       "type":"multiple",
       "a":"Red and blue",
       "b":"Orange and green",
@@ -100,7 +100,7 @@
       "answer":"Red and green"
     },
     {
-      "q_id": "12",
+      "q_id": 12,
       "type":"multiple",
       "a":"Francis Ford Coppola",
       "b":"Diane Keaton",
@@ -109,7 +109,7 @@
       "answer":"No one—the cat was a stray"
     },
     {
-      "q_id": "13",
+      "q_id": 13,
       "type":"multiple",
       "a":"Arendelle",
       "b":"Naples",
@@ -118,7 +118,7 @@
       "answer":"Arendelle"
     },
     {
-      "q_id": "14",
+      "q_id": 14,
       "type":"multiple",
       "a":"Love Actually",
       "b":"How to Lose a Guy in 10 Days",
@@ -127,14 +127,14 @@
       "answer":"Brokeback Mountain"
     },
     {
-      "q_id": "15",
+      "q_id": 15,
       "type":"bol",
       "a":"True",
       "b":"False",
       "answer":"True"
     },
     {
-      "q_id": "16",
+      "q_id": 16,
       "type":"multiple",
       "a":"James Wan",
       "b":"Jordan Peele",
@@ -143,7 +143,7 @@
       "answer":"Jordan Peele"
     },
     {
-      "q_id": "17",
+      "q_id": 17,
       "type":"multiple",
       "a":"A Coca-Cola can",
       "b":"A Starbucks cup",
@@ -152,7 +152,7 @@
       "answer":"A Starbucks cup"
     },
     {
-      "q_id": "18",
+      "q_id": 18,
       "type":"multiple",
       "a":"Iron Man",
       "b":"Captain America: The First Avenger",
@@ -161,7 +161,7 @@
       "answer":"Captain America: The First Avenger"
     },
     {
-      "q_id": "19",
+      "q_id": 19,
       "type":"multiple",
       "a":"Breakfast at Tiffany’s",
       "b":"Citizen Kane",
@@ -170,7 +170,7 @@
       "answer":"Casablanca"
     },
     {
-      "q_id": "20",
+      "q_id": 20,
       "type":"multiple",
       "a":"Camp Holland Lake",
       "b":"Camp Crystal Lake",
@@ -179,7 +179,7 @@
       "answer":"Camp Crystal Lake"
     },
     {
-      "q_id": "21",
+      "q_id": 21,
       "type":"multiple",
       "a":"Tortoises",
       "b":"Frogs",
@@ -188,7 +188,7 @@
       "answer":"Tortoises"
     },
     {
-      "q_id": "22",
+      "q_id": 22,
       "type":"multiple",
       "a":"Jack Nicholson",
       "b":"Sean Penn",
@@ -197,7 +197,7 @@
       "answer":"Sean Penn"
     },
     {
-      "q_id": "23",
+      "q_id": 23,
       "type":"multiple",
       "a":"France",
       "b":"Italy",
@@ -206,7 +206,7 @@
       "answer":"Italy"
     },
     {
-      "q_id": "24",
+      "q_id": 24,
       "type":"multiple",
       "a":"Hercules",
       "b":"Goliath",
@@ -215,7 +215,7 @@
       "answer":"Hercules"
     },
     {
-      "q_id": "25",
+      "q_id": 25,
       "type":"multiple",
       "a":"Beyoncé",
       "b":"Britney Spears",
@@ -224,7 +224,7 @@
       "answer":"Beyoncé"
     },
     {
-      "q_id": "26",
+      "q_id": 26,
       "type":"multiple",
       "a":"Star Wars and Close Encounters of the Third Kind",
       "b":"E.T. and Poltergeist",
@@ -233,7 +233,7 @@
       "answer":"E.T. and Poltergeist"
     },
     {
-      "q_id": "27",
+      "q_id": 27,
       "type":"multiple",
       "a":"2",
       "b":"1",
@@ -242,7 +242,7 @@
       "answer":""
     },
     {
-      "q_id": "28",
+      "q_id": 28,
       "type":"multiple",
       "a":"Speed",
       "b":"Reservoir Dogs",
@@ -251,7 +251,7 @@
       "answer":"Se7en"
     },
     {
-      "q_id": "29",
+      "q_id": 29,
       "type":"multiple",
       "a":"Australia",
       "b":"Europe",
@@ -261,7 +261,7 @@
     },
 
     {
-      "q_id": "30",
+      "q_id": 30,
       "type":"multiple",
       "a":"Clint Eastwood",
       "b":"Marlon Brando",

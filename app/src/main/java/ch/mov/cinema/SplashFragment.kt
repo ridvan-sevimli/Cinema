@@ -10,9 +10,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import ch.mov.cinema.cinemaapp.model.CategoryHandler
-import ch.mov.cinema.cinemaapp.model.MovieDataViewModel
-import ch.mov.cinema.cinemaapp.model.entities.Movie
-import ch.mov.cinema.cinemaapp.model.entities.MovieItem
+import ch.mov.cinema.cinemaapp.model.TriviaDataViewModel
+import ch.mov.cinema.cinemaapp.model.entities.Questions
 import ch.mov.cinema.databinding.SplaschScreenBinding
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
@@ -28,12 +27,12 @@ import kotlinx.coroutines.withContext
 class SplashFragment : Fragment() {
 
     private var _binding: SplaschScreenBinding? = null
-    val model: MovieDataViewModel by activityViewModels()
+    val model: TriviaDataViewModel by activityViewModels()
     var categoryHandler = CategoryHandler()
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    var arrSubCategory = ArrayList<Movie>()
+    var arrSubCategory = ArrayList<Questions>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,37 +55,37 @@ class SplashFragment : Fragment() {
         }
     }
 
-   fun fillDataBase(){
-       lifecycleScope.launchWhenStarted {
-           withContext(Dispatchers.Default) {
-               var apiKey = "k_jgnr0rjd"
-               for (key in categoryHandler.getCategoryIds()) {
-                   val requestQueue = Volley.newRequestQueue(requireContext())
-                   val request = StringRequest(
-                       Request.Method.GET,
-                       key.key + apiKey,
-                       com.android.volley.Response.Listener<String> { response ->
-                           var movies = Klaxon().parse<MovieItem>(response)
-                           for (movie in movies?.items!!) {
-                               var id: Int =
-                                   movie.id.subSequence(2, movie.id.length).toString().toInt()
-                               arrSubCategory.add(Movie(id, key.value, movie.title, movie.image))
-                           }
-
-                       },
-                       com.android.volley.Response.ErrorListener {
-
-                       })
-                   requestQueue.add(request)
-                   lifecycleScope.launchWhenStarted {
-                       withContext(Dispatchers.Default) {
-                           model.insertMovies(arrSubCategory)
-                       }
-                   }
-               }
-           }
-       }
-   }
+//   fun fillDataBase(){
+//       lifecycleScope.launchWhenStarted {
+//           withContext(Dispatchers.Default) {
+//               var apiKey = "k_jgnr0rjd"
+//               for (key in categoryHandler.getCategoryIds()) {
+//                   val requestQueue = Volley.newRequestQueue(requireContext())
+//                   val request = StringRequest(
+//                       Request.Method.GET,
+//                       key.key + apiKey,
+//                       com.android.volley.Response.Listener<String> { response ->
+//                           var movies = Klaxon().parse<MovieItem>(response)
+//                           for (movie in movies?.items!!) {
+//                               var id: Int =
+//                                   movie.id.subSequence(2, movie.id.length).toString().toInt()
+//                               //arrSubCategory.add(Questions(id, key.value, movie.title, movie.))
+//                           }
+//
+//                       },
+//                       com.android.volley.Response.ErrorListener {
+//
+//                       })
+//                   requestQueue.add(request)
+//                   lifecycleScope.launchWhenStarted {
+//                       withContext(Dispatchers.Default) {
+//                           model.insertMovies(arrSubCategory)
+//                       }
+//                   }
+//               }
+//           }
+//       }
+//   }
 
 
     override fun onDestroyView() {
