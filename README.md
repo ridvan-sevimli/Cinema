@@ -2,7 +2,7 @@
 
 
 (Alpha)
-Cinema is the ultimate app for movie lovers! With MovieFinder, you can easily find upcoming movies and those currently playing in theaters, as well as the top 250 movies and most popular movies. 
+Cinema is the ultimate app for movie lovers! With Cinema, you can easily find upcoming movies and those currently playing in theaters, as well as the top 250 movies and most popular movies. 
 
 The app also offers movie trailers, reviews and ratings, showtimes, and theater locations, so you can plan the perfect movie night. You can also add movies to your watch list, so you don't miss out on any of the latest releases. 
 
