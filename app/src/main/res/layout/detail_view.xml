@@ -68,110 +68,14 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/full_title"
-                        android:layout_width="362dp"
+                        android:id="@+id/question"
+                        android:layout_width="360dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/anton"
                         android:padding="10dp"
-                        android:text="Full Title"
-                        android:textAlignment="center"
+                        android:text="Question"
                         android:textColor="@color/black"
-                        android:textSize="30dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-
-                            <ImageView
-                                android:layout_width="46dp"
-                                android:layout_height="29dp"
-                                android:src="@drawable/icons8_time_machine_100" />
-
-                            <TextView
-                                android:id="@+id/run_time"
-                                android:layout_width="50dp"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/anton"
-                                android:maxEms="10"
-                                android:maxLines="2"
-                                android:paddingStart="5dp"
-                                android:paddingTop="10dp"
-                                android:paddingBottom="10dp"
-                                android:text="0 min"
-                                android:textColor="@color/black"
-                                android:textSize="15dp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="35dp"
-                                android:layout_height="27dp"
-                                android:src="@drawable/icons8_star_100" />
-
-
-                            <TextView
-                                android:id="@+id/rating"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/anton"
-                                android:maxEms="10"
-                                android:maxLines="2"
-                                android:paddingStart="5dp"
-                                android:paddingTop="10dp"
-                                android:paddingBottom="10dp"
-                                android:text="0"
-                                android:textColor="@color/black"
-                                android:textSize="15dp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="32dp"
-                                android:layout_height="24dp"
-                                android:src="@drawable/icons8_calendar_100" />
-
-
-                            <TextView
-                                android:id="@+id/release_date"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/anton"
-                                android:maxEms="10"
-                                android:maxLines="2"
-                                android:paddingStart="5dp"
-                                android:paddingTop="10dp"
-                                android:paddingBottom="10dp"
-                                android:text="3"
-                                android:textColor="@color/black"
-                                android:textSize="15dp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
+                        android:textSize="15dp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -181,42 +85,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/anton"
                 android:paddingStart="15dp"
-                android:text="Tag Line"
-                android:textColor="@color/yellow"
-                android:textSize="15dp" />
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tag_line"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
-                        android:paddingStart="5dp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:textColor="@color/black"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/anton"
-                android:paddingStart="15dp"
-                android:text="Plot"
+                android:text="Answer"
                 android:textColor="@color/yellow"
                 android:textSize="15dp" />
 
@@ -227,24 +96,71 @@
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp">
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-
-                    <TextView
-                        android:id="@+id/information"
-                        android:layout_width="match_parent"
+                    <Button
+                        android:id="@+id/btn_answerA"
+                        android:layout_width="356dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
-                        android:paddingStart="5dp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="10dp"
-                        android:textColor="@color/black"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/btn_ans"
+                        android:backgroundTint="@color/white"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:text="A"
+                        android:textColor="@color/yellow" />
+
+                    <Button
+                        android:id="@+id/btn_answerB"
+                        android:layout_width="356dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/btn_ans"
+                        android:backgroundTint="@color/white"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:text="B"
+                        android:textColor="@color/yellow" />
+
+                    <Button
+                        android:id="@+id/btn_answerC"
+                        android:layout_width="356dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/btn_ans"
+                        android:backgroundTint="@color/white"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:text="C"
+                        android:textColor="@color/yellow" />
+
+                    <Button
+                        android:id="@+id/btn_answerD"
+                        android:layout_width="356dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/btn_ans"
+                        android:backgroundTint="@color/white"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:text="D"
+                        android:textColor="@color/yellow" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

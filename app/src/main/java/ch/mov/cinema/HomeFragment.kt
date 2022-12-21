@@ -60,7 +60,7 @@ class HomeFragment : Fragment() {
 
         lifecycleScope.launchWhenStarted {
             withContext(Dispatchers.Default) {
-                arrSubCategory = model.getComingSoon() as ArrayList<Questions>
+                arrSubCategory = model.getMixed() as ArrayList<Questions>
                 subCategoryAdapter.setData(arrSubCategory)
                 subCategoryAdapter.setClickListener(onCLickedSubCategory)
                 binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
@@ -94,7 +94,7 @@ class HomeFragment : Fragment() {
                 withContext(Dispatchers.Default){
                     var movies : MutableList<Questions>? = null
                     if(categoryName == "Mixed"){
-                        movies = model.getComingSoon()!!
+                        movies = model.getMixed()!!
                     } else if (categoryName == "Top 250 Movies") {
                         movies = model.getTop250movies()!!
                     }else if(categoryName == "Most Popular Movies"){

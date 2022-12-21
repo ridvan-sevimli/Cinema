@@ -4,6 +4,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import ch.mov.cinema.cinemaapp.model.entities.Answer
+import ch.mov.cinema.cinemaapp.model.entities.Answers
 import ch.mov.cinema.cinemaapp.model.entities.Questions
 
 
@@ -16,7 +18,10 @@ interface TriviaDao {
     fun getTop250movies(): List<Questions>
 
     @Query("SELECT * FROM questions WHERE category ='mixed'")
-    fun getComingSoon(): List<Questions>
+    fun getMixed(): List<Questions>
+
+    @Query("SELECT * FROM answers ORDER BY id DESC")
+    fun getAnswers(): List<Answers>
 
     @Query("SELECT * FROM questions WHERE category ='most_popular_movies'")
     fun getMostPopularMovies(): List<Questions>
@@ -30,6 +35,8 @@ interface TriviaDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertMovies(movies: Questions)
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertAll(vararg movies: Answers)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertAll(vararg movies: Questions)

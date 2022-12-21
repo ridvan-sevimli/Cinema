@@ -10,6 +10,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import ch.mov.cinema.cinemaapp.model.DetailViewEntities.*
 import ch.mov.cinema.cinemaapp.model.TriviaDataViewModel
+import ch.mov.cinema.cinemaapp.model.entities.Answer
+import ch.mov.cinema.cinemaapp.model.entities.Answers
+import ch.mov.cinema.cinemaapp.model.entities.Question
+import ch.mov.cinema.cinemaapp.model.entities.Questions
 import ch.mov.cinema.databinding.DetailViewBinding
 import ch.mov.cinema.enums.MovieKeyIds
 import com.android.volley.Request
@@ -28,7 +32,7 @@ import kotlinx.coroutines.withContext
 class DetailFragment : Fragment() {
 
     private var _binding: DetailViewBinding? = null
-    val model: TriviaDataViewModel by activityViewModels()
+
 
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
@@ -45,47 +49,70 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        val model: TriviaDataViewModel by activityViewModels()
+        val questions: MutableMap<Int, Questions> = mutableMapOf<Int, Questions>()
+        val answers: MutableMap<Int, Answers> = mutableMapOf<Int, Answers>()
         val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
         var movieId = settings?.getString(MovieKeyIds.MOVIE_ID.movieKey, "00000")
 
 
-        lifecycleScope.launchWhenStarted {
+       lifecycleScope.launchWhenStarted {
             withContext(Dispatchers.Default) {
-                val requestQueue = Volley.newRequestQueue(requireContext())
-                val request = StringRequest(
-                    Request.Method.GET,
-                    "https://api.themoviedb.org/3/movie/tt$movieId?api_key=75fb8838189fad79cf4dab173ae0245a&language=en-US",
-                    Response.Listener<String> { response ->
-                        var string = response
-                        var overview = Klaxon().parse<Overview>(string)
-                        var run_time = Klaxon().parse<RunTime>(string)
-                        var realeaseDate = Klaxon().parse<ReleaseDate>(string)
-                        var title = Klaxon().parse<Title>(string)
-                        var rating = Klaxon().parse<Rating>(string)
-                        var poster = Klaxon().parse<Poster>(string)
-                        var tagline = Klaxon().parse<Tagline>(string)
+                var answer = model.getAnswers()!!
+                var question = model.getMixed()!!
+                for(questi in question){
+                    questions[questi.id] = questi
+                }
+                for(ans in answer){
+                    answers[ans.id] = ans
+                }
 
-                        binding.fullTitle.text = title?.title
-                        binding.releaseDate.text = realeaseDate?.release_date
-                        binding.runTime.text = "${run_time?.runtime} min"
-                        binding.rating.text = rating?.vote_average?.toString()
-                        binding.tagLine.text = tagline?.tagline
-                        binding.information.text = overview?.overview
+                binding.question.text = questions.get(movieId?.toInt())?.questions
 
-
-                        Picasso.get()
-                            .load("https://image.tmdb.org/t/p/original/${poster?.poster_path}")
-                            .into(binding.poster)
-
-
-                    },
-                    Response.ErrorListener {
-
-                    })
-                requestQueue.add(request)
             }
+           Picasso.get()
+               .load(questions.get(movieId?.toInt())?.poster)
+               .into(binding.poster)
+
         }
+
+
+//        lifecycleScope.launchWhenStarted {
+//            withContext(Dispatchers.Default) {
+//                val requestQueue = Volley.newRequestQueue(requireContext())
+//                val request = StringRequest(
+//                    Request.Method.GET,
+//                    "https://api.themoviedb.org/3/movie/tt$movieId?api_key=75fb8838189fad79cf4dab173ae0245a&language=en-US",
+//                    Response.Listener<String> { response ->
+//                        var string = response
+//                        var overview = Klaxon().parse<Overview>(string)
+//                        var run_time = Klaxon().parse<RunTime>(string)
+//                        var realeaseDate = Klaxon().parse<ReleaseDate>(string)
+//                        var title = Klaxon().parse<Title>(string)
+//                        var rating = Klaxon().parse<Rating>(string)
+//                        var poster = Klaxon().parse<Poster>(string)
+//                        var tagline = Klaxon().parse<Tagline>(string)
+//
+//                        binding.fullTitle.text = title?.title
+//                        binding.releaseDate.text = realeaseDate?.release_date
+//                        binding.runTime.text = "${run_time?.runtime} min"
+//                        binding.rating.text = rating?.vote_average?.toString()
+//                        binding.tagLine.text = tagline?.tagline
+//                        binding.information.text = overview?.overview
+//
+//
+//                        Picasso.get()
+//                            .load("https://image.tmdb.org/t/p/original/${poster?.poster_path}")
+//                            .into(binding.poster)
+//
+//
+//                    },
+//                    Response.ErrorListener {
+//
+//                    })
+//                requestQueue.add(request)
+//            }
+//        }
 
     }
 

@@ -131,6 +131,8 @@
       "type":"bol",
       "a":"True",
       "b":"False",
+      "c":"",
+      "d":"",
       "answer":"True"
     },
     {

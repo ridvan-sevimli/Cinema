@@ -11,8 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import ch.mov.cinema.cinemaapp.model.CategoryHandler
 import ch.mov.cinema.cinemaapp.model.TriviaDataViewModel
-import ch.mov.cinema.cinemaapp.model.entities.QuestionItem
-import ch.mov.cinema.cinemaapp.model.entities.Questions
+import ch.mov.cinema.cinemaapp.model.entities.*
 import ch.mov.cinema.databinding.SplaschScreenBinding
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
@@ -48,7 +47,8 @@ class SplashFragment : Fragment() {
 
         model.initDB(requireContext())
 
-        fillDataBase()
+//        fillQuestions_to_DB()
+//        fillAnswers_to_DB()
 
 
         binding.btnGetStarted.setOnClickListener {
@@ -56,7 +56,8 @@ class SplashFragment : Fragment() {
         }
     }
 
-   fun fillDataBase(){
+   fun fillQuestions_to_DB(){
+       var arrSubCategory = ArrayList<Questions>()
        val inputStream = requireContext().resources.openRawResource(R.raw.questions)
        val questions = Klaxon().parse<QuestionItem>(inputStream)
        for (question in questions?.questions!!) {
@@ -75,6 +76,30 @@ class SplashFragment : Fragment() {
                 }
             }
         }
+
+    fun fillAnswers_to_DB(){
+        var arrSubCategory = ArrayList<Answers>()
+        val inputStream = requireContext().resources.openRawResource(R.raw.answers)
+        val answers = Klaxon().parse<AnswerItem>(inputStream)
+        for (answer in answers?.answers!!) {
+            arrSubCategory.add(
+                Answers(
+                    answer.q_id,
+                    answer.type,
+                    answer.a,
+                    answer.b,
+                    answer.c,
+                    answer.d,
+                    answer.answer
+                )
+            )
+        }
+        lifecycleScope.launchWhenStarted {
+            withContext(Dispatchers.Default) {
+                model.insertAnswers(arrSubCategory)
+            }
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
