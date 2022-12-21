@@ -6,7 +6,7 @@ Cinema is the ultimate app for movie lovers! With Cinema, you can easily find up
 
 The app also offers movie trailers, reviews and ratings, showtimes, and theater locations, so you can plan the perfect movie night. You can also add movies to your watch list, so you don't miss out on any of the latest releases. 
 
-MovieFinder is the perfect app for movie lovers to stay up to date with the latest releases and plan the perfect movie night. Download MovieFinder today and find your movie!
+Cinema is the perfect app for movie lovers to stay up to date with the latest releases and plan the perfect movie night. Download Cinema today and find your movie!
 
 ![Branching Modell](doc/getStarted.png) ![Branching Modell](doc/firstPage.png) ![Branching Modell](doc/firstPage2.png) ![Branching Modell](doc/detailView.png)
 
