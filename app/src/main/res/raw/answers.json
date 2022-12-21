@@ -1,0 +1,273 @@
+{
+  "answers": [
+    {
+      "q_id": "1",
+      "type": "multiple",
+      "a":"Sushi recipes",
+      "b":"Dumpling recipes",
+      "c":"Stir-fry recipes",
+      "d":"Pad thai recipes",
+      "answer":"Sushi recipes"
+    },
+    {
+      "q_id": "2",
+      "type":"multiple",
+      "a":"Henry",
+      "b":"Eddie",
+      "c":"Chuck",
+      "d":"Al",
+      "answer":"Eddie"
+    },
+    {
+      "q_id": "3",
+      "type":"multiple",
+      "a":"Leonardo DiCaprio",
+      "b":"Billy Zane",
+      "c":"James Cameron",
+      "d":"Kathy Bates",
+      "answer":"James Cameron"
+    },
+    {
+      "q_id": "4",
+      "type":"multiple",
+      "a":"Tina Fey",
+      "b":"Kathryn Hahn",
+      "c":"Ellen DeGeneres",
+      "d":"Amy Poehler",
+      "answer":"Amy Poehler"
+    },
+    {
+      "q_id": "5",
+      "type":"multiple",
+      "a":"Ireland",
+      "b":" Iceland",
+      "c":"New Zealand",
+      "d":"Australia",
+      "answer":"New Zealand"
+    },
+    {
+      "q_id": "6",
+      "type":"multiple",
+      "a":"Vietnam",
+      "b":"China",
+      "c":"Sweden",
+      "d":"France",
+      "answer":"China"
+    },
+    {
+      "q_id": "7",
+      "type":"multiple",
+      "a":"Vincent and Mia’s dance scene",
+      "b":"Mia’s overdose scene",
+      "c":"The royale with cheese scene",
+      "d":"The Ezekiel 25:17 scene",
+      "answer":"Mia’s overdose scene"
+    },
+    {
+      "q_id": "8",
+      "type":"multiple",
+      "a":"Tom Cruise",
+      "b":"Matt Dillon",
+      "c":"Rob Lowe",
+      "d":"Thomas Howell",
+      "answer":"Rob Lowe"
+    },
+    {
+      "q_id": "9",
+      "type":"multiple",
+      "a":"Hattie McDaniel",
+      "b":"Sidney Poitier",
+      "c":"Dorothy Dandridge",
+      "d":"James Earl Jones",
+      "answer":"Hattie McDaniel"
+    },
+    {
+      "q_id": "10",
+      "type":"multiple",
+      "a":"Billy Warp",
+      "b":"Veruca Salt",
+      "c":"Mike Teavee",
+      "d":" Charlie Bucket",
+      "answer":"Billy Warp"
+    },
+    {
+      "q_id": "11",
+      "type":"multiple",
+      "a":"Red and blue",
+      "b":"Orange and green",
+      "c":"Red and green",
+      "d":"Orange and brown",
+      "answer":"Red and green"
+    },
+    {
+      "q_id": "12",
+      "type":"multiple",
+      "a":"Francis Ford Coppola",
+      "b":"Diane Keaton",
+      "c":"Al Pachino",
+      "d":"No one—the cat was a stray",
+      "answer":"No one—the cat was a stray"
+    },
+    {
+      "q_id": "13",
+      "type":"multiple",
+      "a":"Arendelle",
+      "b":"Naples",
+      "c":"Florin",
+      "d":"Grimm",
+      "answer":"Arendelle"
+    },
+    {
+      "q_id": "14",
+      "type":"multiple",
+      "a":"Love Actually",
+      "b":"How to Lose a Guy in 10 Days",
+      "c":"Brokeback Mountain",
+      "d":"The Notebook",
+      "answer":"Brokeback Mountain"
+    },
+    {
+      "q_id": "15",
+      "type":"bol",
+      "a":"True",
+      "b":"False",
+      "answer":"True"
+    },
+    {
+      "q_id": "16",
+      "type":"multiple",
+      "a":"James Wan",
+      "b":"Jordan Peele",
+      "c":"Guillermo del Toro",
+      "d":"Tim Story",
+      "answer":"Jordan Peele"
+    },
+    {
+      "q_id": "17",
+      "type":"multiple",
+      "a":"A Coca-Cola can",
+      "b":"A Starbucks cup",
+      "c":"A Dunkin’ donut",
+      "d":"A Pepsi bottle",
+      "answer":"A Starbucks cup"
+    },
+    {
+      "q_id": "18",
+      "type":"multiple",
+      "a":"Iron Man",
+      "b":"Captain America: The First Avenger",
+      "c":"Doctor Strange",
+      "d":"Captain Marvel",
+      "answer":"Captain America: The First Avenger"
+    },
+    {
+      "q_id": "19",
+      "type":"multiple",
+      "a":"Breakfast at Tiffany’s",
+      "b":"Citizen Kane",
+      "c":"Casablanca",
+      "d":"Notorious",
+      "answer":"Casablanca"
+    },
+    {
+      "q_id": "20",
+      "type":"multiple",
+      "a":"Camp Holland Lake",
+      "b":"Camp Crystal Lake",
+      "c":"Camp Diamond Lake",
+      "d":"Camp Green Lake",
+      "answer":"Camp Crystal Lake"
+    },
+    {
+      "q_id": "21",
+      "type":"multiple",
+      "a":"Tortoises",
+      "b":"Frogs",
+      "c":"Lizards",
+      "d":"Crocodiles",
+      "answer":"Tortoises"
+    },
+    {
+      "q_id": "22",
+      "type":"multiple",
+      "a":"Jack Nicholson",
+      "b":"Sean Penn",
+      "c":"Jared Leto",
+      "d":"Mark Hamil",
+      "answer":"Sean Penn"
+    },
+    {
+      "q_id": "23",
+      "type":"multiple",
+      "a":"France",
+      "b":"Italy",
+      "c":"Greece",
+      "d":"Morocco",
+      "answer":"Italy"
+    },
+    {
+      "q_id": "24",
+      "type":"multiple",
+      "a":"Hercules",
+      "b":"Goliath",
+      "c":"Atlas",
+      "d":"Zeus",
+      "answer":"Hercules"
+    },
+    {
+      "q_id": "25",
+      "type":"multiple",
+      "a":"Beyoncé",
+      "b":"Britney Spears",
+      "c":"Rihanna",
+      "d":"Mariah Carey",
+      "answer":"Beyoncé"
+    },
+    {
+      "q_id": "26",
+      "type":"multiple",
+      "a":"Star Wars and Close Encounters of the Third Kind",
+      "b":"E.T. and Poltergeist",
+      "c":"The Goonies and Indiana Jones",
+      "d":"Jurassic Park and The Land Before Time",
+      "answer":"E.T. and Poltergeist"
+    },
+    {
+      "q_id": "27",
+      "type":"multiple",
+      "a":"2",
+      "b":"1",
+      "c":"0",
+      "d":"4",
+      "answer":""
+    },
+    {
+      "q_id": "28",
+      "type":"multiple",
+      "a":"Speed",
+      "b":"Reservoir Dogs",
+      "c":"The Boondock Saints",
+      "d":"Se7en",
+      "answer":"Se7en"
+    },
+    {
+      "q_id": "29",
+      "type":"multiple",
+      "a":"Australia",
+      "b":"Europe",
+      "c":"Africa",
+      "d":"Asia",
+      "answer":"Africa"
+    },
+
+    {
+      "q_id": "30",
+      "type":"multiple",
+      "a":"Clint Eastwood",
+      "b":"Marlon Brando",
+      "c":"Paul Newman",
+      "d":"William Shatner",
+      "answer":"William Shatner"
+    }
+  ]
+}
