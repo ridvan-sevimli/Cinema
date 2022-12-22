@@ -6,10 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import ch.mov.cinema.cinemaapp.model.dao.TriviaDao
 import ch.mov.cinema.cinemaapp.model.entities.Answers
+import ch.mov.cinema.cinemaapp.model.entities.Players
 import ch.mov.cinema.cinemaapp.model.entities.Questions
 
 
-@Database(entities = [Questions::class,Answers::class],version = 1,exportSchema = false)
+@Database(entities = [Questions::class,Answers::class, Players::class],version = 1,exportSchema = false)
 abstract class TriviaDatabase : RoomDatabase() {
 
     abstract fun triviaDao(): TriviaDao

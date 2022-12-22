@@ -61,10 +61,10 @@ class QuestionFragment : Fragment() {
                 }
 
                 binding.question.text = questions.get(questionId?.toInt())?.questions
-                binding.btnAnswerA.text =answers?.get(questionId?.toInt())?.a
-                binding.btnAnswerB.text =answers?.get(questionId?.toInt())?.b
-                binding.btnAnswerC.text =answers?.get(questionId?.toInt())?.c
-                binding.btnAnswerD.text =answers?.get(questionId?.toInt())?.d
+                binding.answerA.text =answers?.get(questionId?.toInt())?.a
+                binding.answerB.text =answers?.get(questionId?.toInt())?.b
+                binding.answerC.text =answers?.get(questionId?.toInt())?.c
+                binding.answerD.text =answers?.get(questionId?.toInt())?.d
                 answer =  answers?.get(questionId?.toInt())?.answers
 
             }
@@ -73,7 +73,7 @@ class QuestionFragment : Fragment() {
                .into(binding.poster)
 
            binding.btnAnswerA.setOnClickListener{
-               if(checkAnswer(answer, binding.btnAnswerA.text.toString())){
+               if(checkAnswer(answer, binding.answerA.text.toString())){
                    println("True")
                }else{
                    println("False")
@@ -81,7 +81,7 @@ class QuestionFragment : Fragment() {
            }
 
            binding.btnAnswerB.setOnClickListener{
-               if(checkAnswer(answer, binding.btnAnswerB.text.toString())){
+               if(checkAnswer(answer, binding.answerB.text.toString())){
                    println("True")
                }else{
                println("False")
@@ -89,7 +89,7 @@ class QuestionFragment : Fragment() {
            }
 
            binding.btnAnswerC.setOnClickListener{
-               if(checkAnswer(answer, binding.btnAnswerC.text.toString())){
+               if(checkAnswer(answer, binding.answerC.text.toString())){
                    println("True")
                }else{
                println("False")
@@ -97,7 +97,7 @@ class QuestionFragment : Fragment() {
            }
 
            binding.btnAnswerD.setOnClickListener{
-              if( checkAnswer(answer, binding.btnAnswerD.text.toString())){
+              if( checkAnswer(answer, binding.answerD.text.toString())){
                    println("True")
                }else{
                println("False")

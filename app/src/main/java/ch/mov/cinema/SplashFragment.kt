@@ -47,9 +47,17 @@ class SplashFragment : Fragment() {
 
         model.initDB(requireContext())
 
-//        fillQuestions_to_DB()
-//        fillAnswers_to_DB()
+        fillQuestions_to_DB()
+        fillAnswers_to_DB()
 
+        lifecycleScope.launchWhenStarted {
+            withContext(Dispatchers.Default) {
+                var players = ArrayList<Players>()
+                players.add(Players(0,"Player1",0))
+                players.add(Players(1,"Player2",0))
+                model.insertPlayer(players)
+            }
+        }
 
         binding.btnGetStarted.setOnClickListener {
             findNavController().navigate(R.id.action_SplashFragment_to_HomeFragment)

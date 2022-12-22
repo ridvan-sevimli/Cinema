@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.room.Room
 import ch.mov.cinema.cinemaapp.model.database.TriviaDatabase
 import ch.mov.cinema.cinemaapp.model.entities.Answers
+import ch.mov.cinema.cinemaapp.model.entities.Players
 import ch.mov.cinema.cinemaapp.model.entities.Questions
 
 class TriviaDataViewModel : ViewModel() {
@@ -36,8 +37,21 @@ class TriviaDataViewModel : ViewModel() {
             db?.triviaDao()?.insertAll(answer)
         }
     }
+
+
     suspend fun getMixed() : MutableList<Questions>?{
         val data = db?.triviaDao()?.getMixed()?.toMutableList()
+        return data
+    }
+
+    suspend fun insertPlayer(answers: MutableList<Players>){
+        for(answer in answers){
+            db?.triviaDao()?.insertAll(answer)
+        }
+    }
+
+    suspend fun getPlayers() : MutableList<Players>?{
+        val data = db?.triviaDao()?.getPlayers()?.toMutableList()
         return data
     }
 

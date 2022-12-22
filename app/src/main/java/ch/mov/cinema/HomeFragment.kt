@@ -36,6 +36,7 @@ class HomeFragment : Fragment() {
     var mainCategoryAdapter = MainCategoryAdapter()
     var arrMainCategory = ArrayList<Category>()
     var arrSubCategory = ArrayList<Questions>()
+    var players = ArrayList<Players>()
 
 
     override fun onCreateView(
@@ -60,11 +61,13 @@ class HomeFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
          withContext(Dispatchers.Default) {
                arrSubCategory = model.getMixed() as ArrayList<Questions>
+               players = model.getPlayers() as ArrayList<Players>
 
             }
                 subCategoryAdapter.setData(arrSubCategory)
                 subCategoryAdapter.setClickListener(onCLickedSubCategory)
                 binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                binding.currentPlayer.text = players[0].Name
         }
 
 
@@ -82,6 +85,8 @@ class HomeFragment : Fragment() {
                 subCategoryAdapter.setData(arrSubCategory)
                 binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
                 binding.rvSubCategory.adapter = subCategoryAdapter
+
+
             })
     }
 
