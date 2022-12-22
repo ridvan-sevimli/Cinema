@@ -76,23 +76,25 @@ class QuestionFragment : Fragment() {
                     answers[answer.id] = answer
                 }
 
-                if(questions.get(questionId?.toInt())?.isAnswered!!){
-                    binding.question.text = questions.get(questionId?.toInt())?.questions
-                    binding.answerA.text =answers?.get(questionId?.toInt())?.a
-                    binding.answerB.text =answers?.get(questionId?.toInt())?.b
-                    binding.answerC.text =answers?.get(questionId?.toInt())?.c
-                    binding.answerD.text =answers?.get(questionId?.toInt())?.d
-                    answer =  answers?.get(questionId?.toInt())?.answers
-                    setGreen(questions.get(questionId?.toInt())?.answer)
-                }else{
-                    binding.question.text = questions.get(questionId?.toInt())?.questions
-                    binding.answerA.text =answers?.get(questionId?.toInt())?.a
-                    binding.answerB.text =answers?.get(questionId?.toInt())?.b
-                    binding.answerC.text =answers?.get(questionId?.toInt())?.c
-                    binding.answerD.text =answers?.get(questionId?.toInt())?.d
-                    answer =  answers?.get(questionId?.toInt())?.answers
-                }
             }
+
+           if(questions.get(questionId?.toInt())?.isAnswered!!){
+               binding.question.text = questions.get(questionId?.toInt())?.questions
+               binding.answerA.text =answers?.get(questionId?.toInt())?.a
+               binding.answerB.text =answers?.get(questionId?.toInt())?.b
+               binding.answerC.text =answers?.get(questionId?.toInt())?.c
+               binding.answerD.text =answers?.get(questionId?.toInt())?.d
+               answer =  answers?.get(questionId?.toInt())?.answers
+               setGreen(questions.get(questionId?.toInt())?.answer)
+           }else{
+               binding.question.text = questions.get(questionId?.toInt())?.questions
+               binding.answerA.text =answers?.get(questionId?.toInt())?.a
+               binding.answerB.text =answers?.get(questionId?.toInt())?.b
+               binding.answerC.text =answers?.get(questionId?.toInt())?.c
+               binding.answerD.text =answers?.get(questionId?.toInt())?.d
+               answer =  answers?.get(questionId?.toInt())?.answers
+           }
+
            Picasso.get()
                .load(questions.get(questionId?.toInt())?.poster)
                .into(binding.poster)
