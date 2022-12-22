@@ -1,5 +1,6 @@
 package ch.mov.cinema
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import ch.mov.cinema.cinemaapp.model.CategoryHandler
 import ch.mov.cinema.cinemaapp.model.TriviaDataViewModel
 import ch.mov.cinema.cinemaapp.model.entities.*
 import ch.mov.cinema.databinding.TimeToSwitchBinding
+import ch.mov.cinema.enums.TriviaKeyIds
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -47,67 +49,25 @@ class SwitchFragment : Fragment() {
 
         model.initDB(requireContext())
 
-//        fillQuestions_to_DB()
-//        fillAnswers_to_DB()
 
-//        lifecycleScope.launchWhenStarted {
-//            withContext(Dispatchers.Default) {
-//                var players = ArrayList<Players>()
-//                players.add(Players(0,"Player1",0))
-//                players.add(Players(1,"Player2",0))
-//                model.insertPlayer(players)
-//            }
-//        }
-
-        binding.btnGetStarted.setOnClickListener {
-            findNavController().navigate(R.id.action_SplashFragment_to_HomeFragment)
-        }
-    }
-
-   fun fillQuestions_to_DB(){
-       var arrSubCategory = ArrayList<Questions>()
-       val inputStream = requireContext().resources.openRawResource(R.raw.questions)
-       val questions = Klaxon().parse<QuestionItem>(inputStream)
-       for (question in questions?.questions!!) {
-           arrSubCategory.add(
-               Questions(
-                   question.q_id,
-                   question.category,
-                   question.question,
-                   question.poster,
-                   question.isAnswered,
-                   question.answer
-               )
-           )
-       }
         lifecycleScope.launchWhenStarted {
             withContext(Dispatchers.Default) {
-                model.insertQuestions(arrSubCategory)
+                var players = model.getPlayers()
+                val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
+                var points = settings?.getString(TriviaKeyIds.CURRENT_PLAYER_POINT.triviaKey, "00000")
+                var playerId = settings?.getString(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey, "00000")
+                model.updatePlayers(Players(playerId?.toInt()?.minus(1)!!, players?.get(playerId?.toInt()?.minus(1)!!)?.Name,points?.toInt()!!))
+
+
+               var questions = model.getMixed() as ArrayList<Questions>
+                for(question in questions){
+                    model.updateQuestion(Questions(id,question.category,question.questions,question.poster,false,""))
                 }
             }
         }
 
-    fun fillAnswers_to_DB(){
-        var arrSubCategory = ArrayList<Answers>()
-        val inputStream = requireContext().resources.openRawResource(R.raw.answers)
-        val answers = Klaxon().parse<AnswerItem>(inputStream)
-        for (answer in answers?.answers!!) {
-            arrSubCategory.add(
-                Answers(
-                    answer.q_id,
-                    answer.type,
-                    answer.a,
-                    answer.b,
-                    answer.c,
-                    answer.d,
-                    answer.answer
-                )
-            )
-        }
-        lifecycleScope.launchWhenStarted {
-            withContext(Dispatchers.Default) {
-                model.insertAnswers(arrSubCategory)
-            }
+        binding.btnGetStarted.setOnClickListener {
+            findNavController().navigate(R.id.action_switchFragment_to_QuestionFragment)
         }
     }
 

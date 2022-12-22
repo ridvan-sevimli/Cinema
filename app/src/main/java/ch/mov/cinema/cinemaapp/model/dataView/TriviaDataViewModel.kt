@@ -59,6 +59,11 @@ class TriviaDataViewModel : ViewModel() {
         return data
     }
 
+
+    suspend fun updatePlayers(player: Players){
+        db?.triviaDao()?.updatePlayer(player)
+    }
+
     suspend fun getAnswers() : MutableList<Answers>?{
         val data = db?.triviaDao()?.getAnswers()?.toMutableList()
         return data

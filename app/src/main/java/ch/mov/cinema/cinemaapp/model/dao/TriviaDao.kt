@@ -38,4 +38,7 @@ interface TriviaDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun updateQuestion(vararg questions: Questions)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun updatePlayer(vararg player: Players)
+
 }

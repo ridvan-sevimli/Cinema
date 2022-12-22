@@ -14,6 +14,9 @@ app:startDestination="@id/SplashFragment">
     <action
         android:id="@+id/action_SplashFragment_to_HomeFragment"
         app:destination="@id/HomeFragment" />
+    <action
+        android:id="@+id/action_SplashFragment_self"
+        app:destination="@id/SplashFragment" />
 </fragment>
 <fragment
     android:id="@+id/HomeFragment"

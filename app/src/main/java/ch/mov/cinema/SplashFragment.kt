@@ -1,10 +1,12 @@
 package ch.mov.cinema
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -38,29 +40,44 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = SplaschScreenBinding.inflate(inflater, container, false)
+
         return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        var players : ArrayList<Players> = arrayListOf()
         model.initDB(requireContext())
 
         fillQuestions_to_DB()
         fillAnswers_to_DB()
 
+
         lifecycleScope.launchWhenStarted {
             withContext(Dispatchers.Default) {
-                var players = ArrayList<Players>()
-                players.add(Players(0,"Player1",0))
-                players.add(Players(1,"Player2",0))
-                model.insertPlayer(players)
+                 players = model.getPlayers() as ArrayList<Players>
             }
         }
 
-        binding.btnGetStarted.setOnClickListener {
-            findNavController().navigate(R.id.action_SplashFragment_to_HomeFragment)
+        binding.btnSavePlayer.setOnClickListener {
+            var playerName = binding.playerNameEdit.text.toString()
+            if(playerName != "" && players.size < 2){
+                hideKeyboard()
+                var playerSize = players.size
+                players.add(Players(playerSize.plus(1),playerName,0))
+                lifecycleScope.launchWhenStarted {
+                    withContext(Dispatchers.Default) {
+                        model.insertPlayer(players)
+                    }
+                    if(players.size == 2){
+                        findNavController().navigate(R.id.action_SplashFragment_to_HomeFragment)
+
+                    }else{
+                        findNavController().navigate(R.id.action_SplashFragment_self)
+                    }
+                }
+            }
         }
     }
 
@@ -109,6 +126,19 @@ class SplashFragment : Fragment() {
                 model.insertAnswers(arrSubCategory)
             }
         }
+    }
+
+    //by default, the user can show or hide the keyboard
+//using the bottom left arrow button. If the keyboard
+//should be automatically hidden, use the following method
+    fun hideKeyboard() {
+        val manager: InputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        if (manager != null) {
+            manager.hideSoftInputFromWindow(
+                requireActivity()
+                    .findViewById<View>(android.R.id.content).windowToken, 0)
+        }
+        binding.playerNameEdit.clearFocus() //remove focus from EditText
     }
 
     override fun onDestroyView() {
