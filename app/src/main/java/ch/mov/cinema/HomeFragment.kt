@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -52,36 +53,48 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        if(getCurrentPlayer() == 2){
-            fillQuestions_to_DB()
-        }
         model.initDB(requireContext())
 
-
         initializeCategories(requireContext())
-
-        lifecycleScope.launchWhenStarted {
-         withContext(Dispatchers.Default) {
-               arrSubCategory = model.getMixed() as ArrayList<Questions>
-               players = model.getPlayers() as ArrayList<Players>
-              saveCurrentPlayer(players[players.size-1].id)
-
-            }
-                subCategoryAdapter.setData(arrSubCategory)
-                subCategoryAdapter.setClickListener(onCLickedSubCategory)
-                binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-
-            binding.currentPlayer.text = players[getCurrentPlayer()!!].Name
-        }
-
-
 
         mainCategoryAdapter.setData(arrMainCategory)
         mainCategoryAdapter.setClickListener(onClickedMainCateogry)
         binding.rvMainCategory.adapter = mainCategoryAdapter
         binding.rvMainCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
 
+        if(getCurrentPlayer() == 2){
+            fillQuestions_to_DB()
+            lifecycleScope.launchWhenStarted {
+                withContext(Dispatchers.Default) {
+                    arrSubCategory = model.getMixed() as ArrayList<Questions>
+                    players = model.getPlayers() as ArrayList<Players>
+
+                }
+                subCategoryAdapter.setData(arrSubCategory)
+                subCategoryAdapter.setClickListener(onCLickedSubCategory)
+                binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+                for(player in players){
+                    if(player.id == getCurrentPlayer()){
+                        binding.currentPlayer.text = player.Name
+                    }
+                }
+
+            }
+        }else{
+            lifecycleScope.launchWhenStarted {
+                withContext(Dispatchers.Default) {
+                    arrSubCategory = model.getMixed() as ArrayList<Questions>
+                    players = model.getPlayers() as ArrayList<Players>
+                    saveCurrentPlayer(players[players.size-1].id)
+
+                }
+                subCategoryAdapter.setData(arrSubCategory)
+                subCategoryAdapter.setClickListener(onCLickedSubCategory)
+                binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+
+                binding.currentPlayer.text = players[getCurrentPlayer()!!].Name
+            }
+        }
 
 
         model.questions.observe(viewLifecycleOwner,
@@ -202,5 +215,15 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
     }
 }

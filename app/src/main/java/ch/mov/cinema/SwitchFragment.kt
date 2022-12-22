@@ -15,10 +15,6 @@ import ch.mov.cinema.cinemaapp.model.TriviaDataViewModel
 import ch.mov.cinema.cinemaapp.model.entities.*
 import ch.mov.cinema.databinding.TimeToSwitchBinding
 import ch.mov.cinema.enums.TriviaKeyIds
-import com.android.volley.Request
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import com.beust.klaxon.Klaxon
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

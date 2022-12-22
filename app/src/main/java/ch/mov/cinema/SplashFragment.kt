@@ -15,9 +15,6 @@ import ch.mov.cinema.cinemaapp.model.CategoryHandler
 import ch.mov.cinema.cinemaapp.model.TriviaDataViewModel
 import ch.mov.cinema.cinemaapp.model.entities.*
 import ch.mov.cinema.databinding.SplaschScreenBinding
-import com.android.volley.Request
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.beust.klaxon.Klaxon
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -57,6 +54,9 @@ class SplashFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             withContext(Dispatchers.Default) {
                  players = model.getPlayers() as ArrayList<Players>
+            }
+            if(players.size == 2){
+                findNavController().navigate(R.id.action_SplashFragment_to_HomeFragment)
             }
         }
 
