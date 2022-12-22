@@ -16,7 +16,7 @@ import ch.mov.cinema.cinemaapp.model.adapter.MainCategoryAdapter
 import ch.mov.cinema.cinemaapp.model.adapter.SubCategoryAdapter
 import ch.mov.cinema.cinemaapp.model.entities.*
 import ch.mov.cinema.databinding.FragmentHomeBinding
-import ch.mov.cinema.enums.MovieKeyIds
+import ch.mov.cinema.enums.TriviaKeyIds
 import com.beust.klaxon.Klaxon
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -125,8 +125,8 @@ class HomeFragment : Fragment() {
         override fun onClicked(imagePath: String, movieId: String) {
             val setting = context?.getSharedPreferences("prefsfile",Context.MODE_PRIVATE)
             val editor = setting?.edit()
-            editor?.putString(MovieKeyIds.IMAGE_PATH.movieKey,imagePath)
-            editor?.putString(MovieKeyIds.MOVIE_ID.movieKey,movieId)
+            editor?.putString(TriviaKeyIds.POSTER_PATH.triviaKey,imagePath)
+            editor?.putString(TriviaKeyIds.QUESTION_ID.triviaKey,movieId)
             editor?.commit()
             findNavController().navigate(R.id.action_HomeFragment_to_DetailFragment)
         }

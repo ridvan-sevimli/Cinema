@@ -13,7 +13,7 @@ import ch.mov.cinema.cinemaapp.model.TriviaDataViewModel
 import ch.mov.cinema.cinemaapp.model.entities.Answers
 import ch.mov.cinema.cinemaapp.model.entities.Questions
 import ch.mov.cinema.databinding.QuestionViewBinding
-import ch.mov.cinema.enums.MovieKeyIds
+import ch.mov.cinema.enums.TriviaKeyIds
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -22,7 +22,7 @@ import kotlinx.coroutines.withContext
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class QuestionFragment0 : Fragment() {
+class QuestionFragment : Fragment() {
 
     private var _binding: QuestionViewBinding? = null
 
@@ -46,7 +46,7 @@ class QuestionFragment0 : Fragment() {
         val questions: MutableMap<Int, Questions> = mutableMapOf<Int, Questions>()
         val answers: MutableMap<Int, Answers> = mutableMapOf<Int, Answers>()
         val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
-        var movieId = settings?.getString(MovieKeyIds.MOVIE_ID.movieKey, "00000")
+        var questionId = settings?.getString(TriviaKeyIds.QUESTION_ID.triviaKey, "00000")
         var answer : String? = ""
 
        lifecycleScope.launchWhenStarted {
@@ -60,16 +60,16 @@ class QuestionFragment0 : Fragment() {
                     answers[answer.id] = answer
                 }
 
-                binding.question.text = questions.get(movieId?.toInt())?.questions
-                binding.btnAnswerA.text =answers?.get(movieId?.toInt())?.a
-                binding.btnAnswerB.text =answers?.get(movieId?.toInt())?.b
-                binding.btnAnswerC.text =answers?.get(movieId?.toInt())?.c
-                binding.btnAnswerD.text =answers?.get(movieId?.toInt())?.d
-                answer =  answers?.get(movieId?.toInt())?.answers
+                binding.question.text = questions.get(questionId?.toInt())?.questions
+                binding.btnAnswerA.text =answers?.get(questionId?.toInt())?.a
+                binding.btnAnswerB.text =answers?.get(questionId?.toInt())?.b
+                binding.btnAnswerC.text =answers?.get(questionId?.toInt())?.c
+                binding.btnAnswerD.text =answers?.get(questionId?.toInt())?.d
+                answer =  answers?.get(questionId?.toInt())?.answers
 
             }
            Picasso.get()
-               .load(questions.get(movieId?.toInt())?.poster)
+               .load(questions.get(questionId?.toInt())?.poster)
                .into(binding.poster)
 
            binding.btnAnswerA.setOnClickListener{
@@ -110,9 +110,9 @@ class QuestionFragment0 : Fragment() {
         binding.btnNext.setOnClickListener{
             val setting = context?.getSharedPreferences("prefsfile",Context.MODE_PRIVATE)
             val editor = setting?.edit()
-            editor?.putString(MovieKeyIds.MOVIE_ID.movieKey,movieId+1)
+            editor?.putString(TriviaKeyIds.QUESTION_ID.triviaKey,next(questionId?.toInt()!!,questions).toString())
             editor?.commit()
-            findNavController().navigate(R.id.action_QuestionFragment0_to_QuestionFragment1)
+            findNavController().navigate(R.id.action_QuestionFragment_to_QuestionFragment)
         }
 
 
@@ -160,6 +160,13 @@ class QuestionFragment0 : Fragment() {
             return true
         }
         return false
+    }
+    fun next(questionId : Int, questions: MutableMap<Int, Questions>) : Int{
+        if(questionId <= questions.size){
+            return questionId + 1
+        }else{
+            return 0
+        }
     }
 
     override fun onDestroyView() {
