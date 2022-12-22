@@ -10,7 +10,7 @@ Movie Trivia also offers a variety of special game modes, like movie or actor-sp
 
 Download Movie Trivia now and become a film expert!
 
-![Branching Modell](doc/getStarted.png) ![Branching Modell](doc/firstPage.png) ![Branching Modell](doc/firstPage2.png) ![Branching Modell](doc/trivia_modus.png) ![Branching Modell](doc/trivia_modus_answer.png)
+![Branching Modell](doc/getStarted.png) ![Branching Modell](doc/firstPage.png) ![Branching Modell](doc/firstPage2.png) ![Branching Modell](doc/trivia_modus.png) ![Branching Modell](doc/trivia_modus_anwer.png)
 
 ## Branching-Modell
 
