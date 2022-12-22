@@ -62,12 +62,14 @@ class HomeFragment : Fragment() {
          withContext(Dispatchers.Default) {
                arrSubCategory = model.getMixed() as ArrayList<Questions>
                players = model.getPlayers() as ArrayList<Players>
+              saveCurrentPlayer(players[0].id)
 
             }
                 subCategoryAdapter.setData(arrSubCategory)
                 subCategoryAdapter.setClickListener(onCLickedSubCategory)
                 binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-                binding.currentPlayer.text = players[0].Name
+
+            binding.currentPlayer.text = players[getCurrentPlayer()!!].Name
         }
 
 
@@ -136,6 +138,19 @@ class HomeFragment : Fragment() {
             editor?.commit()
             findNavController().navigate(R.id.action_HomeFragment_to_DetailFragment)
         }
+    }
+
+    suspend fun saveCurrentPlayer(palyerId: Int){
+        val setting = context?.getSharedPreferences("prefsfile",Context.MODE_PRIVATE)
+        val editor = setting?.edit()
+        editor?.putString(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey,palyerId.toString())
+        editor?.commit()
+    }
+
+    fun getCurrentPlayer() : Int?{
+        val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
+        var currentPlayerId = settings?.getString(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey, "00000")
+        return (currentPlayerId?.toInt()?.minus( 1 ))
     }
 
     fun initializeCategories(context : Context){

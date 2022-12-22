@@ -48,9 +48,9 @@ class TriviaDataViewModel : ViewModel() {
         return data
     }
 
-    suspend fun insertPlayer(answers: MutableList<Players>){
-        for(answer in answers){
-            db?.triviaDao()?.insertAll(answer)
+    suspend fun insertPlayer(players: MutableList<Players>){
+        for(player in players){
+            db?.triviaDao()?.insertAll(player)
         }
     }
 

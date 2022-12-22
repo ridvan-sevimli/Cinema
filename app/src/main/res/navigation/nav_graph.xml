@@ -33,5 +33,18 @@ app:startDestination="@id/SplashFragment">
         <action
             android:id="@+id/action_QuestionFragment_to_QuestionFragment"
             app:destination="@id/QuestionFragment" />
+        <action
+            android:id="@+id/action_QuestionFragment_to_switchFragment"
+            app:destination="@id/SwitchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SwitchFragment"
+        android:name="ch.mov.cinema.SwitchFragment"
+        android:label="@string/question_view_label"
+        tools:layout="@layout/time_to_switch">
+
+        <action
+            android:id="@+id/action_switchFragment_to_QuestionFragment"
+            app:destination="@id/QuestionFragment" />
     </fragment>
 </navigation>

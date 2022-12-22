@@ -26,7 +26,7 @@ interface TriviaDao {
     @Query("SELECT * FROM players ORDER BY id DESC")
     fun getPlayers(): List<Players>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg players: Players)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

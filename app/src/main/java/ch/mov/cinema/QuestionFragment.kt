@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import ch.mov.cinema.cinemaapp.model.TriviaDataViewModel
 import ch.mov.cinema.cinemaapp.model.entities.Answers
+import ch.mov.cinema.cinemaapp.model.entities.Players
 import ch.mov.cinema.cinemaapp.model.entities.Questions
 import ch.mov.cinema.databinding.QuestionViewBinding
 import ch.mov.cinema.enums.TriviaKeyIds
@@ -26,6 +27,7 @@ import kotlinx.coroutines.withContext
 class QuestionFragment : Fragment() {
 
     private var _binding: QuestionViewBinding? = null
+    var player : Players? = null
 
 
     // This property is only valid between onCreateView and onDestroyView.
@@ -49,10 +51,18 @@ class QuestionFragment : Fragment() {
         val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
         var questionId = settings?.getString(TriviaKeyIds.QUESTION_ID.triviaKey, "00000")
         var categoryId = settings?.getString(TriviaKeyIds.CATEGORY_ID.triviaKey, "00000")
+        var playerId = settings?.getString(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey, "00000")
+
         var answer : String? = ""
 
        lifecycleScope.launchWhenStarted {
             withContext(Dispatchers.Default) {
+                var players = model.getPlayers()
+                for(i_player in players!!){
+                    if(i_player.id == playerId?.toInt()){
+                        player = i_player
+                    }
+                }
                 var answerArray = model.getAnswers()!!
                 if(categoryId == "mixed"){
                     var question = model.getMixed()!!
@@ -96,24 +106,28 @@ class QuestionFragment : Fragment() {
 
         binding.btnAnswerA.setOnClickListener{
             setGreen(answer)
+            validatePoint(answer,binding.answerA.text.toString())
             enableNextButton(true)
             lockQuestion(questionId,categoryId,answer,questions,model)
         }
 
         binding.btnAnswerB.setOnClickListener{
             setGreen(answer)
+            validatePoint(answer,binding.answerB.text.toString())
             enableNextButton(true)
             lockQuestion(questionId,categoryId,answer,questions,model)
         }
 
         binding.btnAnswerC.setOnClickListener{
             setGreen(answer)
+            validatePoint(answer,binding.answerC.text.toString())
             enableNextButton(true)
             lockQuestion(questionId,categoryId,answer,questions,model)
         }
 
         binding.btnAnswerD.setOnClickListener{
             setGreen(answer)
+            validatePoint(answer,binding.answerD.text.toString())
             enableNextButton(true)
             lockQuestion(questionId,categoryId,answer,questions,model)
         }
@@ -122,9 +136,14 @@ class QuestionFragment : Fragment() {
         binding.btnNext.setOnClickListener{
             val setting = context?.getSharedPreferences("prefsfile",Context.MODE_PRIVATE)
             val editor = setting?.edit()
-            editor?.putString(TriviaKeyIds.QUESTION_ID.triviaKey,next(questionId?.toInt()!!,questions).toString())
-            editor?.commit()
-            findNavController().navigate(R.id.action_QuestionFragment_to_QuestionFragment)
+            var nextquestion = next(questionId?.toInt()!!,questions)
+            if(nextquestion >= 0){
+                editor?.putString(TriviaKeyIds.QUESTION_ID.triviaKey,nextquestion.toString())
+                editor?.commit()
+                findNavController().navigate(R.id.action_QuestionFragment_to_QuestionFragment)
+            }else{
+                findNavController().navigate(R.id.action_QuestionFragment_to_switchFragment)
+            }
         }
 
 
@@ -167,6 +186,18 @@ class QuestionFragment : Fragment() {
 
     }
 
+    fun savePoint(point: Int){
+        val setting = context?.getSharedPreferences("prefsfile",Context.MODE_PRIVATE)
+        val editor = setting?.edit()
+        var currentPoint = setting?.getString(TriviaKeyIds.CURRENT_PLAYER_POINT.triviaKey, "00000")
+        currentPoint = currentPoint?.toInt()?.plus(point)?.toString()
+        if(point != 0){
+            editor?.putString(TriviaKeyIds.CURRENT_PLAYER_POINT.triviaKey,currentPoint)
+            editor?.commit()
+            println(currentPoint)
+        }
+    }
+
     fun lockQuestion(questionId: String?, categoryId: String?,answer : String?, questions: MutableMap<Int, Questions>, model: TriviaDataViewModel){
         lifecycleScope.launchWhenStarted {
             withContext(Dispatchers.Default) {
@@ -188,6 +219,13 @@ class QuestionFragment : Fragment() {
             binding.answerD.text.toString() -> binding.btnAnswerD.setCardBackgroundColor(Color.parseColor("#76E10A"))
         }
     }
+
+    fun validatePoint(correctAnswer: String?,givenAnwer: String ){
+        if(correctAnswer == givenAnwer ) {
+            savePoint(1)
+        }
+    }
+
 
    suspend fun enableAnswerButtons(enabled: Boolean){
         binding.btnAnswerA.isEnabled = enabled
@@ -214,7 +252,7 @@ class QuestionFragment : Fragment() {
         if(questionId < questions.size){
             return questionId + 1
         }else{
-            return 1
+           return -1
         }
     }
 
