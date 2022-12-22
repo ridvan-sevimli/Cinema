@@ -1,12 +1,14 @@
-# Cinema
+# Cinema Trivia
 
 
 (Alpha Release)
-Cinema is the ultimate app for avid movie watchers! With Cinema, you can easily find upcoming movies and those currently playing in theaters, as well as the top 250 movies and most popular movies. 
+Cinema Trivia is the perfect mobile app for cinephiles and movie buffs who want to challenge each other with their knowledge of the silver screen!
 
-The app also offers movie trailers, reviews and ratings, showtimes, and theater locations, so you can plan the perfect movie night. You can also add movies to your watch list, so you don't miss out on any of the latest releases. 
+This two-player app pits you and your friend against each other in a battle of wits and movie trivia. With over 1,000 questions spanning all genres and eras, you'll be tested on everything from classic films to modern blockbusters. Earn points for correct answers and compete to see who knows the most about movies.
 
-Cinema is the perfect app for movie lovers to stay up to date with the latest releases and plan the perfect movie night. Download Cinema today and find your movie!
+Movie Trivia also offers a variety of special game modes, like movie or actor-specific rounds, and a lightning round where you'll have to answer as many questions as possible within a set amount of time. And with its beautiful and intuitive interface, you'll be able to seamlessly switch between questions and view your score at any time.
+
+Download Movie Trivia now and become a film expert!
 
 ![Branching Modell](doc/getStarted.png) ![Branching Modell](doc/firstPage.png) ![Branching Modell](doc/firstPage2.png) ![Branching Modell](doc/detailView.png)
 
