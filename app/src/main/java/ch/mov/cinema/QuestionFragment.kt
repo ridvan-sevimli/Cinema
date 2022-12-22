@@ -203,7 +203,7 @@ class QuestionFragment : Fragment() {
             binding.btnNext.setCardBackgroundColor(Color.parseColor("#F5C517"))
         }
     }
-    
+
     fun setRed(){
         binding.btnAnswerA.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
         binding.btnAnswerB.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
