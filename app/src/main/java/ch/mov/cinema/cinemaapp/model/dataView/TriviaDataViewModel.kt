@@ -69,4 +69,8 @@ class TriviaDataViewModel : ViewModel() {
         return data
     }
 
+    suspend fun clearQuestionsDb(){
+        db?.triviaDao()?.clearQuestionsDb()
+    }
+
 }

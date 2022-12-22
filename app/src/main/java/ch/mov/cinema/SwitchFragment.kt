@@ -54,20 +54,18 @@ class SwitchFragment : Fragment() {
             withContext(Dispatchers.Default) {
                 var players = model.getPlayers()
                 val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
-                var points = settings?.getString(TriviaKeyIds.CURRENT_PLAYER_POINT.triviaKey, "00000")
-                var playerId = settings?.getString(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey, "00000")
-                model.updatePlayers(Players(playerId?.toInt()?.minus(1)!!, players?.get(playerId?.toInt()?.minus(1)!!)?.Name,points?.toInt()!!))
-
-
-               var questions = model.getMixed() as ArrayList<Questions>
-                for(question in questions){
-                    model.updateQuestion(Questions(id,question.category,question.questions,question.poster,false,""))
-                }
+                val editor = settings?.edit()
+                var points = settings?.getInt(TriviaKeyIds.CURRENT_PLAYER_POINT.triviaKey, 0)
+                var playerId = settings?.getInt(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey, 0)
+                model.updatePlayers(Players(playerId!!, players?.get(playerId)?.Name,points!!))
+                model.clearQuestionsDb()
+                editor?.putInt(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey, playerId + 1)
+                editor?.commit()
             }
         }
 
         binding.btnGetStarted.setOnClickListener {
-            findNavController().navigate(R.id.action_switchFragment_to_QuestionFragment)
+            findNavController().navigate(R.id.action_SwitchFragment_to_HomeFragment)
         }
     }
 

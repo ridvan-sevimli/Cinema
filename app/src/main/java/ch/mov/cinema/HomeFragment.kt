@@ -53,6 +53,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        if(getCurrentPlayer() == 2){
+            fillQuestions_to_DB()
+        }
         model.initDB(requireContext())
 
 
@@ -62,7 +65,7 @@ class HomeFragment : Fragment() {
          withContext(Dispatchers.Default) {
                arrSubCategory = model.getMixed() as ArrayList<Questions>
                players = model.getPlayers() as ArrayList<Players>
-              saveCurrentPlayer(players[0].id)
+              saveCurrentPlayer(players[players.size-1].id)
 
             }
                 subCategoryAdapter.setData(arrSubCategory)
@@ -91,6 +94,30 @@ class HomeFragment : Fragment() {
 
             })
     }
+
+    fun fillQuestions_to_DB(){
+        var arrSubCategory = ArrayList<Questions>()
+        val inputStream = requireContext().resources.openRawResource(R.raw.questions)
+        val questions = Klaxon().parse<QuestionItem>(inputStream)
+        for (question in questions?.questions!!) {
+            arrSubCategory.add(
+                Questions(
+                    question.q_id,
+                    question.category,
+                    question.question,
+                    question.poster,
+                    question.isAnswered,
+                    question.answer
+                )
+            )
+        }
+        lifecycleScope.launchWhenStarted {
+            withContext(Dispatchers.Default) {
+                model.insertQuestions(arrSubCategory)
+            }
+        }
+    }
+
 
 
     private val onClickedMainCateogry  = object : MainCategoryAdapter.OnItemClickListener{
@@ -143,14 +170,14 @@ class HomeFragment : Fragment() {
     suspend fun saveCurrentPlayer(palyerId: Int){
         val setting = context?.getSharedPreferences("prefsfile",Context.MODE_PRIVATE)
         val editor = setting?.edit()
-        editor?.putString(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey,palyerId.toString())
+        editor?.putInt(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey,palyerId)
         editor?.commit()
     }
 
     fun getCurrentPlayer() : Int?{
         val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
-        var currentPlayerId = settings?.getString(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey, "00000")
-        return (currentPlayerId?.toInt()?.minus( 1 ))
+        var currentPlayerId = settings?.getInt(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey, 0)
+        return (currentPlayerId)
     }
 
     fun initializeCategories(context : Context){

@@ -77,6 +77,8 @@ class SplashFragment : Fragment() {
                         findNavController().navigate(R.id.action_SplashFragment_self)
                     }
                 }
+            }else{
+                findNavController().navigate(R.id.action_SplashFragment_to_HomeFragment)
             }
         }
     }

@@ -51,7 +51,7 @@ class QuestionFragment : Fragment() {
         val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
         var questionId = settings?.getString(TriviaKeyIds.QUESTION_ID.triviaKey, "00000")
         var categoryId = settings?.getString(TriviaKeyIds.CATEGORY_ID.triviaKey, "00000")
-        var playerId = settings?.getString(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey, "00000")
+        var playerId = settings?.getInt(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey, 0)
 
         var answer : String? = ""
 
@@ -59,7 +59,7 @@ class QuestionFragment : Fragment() {
             withContext(Dispatchers.Default) {
                 var players = model.getPlayers()
                 for(i_player in players!!){
-                    if(i_player.id == playerId?.toInt()){
+                    if(i_player.id == playerId){
                         player = i_player
                     }
                 }
@@ -189,10 +189,10 @@ class QuestionFragment : Fragment() {
     fun savePoint(point: Int){
         val setting = context?.getSharedPreferences("prefsfile",Context.MODE_PRIVATE)
         val editor = setting?.edit()
-        var currentPoint = setting?.getString(TriviaKeyIds.CURRENT_PLAYER_POINT.triviaKey, "00000")
-        currentPoint = currentPoint?.toInt()?.plus(point)?.toString()
+        var currentPoint = setting?.getInt(TriviaKeyIds.CURRENT_PLAYER_POINT.triviaKey, 0)
+        currentPoint = currentPoint?.plus(point)
         if(point != 0){
-            editor?.putString(TriviaKeyIds.CURRENT_PLAYER_POINT.triviaKey,currentPoint)
+            editor?.putInt(TriviaKeyIds.CURRENT_PLAYER_POINT.triviaKey,currentPoint!!)
             editor?.commit()
             println(currentPoint)
         }

@@ -41,4 +41,7 @@ interface TriviaDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun updatePlayer(vararg player: Players)
 
+    @Query("DELETE FROM questions")
+    suspend fun clearQuestionsDb()
+
 }
