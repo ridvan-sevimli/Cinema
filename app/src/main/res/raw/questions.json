@@ -4,181 +4,241 @@
         "q_id": 1,
         "category": "mixed",
         "question": "The code in The Matrix comes from what food recipes?",
-        "poster": "https://image.tmdb.org/t/p/original/dXNAPwY7VrqMAo51EKhhCJfaGb5.jpg"
+        "poster": "https://image.tmdb.org/t/p/original/dXNAPwY7VrqMAo51EKhhCJfaGb5.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 2,
         "category": "mixed",
         "question": "What’s the name of Meatloaf’s character in The Rocky Horror Picture Show?",
-        "poster": "https://image.tmdb.org/t/p/original/uCReqCoNQhYPc0Vmbyeq2sm8exO.jpg"
+        "poster": "https://image.tmdb.org/t/p/original/uCReqCoNQhYPc0Vmbyeq2sm8exO.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 3,
         "category": "mixed",
         "question": "Who actually drew the sketch of Rose in Titanic?",
-        "poster": "https://cdn.shopify.com/s/files/1/1416/8662/products/titanic_1997_fr_original_film_art_2000x.jpg?v=1619127428"
+        "poster": "https://cdn.shopify.com/s/files/1/1416/8662/products/titanic_1997_fr_original_film_art_2000x.jpg?v=1619127428",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 4,
         "category": "mixed",
         "question": "Who voices Joy in Pixar’s Inside Out?",
-        "poster": "https://image.tmdb.org/t/p/original/5x8GgrdexfF6Ouc1ulrfne3a2f5.jpg"
+        "poster": "https://image.tmdb.org/t/p/original/5x8GgrdexfF6Ouc1ulrfne3a2f5.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 5,
         "category": "mixed",
         "question": "Where were The Lord of the Rings movies filmed?",
-        "poster": "https://img.goldposter.com/2015/04/The-Lord-of-the-Rings-The-Two-Towers_poster_goldposter_com_35.jpg"
+        "poster": "https://img.goldposter.com/2015/04/The-Lord-of-the-Rings-The-Two-Towers_poster_goldposter_com_35.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 6,
         "category": "mixed",
         "question": "Which country does Forrest Gump travel to as part of the All-American Ping-Pong Team?",
-        "poster": "http://is1.mzstatic.com/image/thumb/Video2/v4/9e/be/cd/9ebecd7b-3e70-be67-5028-951773725e14/source/2000x3000sr.jpg"
+        "poster": "http://is1.mzstatic.com/image/thumb/Video2/v4/9e/be/cd/9ebecd7b-3e70-be67-5028-951773725e14/source/2000x3000sr.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 7,
         "category": "mixed",
         "question": "Which famous Pulp Fiction scene was filmed backward?",
-        "poster": "https://img.elo7.com.br/product/zoom/268A58D/big-poster-filme-pulp-fiction-lo001-tamanho-90x60-cm-presente-geek.jpg"
+        "poster": "https://img.elo7.com.br/product/zoom/268A58D/big-poster-filme-pulp-fiction-lo001-tamanho-90x60-cm-presente-geek.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 8,
         "category": "mixed",
         "question": "Which actor was in the following movies: The Outsiders, Wayne’s World, and Tommy Boy?",
-        "poster": "no_poster"
+        "poster": "no_poster",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 9,
         "category": "mixed",
         "question": "Who was the first Black person to win an Oscar?",
-        "poster": "no_poster"
+        "poster": "no_poster",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 10,
         "category": "mixed",
         "question": "Which is not the name of a child selected to tour the Wonka factory in Willy Wonka and the Chocolate Factory?",
-        "poster": "https://img.moviesrankings.com/t/p/w1280/vjMoyUrGVDZK44gNBNVAH4gpxET.jpg"
+        "poster": "https://img.moviesrankings.com/t/p/w1280/vjMoyUrGVDZK44gNBNVAH4gpxET.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 11,
         "category": "mixed",
         "question": "Freddy Krueger wears a striped sweater that is which colors?",
-        "poster": "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/9ae4dcd6a43b8f6b12813fb479cc0d23f2965fc9d79dff701ab508d4f1960706._RI_V_TTW_.jpg"
+        "poster": "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/9ae4dcd6a43b8f6b12813fb479cc0d23f2965fc9d79dff701ab508d4f1960706._RI_V_TTW_.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 12,
         "category": "mixed",
         "question": "Who did the cat in The Godfather belong to?",
-        "poster": "https://img.goldposter.com/2015/04/The-Godfather_poster_goldposter_com_2.jpg"
+        "poster": "https://img.goldposter.com/2015/04/The-Godfather_poster_goldposter_com_2.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 13,
         "category": "mixed",
         "question": "What is the name of the fictional land where Frozen takes place?",
-        "poster": "https://thesource.com/wp-content/uploads/2014/03/Frozen-movie-poster.jpg"
+        "poster": "https://thesource.com/wp-content/uploads/2014/03/Frozen-movie-poster.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 14,
         "category": "mixed",
         "question": "Which movie is this famous line from: “I wish I knew how to quit you.",
-        "poster": "no_poster"
+        "poster": "no_poster",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 15,
         "category": "mixed",
         "question": "True or false: Sean Connery wore a toupee in every James Bond movie",
-        "poster": "https://i5.walmartimages.com/asr/7bc5d82f-f43b-4267-ad0f-eca316feaec0_1.7fae807f58918f2d1f1d4b2ada22ac99.jpeg?odnWidth=1000&odnHeight=1000&odnBg=ffffff"
+        "poster": "https://i5.walmartimages.com/asr/7bc5d82f-f43b-4267-ad0f-eca316feaec0_1.7fae807f58918f2d1f1d4b2ada22ac99.jpeg?odnWidth=1000&odnHeight=1000&odnBg=ffffff",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 16,
         "category": "mixed",
         "question": "Who directed the hit 2017 movie Get Out?",
-        "poster": "https://i.pinimg.com/originals/98/0b/e1/980be12b775a0a18f4e05734de9932ff.jpg"
+        "poster": "https://i.pinimg.com/originals/98/0b/e1/980be12b775a0a18f4e05734de9932ff.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 17,
         "category": "mixed",
         "question": "What item is in every Fight Club scene?",
-        "poster": "https://images-na.ssl-images-amazon.com/images/I/713OBFnCXjL._AC_SL1414_.jpg"
+        "poster": "https://images-na.ssl-images-amazon.com/images/I/713OBFnCXjL._AC_SL1414_.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 18,
         "category": "mixed",
         "question": "If you watch the Marvel movies in chronological order, which movie would you watch first?",
-        "poster": "no_poster"
+        "poster": "no_poster",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 19,
         "category": "mixed",
         "question": "Which movie is this quote from: “Here’s looking at you, kid.",
-        "poster": "no_poster"
+        "poster": "no_poster",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 20,
         "category": "mixed",
         "question": "What is the name of the camp where counselors are terrorized by a slasher in Friday the 13th?",
-        "poster": "https://image.tmdb.org/t/p/original/4Ap8begPetWqufTIC8Mfz6uE6Tf.jpg"
+        "poster": "https://image.tmdb.org/t/p/original/4Ap8begPetWqufTIC8Mfz6uE6Tf.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 21,
         "category": "mixed",
         "question": "Some of the velociraptor noises in Jurassic Park are actually which animals mating?",
-        "poster": "https://image.tmdb.org/t/p/original/dH1PGmEnAnbv2nxWBmNnzG6Hd4V.jpg"
+        "poster": "https://image.tmdb.org/t/p/original/dH1PGmEnAnbv2nxWBmNnzG6Hd4V.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 22,
         "category": "mixed",
         "question": "Which actor hasn’t played the Joker?",
-        "poster": "https://posterspy.com/wp-content/uploads/2019/11/Joker1.jpg"
+        "poster": "https://posterspy.com/wp-content/uploads/2019/11/Joker1.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 23,
         "category": "mixed",
         "question": "Which country was the 2017 movie Call Me By Your Name filmed?",
-        "poster": "https://ih1.redbubble.net/image.891334512.0530/flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
+        "poster": "https://ih1.redbubble.net/image.891334512.0530/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 24,
         "category": "mixed",
         "question": "The dog in The Sandlot is nicknamed “The Beast.” What’s the dog’s actual name?",
-        "poster": "https://images-na.ssl-images-amazon.com/images/I/91W2JLVNlsL._AC_SL1500_.jpg"
+        "poster": "https://images-na.ssl-images-amazon.com/images/I/91W2JLVNlsL._AC_SL1500_.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 25,
         "category": "mixed",
         "question": "Which singer starred alongside Steve Martin in 2006’s remake of The Pink Panther?",
-        "poster": "https://3.bp.blogspot.com/-OM1bR-j91Tc/WBQCaUAWo6I/AAAAAAAAU-o/2AdhrZxH2p4oKp-4vFTbvYMgjI5AiX01wCLcB/s1600/pink-panther-movie-poster.jpg"
+        "poster": "https://3.bp.blogspot.com/-OM1bR-j91Tc/WBQCaUAWo6I/AAAAAAAAU-o/2AdhrZxH2p4oKp-4vFTbvYMgjI5AiX01wCLcB/s1600/pink-panther-movie-poster.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 26,
         "category": "mixed",
         "question": "Which two movies started from the same script?",
-        "poster": "no_poster"
+        "poster": "no_poster",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 27,
         "category": "mixed",
         "question": "How many Oscars has Halle Berry won?",
-        "poster": "https://media.allure.com/photos/5a52f12003d4a87fd5544ef3/master/w_1600%2Cc_limit/GettyImages-902357958.jpg"
+        "poster": "https://media.allure.com/photos/5a52f12003d4a87fd5544ef3/master/w_1600%2Cc_limit/GettyImages-902357958.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 28,
         "category": "mixed",
         "question": "Which movie is this quote from: “What’s in the box?”",
-        "poster": "no_poster"
+        "poster": "no_poster",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 29,
         "category": "mixed",
         "question": "In Mean Girls, Cady moves to Illinois from which continent?",
-        "poster": "https://image.tmdb.org/t/p/original/9KPZGOwKnjWZHxqm3jSpDkMLgcz.jpg"
+        "poster": "https://image.tmdb.org/t/p/original/9KPZGOwKnjWZHxqm3jSpDkMLgcz.jpg",
+        "isAnswered": false,
+        "answer": ""
       },
       {
         "q_id": 30,
         "category": "mixed",
         "question": "Michael Myers’ mask in Halloween is which actor’s face?",
-        "poster": "https://i.pinimg.com/originals/46/68/32/466832279fad1bf6aac8116815a1111f.jpg"
+        "poster": "https://i.pinimg.com/originals/46/68/32/466832279fad1bf6aac8116815a1111f.jpg",
+        "isAnswered": false,
+        "answer": ""
       }
     ]
   }

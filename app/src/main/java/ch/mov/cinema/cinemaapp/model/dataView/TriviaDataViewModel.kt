@@ -38,6 +38,10 @@ class TriviaDataViewModel : ViewModel() {
         }
     }
 
+    suspend fun updateQuestion(answers: Questions){
+            db?.triviaDao()?.updateQuestion(answers)
+    }
+
 
     suspend fun getMixed() : MutableList<Questions>?{
         val data = db?.triviaDao()?.getMixed()?.toMutableList()

@@ -127,11 +127,12 @@ class HomeFragment : Fragment() {
     }
 
     private val onCLickedSubCategory  = object : SubCategoryAdapter.OnItemClickListener{
-        override fun onClicked(imagePath: String, movieId: String) {
+        override fun onClicked(imagePath: String, questionId: String, CategoryId : String) {
             val setting = context?.getSharedPreferences("prefsfile",Context.MODE_PRIVATE)
             val editor = setting?.edit()
             editor?.putString(TriviaKeyIds.POSTER_PATH.triviaKey,imagePath)
-            editor?.putString(TriviaKeyIds.QUESTION_ID.triviaKey,movieId)
+            editor?.putString(TriviaKeyIds.QUESTION_ID.triviaKey,questionId)
+            editor?.putString(TriviaKeyIds.CATEGORY_ID.triviaKey,CategoryId)
             editor?.commit()
             findNavController().navigate(R.id.action_HomeFragment_to_DetailFragment)
         }

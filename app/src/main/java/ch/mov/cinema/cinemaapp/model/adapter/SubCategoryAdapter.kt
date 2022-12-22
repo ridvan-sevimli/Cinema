@@ -52,8 +52,9 @@ class SubCategoryAdapter() : RecyclerView.Adapter<SubCategoryAdapter.QuestionsVi
                 holder.itemView.rootView.setOnClickListener {
                     //arrSubCategory[position].imgPath.toString()?.let { it1 -> listener!!.onClicked(it1) }
                     var imagePath = arrSubCategory[position].poster.toString()
-                    var imageId = arrSubCategory[position].id.toString()
-                    listener!!.onClicked(imagePath,imageId)
+                    var questionId = arrSubCategory[position].id.toString()
+                    var category = arrSubCategory[position].category.toString()
+                    listener!!.onClicked(imagePath,questionId,category)
                 }
 
             }
@@ -61,7 +62,7 @@ class SubCategoryAdapter() : RecyclerView.Adapter<SubCategoryAdapter.QuestionsVi
     }
 
     interface OnItemClickListener{
-        fun onClicked(categoryName:String, QuestionsId: String)
+        fun onClicked(imagePath:String, questionId: String,category: String)
     }
 
     override fun getItemCount(): Int {

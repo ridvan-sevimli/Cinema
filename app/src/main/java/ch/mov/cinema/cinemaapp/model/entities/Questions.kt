@@ -17,6 +17,12 @@ data class Questions (
     var questions : String?,
 
     @ColumnInfo(name= "poster")
-    var poster : String?
+    var poster : String?,
+
+    @ColumnInfo(name= "isAnswered")
+    var isAnswered : Boolean?,
+
+    @ColumnInfo(name= "answer")
+    var answer : String?
 
 ): Serializable

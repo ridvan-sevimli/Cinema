@@ -74,7 +74,9 @@ class SplashFragment : Fragment() {
                    question.q_id,
                    question.category,
                    question.question,
-                   question.poster
+                   question.poster,
+                   question.isAnswered,
+                   question.answer
                )
            )
        }

@@ -35,4 +35,7 @@ interface TriviaDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertAll(vararg questions: Questions)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun updateQuestion(vararg questions: Questions)
+
 }

@@ -48,53 +48,74 @@ class QuestionFragment : Fragment() {
         val answers: MutableMap<Int, Answers> = mutableMapOf<Int, Answers>()
         val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
         var questionId = settings?.getString(TriviaKeyIds.QUESTION_ID.triviaKey, "00000")
+        var categoryId = settings?.getString(TriviaKeyIds.CATEGORY_ID.triviaKey, "00000")
         var answer : String? = ""
 
        lifecycleScope.launchWhenStarted {
             withContext(Dispatchers.Default) {
                 var answerArray = model.getAnswers()!!
-                var question = model.getMixed()!!
-                for(questi in question){
-                    questions[questi.id] = questi
+                if(categoryId == "mixed"){
+                    var question = model.getMixed()!!
+                    for(questi in question){
+                        questions[questi.id] = questi
+                    }
                 }
+
                 for(answer in answerArray){
                     answers[answer.id] = answer
                 }
 
-                binding.question.text = questions.get(questionId?.toInt())?.questions
-                binding.answerA.text =answers?.get(questionId?.toInt())?.a
-                binding.answerB.text =answers?.get(questionId?.toInt())?.b
-                binding.answerC.text =answers?.get(questionId?.toInt())?.c
-                binding.answerD.text =answers?.get(questionId?.toInt())?.d
-                answer =  answers?.get(questionId?.toInt())?.answers
-
+                if(questions.get(questionId?.toInt())?.isAnswered!!){
+                    binding.question.text = questions.get(questionId?.toInt())?.questions
+                    binding.answerA.text =answers?.get(questionId?.toInt())?.a
+                    binding.answerB.text =answers?.get(questionId?.toInt())?.b
+                    binding.answerC.text =answers?.get(questionId?.toInt())?.c
+                    binding.answerD.text =answers?.get(questionId?.toInt())?.d
+                    answer =  answers?.get(questionId?.toInt())?.answers
+                    setGreen(questions.get(questionId?.toInt())?.answer)
+                }else{
+                    binding.question.text = questions.get(questionId?.toInt())?.questions
+                    binding.answerA.text =answers?.get(questionId?.toInt())?.a
+                    binding.answerB.text =answers?.get(questionId?.toInt())?.b
+                    binding.answerC.text =answers?.get(questionId?.toInt())?.c
+                    binding.answerD.text =answers?.get(questionId?.toInt())?.d
+                    answer =  answers?.get(questionId?.toInt())?.answers
+                }
             }
            Picasso.get()
                .load(questions.get(questionId?.toInt())?.poster)
                .into(binding.poster)
 
-
-           switchNextButton(false)
-           binding.btnAnswerA.setOnClickListener{
-               setGreen(answer)
-               switchNextButton(true)
+           if(questions.get(questionId?.toInt())?.isAnswered!!){
+               enableAnswerButtons(false)
+               enableNextButton(true)
            }
+        }
 
-           binding.btnAnswerB.setOnClickListener{
-               setGreen(answer)
-               switchNextButton(true)
-           }
+        enableNextButton(false)
 
-           binding.btnAnswerC.setOnClickListener{
-               setGreen(answer)
-               switchNextButton(true)
-           }
+        binding.btnAnswerA.setOnClickListener{
+            setGreen(answer)
+            enableNextButton(true)
+            lockQuestion(questionId,categoryId,answer,questions,model)
+        }
 
-           binding.btnAnswerD.setOnClickListener{
-               setGreen(answer)
-               switchNextButton(true)
-           }
+        binding.btnAnswerB.setOnClickListener{
+            setGreen(answer)
+            enableNextButton(true)
+            lockQuestion(questionId,categoryId,answer,questions,model)
+        }
 
+        binding.btnAnswerC.setOnClickListener{
+            setGreen(answer)
+            enableNextButton(true)
+            lockQuestion(questionId,categoryId,answer,questions,model)
+        }
+
+        binding.btnAnswerD.setOnClickListener{
+            setGreen(answer)
+            enableNextButton(true)
+            lockQuestion(questionId,categoryId,answer,questions,model)
         }
 
 
@@ -146,6 +167,18 @@ class QuestionFragment : Fragment() {
 
     }
 
+    fun lockQuestion(questionId: String?, categoryId: String?,answer : String?, questions: MutableMap<Int, Questions>, model: TriviaDataViewModel){
+        lifecycleScope.launchWhenStarted {
+            withContext(Dispatchers.Default) {
+                var id = questionId?.toInt()!!
+                var category = categoryId
+                var question = questions.get(questionId?.toInt())?.questions
+                var poster = questions.get(questionId?.toInt())?.poster
+                model.updateQuestion(Questions(id,category,question,poster,true,answer))
+            }
+        }
+    }
+
     fun setGreen(answer: String?){
         setRed()
         when(answer){
@@ -156,13 +189,21 @@ class QuestionFragment : Fragment() {
         }
     }
 
-    fun switchNextButton(enabled: Boolean){
+   suspend fun enableAnswerButtons(enabled: Boolean){
+        binding.btnAnswerA.isEnabled = enabled
+        binding.btnAnswerB.isEnabled = enabled
+        binding.btnAnswerC.isEnabled = enabled
+        binding.btnAnswerD.isEnabled = enabled
+        binding.btnNext.isEnabled=enabled
+    }
+
+   fun enableNextButton(enabled: Boolean){
         binding.btnNext.isEnabled = enabled
         if(enabled){
             binding.btnNext.setCardBackgroundColor(Color.parseColor("#F5C517"))
         }
     }
-
+    
     fun setRed(){
         binding.btnAnswerA.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
         binding.btnAnswerB.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
@@ -170,10 +211,10 @@ class QuestionFragment : Fragment() {
         binding.btnAnswerD.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
     }
     fun next(questionId : Int, questions: MutableMap<Int, Questions>) : Int{
-        if(questionId <= questions.size){
+        if(questionId < questions.size){
             return questionId + 1
         }else{
-            return 0
+            return 1
         }
     }
 
