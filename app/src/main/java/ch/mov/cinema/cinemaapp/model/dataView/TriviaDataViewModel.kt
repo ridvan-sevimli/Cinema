@@ -45,28 +45,5 @@ class TriviaDataViewModel : ViewModel() {
         val data = db?.triviaDao()?.getAnswers()?.toMutableList()
         return data
     }
-    suspend fun getTop250movies() : MutableList<Questions>?{
-        val data = db?.triviaDao()?.getTop250movies()?.toMutableList()
-        return data
-    }
 
-    suspend fun getMostPopularMovies() : MutableList<Questions>?{
-        val data = db?.triviaDao()?.getMostPopularMovies()?.toMutableList()
-        return data
-    }
-
-    suspend fun getMostPopularTv() : MutableList<Questions>?{
-        val data = db?.triviaDao()?.getMostPopularTv()?.toMutableList()
-        return data
-    }
-
-    suspend fun getInTheaters() : MutableList<Questions>?{
-        val data = db?.triviaDao()?.getInTheaters()?.toMutableList()
-        return data
-    }
-
-    suspend fun readMovies() : MutableList<Questions>?{
-        val data = db?.triviaDao()?.allMovies()?.toMutableList()
-        return data
-    }
 }

@@ -92,21 +92,21 @@ class HomeFragment : Fragment() {
             arrSubCategory = ArrayList<Questions>()
             lifecycleScope.launchWhenStarted{
                 withContext(Dispatchers.Default){
-                    var movies : MutableList<Questions>? = null
+                    var questions : MutableList<Questions>? = null
                     if(categoryName == "Mixed"){
-                        movies = model.getMixed()!!
+                        questions = model.getMixed()!!
                     } else if (categoryName == "Top 250 Movies") {
-                        movies = model.getTop250movies()!!
+                        //movies = model.getTop250movies()!!
                     }else if(categoryName == "Most Popular Movies"){
-                        movies = model.getMostPopularMovies()!!
+                        //movies = model.getMostPopularMovies()!!
                     }else if(categoryName == "Most Popular Tv's"){
-                        movies = model.getMostPopularTv()!!
+                        //movies = model.getMostPopularTv()!!
                     }else if(categoryName == "In Theaters"){
-                        movies = model.getInTheaters()!!
+                        //movies = model.getInTheaters()!!
                     }
-                    if (movies != null) {
-                        for(movie in movies){
-                            arrSubCategory.add(movie)
+                    if (questions != null) {
+                        for(question in questions){
+                            arrSubCategory.add(question)
                         }
                     }
                 }
