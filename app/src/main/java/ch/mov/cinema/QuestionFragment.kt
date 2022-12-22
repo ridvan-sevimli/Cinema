@@ -73,49 +73,26 @@ class QuestionFragment : Fragment() {
                .load(questions.get(questionId?.toInt())?.poster)
                .into(binding.poster)
 
+
+           switchNextButton(false)
            binding.btnAnswerA.setOnClickListener{
-               if(checkAnswer(answer, binding.answerA.text.toString())){
-                   binding.btnAnswerA.setCardBackgroundColor(Color.parseColor("#76E10A"))
-                   binding.btnAnswerB.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-                   binding.btnAnswerC.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-                   binding.btnAnswerD.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-               }else{
-                   binding.btnAnswerA.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-               }
+               setGreen(answer)
+               switchNextButton(true)
            }
 
            binding.btnAnswerB.setOnClickListener{
-               if(checkAnswer(answer, binding.answerB.text.toString())){
-                   binding.btnAnswerA.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-                   binding.btnAnswerB.setCardBackgroundColor(Color.parseColor("#76E10A"))
-                   binding.btnAnswerC.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-                   binding.btnAnswerD.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-
-               }else{
-                   binding.btnAnswerB.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-           }
+               setGreen(answer)
+               switchNextButton(true)
            }
 
            binding.btnAnswerC.setOnClickListener{
-               if(checkAnswer(answer, binding.answerC.text.toString())){
-                   binding.btnAnswerA.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-                   binding.btnAnswerB.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-                   binding.btnAnswerC.setCardBackgroundColor(Color.parseColor("#76E10A"))
-                   binding.btnAnswerD.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-               }else{
-                   binding.btnAnswerC.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-           }
+               setGreen(answer)
+               switchNextButton(true)
            }
 
            binding.btnAnswerD.setOnClickListener{
-              if( checkAnswer(answer, binding.answerD.text.toString())){
-                  binding.btnAnswerA.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-                  binding.btnAnswerB.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-                  binding.btnAnswerC.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-                  binding.btnAnswerD.setCardBackgroundColor(Color.parseColor("#76E10A"))
-               }else{
-                  binding.btnAnswerD.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-           }
+               setGreen(answer)
+               switchNextButton(true)
            }
 
         }
@@ -169,11 +146,28 @@ class QuestionFragment : Fragment() {
 
     }
 
-    fun checkAnswer(answer: String?, ckeckString : String?) : Boolean{
-        if(answer == ckeckString){
-            return true
+    fun setGreen(answer: String?){
+        setRed()
+        when(answer){
+            binding.answerA.text.toString() -> binding.btnAnswerA.setCardBackgroundColor(Color.parseColor("#76E10A"))
+            binding.answerB.text.toString() -> binding.btnAnswerB.setCardBackgroundColor(Color.parseColor("#76E10A"))
+            binding.answerC.text.toString() -> binding.btnAnswerC.setCardBackgroundColor(Color.parseColor("#76E10A"))
+            binding.answerD.text.toString() -> binding.btnAnswerD.setCardBackgroundColor(Color.parseColor("#76E10A"))
         }
-        return false
+    }
+
+    fun switchNextButton(enabled: Boolean){
+        binding.btnNext.isEnabled = enabled
+        if(enabled){
+            binding.btnNext.setCardBackgroundColor(Color.parseColor("#F5C517"))
+        }
+    }
+
+    fun setRed(){
+        binding.btnAnswerA.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
+        binding.btnAnswerB.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
+        binding.btnAnswerC.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
+        binding.btnAnswerD.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
     }
     fun next(questionId : Int, questions: MutableMap<Int, Questions>) : Int{
         if(questionId <= questions.size){
