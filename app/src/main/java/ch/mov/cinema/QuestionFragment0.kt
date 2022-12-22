@@ -8,19 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import ch.mov.cinema.cinemaapp.model.DetailViewEntities.*
+import androidx.navigation.fragment.findNavController
 import ch.mov.cinema.cinemaapp.model.TriviaDataViewModel
-import ch.mov.cinema.cinemaapp.model.entities.Answer
 import ch.mov.cinema.cinemaapp.model.entities.Answers
-import ch.mov.cinema.cinemaapp.model.entities.Question
 import ch.mov.cinema.cinemaapp.model.entities.Questions
-import ch.mov.cinema.databinding.DetailViewBinding
+import ch.mov.cinema.databinding.QuestionViewBinding
 import ch.mov.cinema.enums.MovieKeyIds
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import com.beust.klaxon.Klaxon
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -29,9 +22,9 @@ import kotlinx.coroutines.withContext
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class DetailFragment : Fragment() {
+class QuestionFragment0 : Fragment() {
 
-    private var _binding: DetailViewBinding? = null
+    private var _binding: QuestionViewBinding? = null
 
 
     // This property is only valid between onCreateView and onDestroyView.
@@ -41,7 +34,7 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = DetailViewBinding.inflate(inflater, container, false)
+        _binding = QuestionViewBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -54,26 +47,72 @@ class DetailFragment : Fragment() {
         val answers: MutableMap<Int, Answers> = mutableMapOf<Int, Answers>()
         val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
         var movieId = settings?.getString(MovieKeyIds.MOVIE_ID.movieKey, "00000")
-
+        var answer : String? = ""
 
        lifecycleScope.launchWhenStarted {
             withContext(Dispatchers.Default) {
-                var answer = model.getAnswers()!!
+                var answerArray = model.getAnswers()!!
                 var question = model.getMixed()!!
                 for(questi in question){
                     questions[questi.id] = questi
                 }
-                for(ans in answer){
-                    answers[ans.id] = ans
+                for(answer in answerArray){
+                    answers[answer.id] = answer
                 }
 
                 binding.question.text = questions.get(movieId?.toInt())?.questions
+                binding.btnAnswerA.text =answers?.get(movieId?.toInt())?.a
+                binding.btnAnswerB.text =answers?.get(movieId?.toInt())?.b
+                binding.btnAnswerC.text =answers?.get(movieId?.toInt())?.c
+                binding.btnAnswerD.text =answers?.get(movieId?.toInt())?.d
+                answer =  answers?.get(movieId?.toInt())?.answers
 
             }
            Picasso.get()
                .load(questions.get(movieId?.toInt())?.poster)
                .into(binding.poster)
 
+           binding.btnAnswerA.setOnClickListener{
+               if(checkAnswer(answer, binding.btnAnswerA.text.toString())){
+                   println("True")
+               }else{
+                   println("False")
+               }
+           }
+
+           binding.btnAnswerB.setOnClickListener{
+               if(checkAnswer(answer, binding.btnAnswerB.text.toString())){
+                   println("True")
+               }else{
+               println("False")
+           }
+           }
+
+           binding.btnAnswerC.setOnClickListener{
+               if(checkAnswer(answer, binding.btnAnswerC.text.toString())){
+                   println("True")
+               }else{
+               println("False")
+           }
+           }
+
+           binding.btnAnswerD.setOnClickListener{
+              if( checkAnswer(answer, binding.btnAnswerD.text.toString())){
+                   println("True")
+               }else{
+               println("False")
+           }
+           }
+
+        }
+
+
+        binding.btnNext.setOnClickListener{
+            val setting = context?.getSharedPreferences("prefsfile",Context.MODE_PRIVATE)
+            val editor = setting?.edit()
+            editor?.putString(MovieKeyIds.MOVIE_ID.movieKey,movieId+1)
+            editor?.commit()
+            findNavController().navigate(R.id.action_QuestionFragment0_to_QuestionFragment1)
         }
 
 
@@ -114,6 +153,13 @@ class DetailFragment : Fragment() {
 //            }
 //        }
 
+    }
+
+    fun checkAnswer(answer: String?, ckeckString : String?) : Boolean{
+        if(answer == ckeckString){
+            return true
+        }
+        return false
     }
 
     override fun onDestroyView() {

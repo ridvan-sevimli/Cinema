@@ -4,7 +4,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="splash_screen_label">Cinema</string>
     <string name="dash_boad_label">Dash Board</string>
-    <string name="detal_view_label">Movie</string>
+    <string name="question_view_label">Question</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 

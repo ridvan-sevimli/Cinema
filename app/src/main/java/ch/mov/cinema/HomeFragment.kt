@@ -57,14 +57,14 @@ class HomeFragment : Fragment() {
 
         initializeCategories(requireContext())
 
-
         lifecycleScope.launchWhenStarted {
-            withContext(Dispatchers.Default) {
-                arrSubCategory = model.getMixed() as ArrayList<Questions>
+         withContext(Dispatchers.Default) {
+               arrSubCategory = model.getMixed() as ArrayList<Questions>
+
+            }
                 subCategoryAdapter.setData(arrSubCategory)
                 subCategoryAdapter.setClickListener(onCLickedSubCategory)
                 binding.rvSubCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
-            }
         }
 
 

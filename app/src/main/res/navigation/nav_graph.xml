@@ -22,12 +22,26 @@ app:startDestination="@id/SplashFragment">
     tools:layout="@layout/fragment_home">
     <action
         android:id="@+id/action_HomeFragment_to_DetailFragment"
-        app:destination="@id/DetailFragment" />
+        app:destination="@id/QuestionFragment0" />
 </fragment>
     <fragment
-        android:id="@+id/DetailFragment"
-        android:name="ch.mov.cinema.DetailFragment"
-        android:label="@string/detal_view_label"
-        tools:layout="@layout/detail_view">
+        android:id="@+id/QuestionFragment0"
+        android:name="ch.mov.cinema.QuestionFragment0"
+        android:label="@string/question_view_label"
+        tools:layout="@layout/question_view">
+
+        <action
+            android:id="@+id/action_QuestionFragment0_to_QuestionFragment1"
+            app:destination="@id/QuestionFragment1" />
+    </fragment>
+    <fragment
+        android:id="@+id/QuestionFragment1"
+        android:name="ch.mov.cinema.QuestionFragment0"
+        android:label="@string/question_view_label"
+        tools:layout="@layout/question_view">
+
+        <action
+            android:id="@+id/action_QuestionFragment0_to_QuestionFragment1"
+            app:destination="@id/QuestionFragment0" />
     </fragment>
 </navigation>
