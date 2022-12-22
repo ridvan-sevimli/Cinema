@@ -1,6 +1,7 @@
 package ch.mov.cinema
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -74,33 +75,46 @@ class QuestionFragment : Fragment() {
 
            binding.btnAnswerA.setOnClickListener{
                if(checkAnswer(answer, binding.answerA.text.toString())){
-                   println("True")
+                   binding.btnAnswerA.setCardBackgroundColor(Color.parseColor("#76E10A"))
+                   binding.btnAnswerB.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
+                   binding.btnAnswerC.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
+                   binding.btnAnswerD.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
                }else{
-                   println("False")
+                   binding.btnAnswerA.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
                }
            }
 
            binding.btnAnswerB.setOnClickListener{
                if(checkAnswer(answer, binding.answerB.text.toString())){
-                   println("True")
+                   binding.btnAnswerA.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
+                   binding.btnAnswerB.setCardBackgroundColor(Color.parseColor("#76E10A"))
+                   binding.btnAnswerC.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
+                   binding.btnAnswerD.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
+
                }else{
-               println("False")
+                   binding.btnAnswerB.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
            }
            }
 
            binding.btnAnswerC.setOnClickListener{
                if(checkAnswer(answer, binding.answerC.text.toString())){
-                   println("True")
+                   binding.btnAnswerA.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
+                   binding.btnAnswerB.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
+                   binding.btnAnswerC.setCardBackgroundColor(Color.parseColor("#76E10A"))
+                   binding.btnAnswerD.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
                }else{
-               println("False")
+                   binding.btnAnswerC.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
            }
            }
 
            binding.btnAnswerD.setOnClickListener{
               if( checkAnswer(answer, binding.answerD.text.toString())){
-                   println("True")
+                  binding.btnAnswerA.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
+                  binding.btnAnswerB.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
+                  binding.btnAnswerC.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
+                  binding.btnAnswerD.setCardBackgroundColor(Color.parseColor("#76E10A"))
                }else{
-               println("False")
+                  binding.btnAnswerD.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
            }
            }
 

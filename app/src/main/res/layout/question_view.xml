@@ -189,7 +189,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                app:cardBackgroundColor="@color/yellow"
+                app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp">
 
@@ -206,7 +206,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="278dp"
                         android:layout_marginRight="-20dp"
-                        android:src="@drawable/icons8_cinema_100" />
+                        android:src="@drawable/icons8_marker_a_50" />
 
                     <TextView
                         android:id="@+id/answer_A"
@@ -233,7 +233,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                app:cardBackgroundColor="@color/yellow"
+                app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp">
 
@@ -250,7 +250,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="278dp"
                         android:layout_marginRight="-20dp"
-                        android:src="@drawable/icons8_cinema_100" />
+                        android:src="@drawable/icons8_marker_b_50" />
 
                     <TextView
                         android:id="@+id/answer_B"
@@ -277,7 +277,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                app:cardBackgroundColor="@color/yellow"
+                app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp">
 
@@ -294,7 +294,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="278dp"
                         android:layout_marginRight="-20dp"
-                        android:src="@drawable/icons8_cinema_100" />
+                        android:src="@drawable/icons8_marker_c_50" />
 
                     <TextView
                         android:id="@+id/answer_C"
@@ -321,7 +321,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                app:cardBackgroundColor="@color/yellow"
+                app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp">
 
@@ -338,7 +338,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="278dp"
                         android:layout_marginRight="-20dp"
-                        android:src="@drawable/icons8_cinema_100" />
+                        android:src="@drawable/icons8_marker_d_50" />
 
                     <TextView
                         android:id="@+id/answer_D"
@@ -373,30 +373,23 @@
                     android:layout_width="337dp"
                     android:layout_height="match_parent">
 
-                    <ImageView
-                        android:id="@+id/img_next"
-                        android:layout_width="57dp"
-                        android:layout_height="38dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="278dp"
-                        android:layout_marginRight="-20dp"
-                        android:src="@drawable/icons8_cinema_100" />
 
                     <TextView
                         android:id="@+id/txt_next"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
                         android:layout_alignParentBottom="true"
-                        android:layout_marginStart="56dp"
-                        android:layout_marginBottom="2dp"
+                        android:layout_marginStart="9dp"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginBottom="5dp"
                         android:fontFamily="@font/roboto_bold"
                         android:maxEms="10"
                         android:maxLines="2"
                         android:padding="10dp"
                         android:text="Next"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="20dp" />
                 </RelativeLayout>
