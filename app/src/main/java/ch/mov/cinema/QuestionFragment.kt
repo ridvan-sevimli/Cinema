@@ -16,6 +16,7 @@ import ch.mov.cinema.cinemaapp.model.entities.Answers
 import ch.mov.cinema.cinemaapp.model.entities.Players
 import ch.mov.cinema.cinemaapp.model.entities.Questions
 import ch.mov.cinema.databinding.QuestionViewBinding
+import ch.mov.cinema.enums.MainCategory
 import ch.mov.cinema.enums.TriviaKeyIds
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
@@ -65,22 +66,22 @@ class QuestionFragment : Fragment() {
                     }
                 }
                 var answerArray = model.getAnswers()!!
-                if(categoryId == "Mixed"){
+                if(categoryId == MainCategory.MIXED.category){
                     var question = model.getMixed()!!
                     for(questi in question){
                         questions[questi.id] = questi
                     }
-                }else if(categoryId == "Harry Potter"){
+                }else if(categoryId == MainCategory.HARRY_POTTER.category){
                     var question = model.getHarryPotter()!!
                     for(questi in question){
                         questions[questi.id] = questi
                     }
-                }else if(categoryId == "Star Wars"){
+                }else if(categoryId == MainCategory.STAR_WARS.category){
                     var question = model.getStarWars()!!
                     for(questi in question){
                         questions[questi.id] = questi
                     }
-                }else if(categoryId == "Home Alone"){
+                }else if(categoryId == MainCategory.HOME_ALONE.category){
                     var question = model.getHomeAlone()!!
                     for(questi in question){
                         questions[questi.id] = questi

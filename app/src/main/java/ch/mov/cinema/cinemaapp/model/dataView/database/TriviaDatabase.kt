@@ -1,4 +1,4 @@
-package ch.mov.cinema.cinemaapp.model.database
+package ch.mov.cinema.cinemaapp.model.dataView.database
 
 import android.content.Context
 import androidx.room.Database

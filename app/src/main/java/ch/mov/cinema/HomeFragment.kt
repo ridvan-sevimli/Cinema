@@ -18,6 +18,7 @@ import ch.mov.cinema.cinemaapp.model.adapter.MainCategoryAdapter
 import ch.mov.cinema.cinemaapp.model.adapter.SubCategoryAdapter
 import ch.mov.cinema.cinemaapp.model.entities.*
 import ch.mov.cinema.databinding.FragmentHomeBinding
+import ch.mov.cinema.enums.MainCategory
 import ch.mov.cinema.enums.TriviaKeyIds
 import com.beust.klaxon.Klaxon
 import kotlinx.coroutines.Dispatchers
@@ -143,13 +144,13 @@ class HomeFragment : Fragment() {
             lifecycleScope.launchWhenStarted{
                 withContext(Dispatchers.Default){
                     var questions : MutableList<Questions>? = null
-                    if(categoryName == "Mixed"){
+                    if(categoryName == MainCategory.MIXED.category){
                         questions = model.getMixed()!!
-                    } else if (categoryName == "Harry Potter") {
+                    } else if (categoryName == MainCategory.HARRY_POTTER.category) {
                         questions = model.getHarryPotter()!!
-                    }else if(categoryName == "Star Wars"){
+                    }else if(categoryName == MainCategory.STAR_WARS.category){
                         questions = model.getStarWars()!!
-                    }else if(categoryName == "Home Alone"){
+                    }else if(categoryName == MainCategory.HOME_ALONE.category){
                         questions = model.getHomeAlone()!!
                     }
                     if (questions != null) {
@@ -198,7 +199,7 @@ class HomeFragment : Fragment() {
 
     fun getSelectedCategory() : String?{
         val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
-        var selectedCategoryId = settings?.getString(TriviaKeyIds.SELECTED_CATEGORY.triviaKey, "Mixed")
+        var selectedCategoryId = settings?.getString(TriviaKeyIds.SELECTED_CATEGORY.triviaKey, MainCategory.MIXED.category)
         return selectedCategoryId
     }
 
