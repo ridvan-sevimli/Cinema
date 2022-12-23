@@ -233,11 +233,13 @@ class QuestionFragment : Fragment() {
         binding.btnAnswerD.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
     }
     fun next(questionId : Int, questions: MutableMap<Int, Questions>) : Int{
-        if(questionId < questions.size){
-            return questionId + 1
-        }else{
-           return -1
+        var nextQuestion = questionId + 1
+        for(questionKey in questions.keys){
+            while(nextQuestion == questionKey){
+                return questionId + 1
+            }
         }
+        return -1
     }
 
     fun getCurrentPlayer() : Int?{
