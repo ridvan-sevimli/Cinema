@@ -28,6 +28,7 @@ class SplashFragment : Fragment() {
 
     private var _binding: SplaschScreenBinding? = null
     val model: TriviaDataViewModel by activityViewModels()
+    private val ALLOWED_PLAYER = 2
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -54,14 +55,14 @@ class SplashFragment : Fragment() {
             withContext(Dispatchers.Default) {
                  players = model.getPlayers() as ArrayList<Players>
             }
-            if(players.size == 2){
+            if(players.size == ALLOWED_PLAYER){
                 findNavController().navigate(R.id.action_SplashFragment_to_HomeFragment)
             }
         }
 
         binding.btnSavePlayer.setOnClickListener {
             var playerName = binding.playerNameEdit.text.toString()
-            if(playerName != "" && players.size < 2){
+            if(playerName != "" && players.size < ALLOWED_PLAYER){
                 hideKeyboard()
                 var playerSize = players.size
                 players.add(Players(playerSize.plus(1),playerName,0))
