@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import ch.mov.cinema.cinemaapp.model.TriviaDataViewModel
 import ch.mov.cinema.databinding.FragmentWinningBinding
+import ch.mov.cinema.enums.MainCategory
 import ch.mov.cinema.enums.TriviaKeyIds
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -71,7 +72,7 @@ class WinFragment : Fragment() {
     fun resetSelectedCategory(){
         val setting = context?.getSharedPreferences("prefsfile",Context.MODE_PRIVATE)
         val editor = setting?.edit()
-        editor?.putString(TriviaKeyIds.SELECTED_CATEGORY.triviaKey,"Mixed")
+        editor?.putString(TriviaKeyIds.SELECTED_CATEGORY.triviaKey, MainCategory.MIXED.category)
         editor?.commit()
     }
 

@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ch.mov.cinema.cinemaapp.model.entities.Category
 import ch.mov.cinema.databinding.ItemRvMainCategoryBinding
+import ch.mov.cinema.enums.Colors
+import ch.mov.cinema.enums.MainCategory
 import ch.mov.cinema.enums.TriviaKeyIds
 
 
@@ -36,7 +38,7 @@ class MainCategoryAdapter() : RecyclerView.Adapter<MainCategoryAdapter.CategoryV
         val binding = ItemRvMainCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         val settings = parent.context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
         currentPlayerId = settings?.getInt(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey, 0)!!
-        selectedCategory = settings?.getString(TriviaKeyIds.SELECTED_CATEGORY.triviaKey,"Mixed")!!
+        selectedCategory = settings?.getString(TriviaKeyIds.SELECTED_CATEGORY.triviaKey,MainCategory.MIXED.category)!!
         return CategoryViewHolder(binding)
     }
 
@@ -51,7 +53,7 @@ class MainCategoryAdapter() : RecyclerView.Adapter<MainCategoryAdapter.CategoryV
                     if(arrMainCategory[position].title == selectedCategory){
                         arrMainCategory[position].title?.let { it1 -> listener!!.onClicked(it1) }
                     }else{
-                        binding.categoryCard.setCardBackgroundColor(Color.parseColor("#FFFFFFFF"))
+                        binding.categoryCard.setCardBackgroundColor(Color.parseColor(Colors.WHITE.color))
                     }
                 }else {
                     holder.itemView.rootView.setOnClickListener {
