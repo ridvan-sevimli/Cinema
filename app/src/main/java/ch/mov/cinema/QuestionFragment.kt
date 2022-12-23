@@ -16,6 +16,7 @@ import ch.mov.cinema.cinemaapp.model.entities.Answers
 import ch.mov.cinema.cinemaapp.model.entities.Players
 import ch.mov.cinema.cinemaapp.model.entities.Questions
 import ch.mov.cinema.databinding.QuestionViewBinding
+import ch.mov.cinema.enums.Colors
 import ch.mov.cinema.enums.MainCategory
 import ch.mov.cinema.enums.TriviaKeyIds
 import com.squareup.picasso.Picasso
@@ -197,10 +198,10 @@ class QuestionFragment : Fragment() {
     fun setGreen(answer: String?){
         setRed()
         when(answer){
-            binding.answerA.text.toString() -> binding.btnAnswerA.setCardBackgroundColor(Color.parseColor("#76E10A"))
-            binding.answerB.text.toString() -> binding.btnAnswerB.setCardBackgroundColor(Color.parseColor("#76E10A"))
-            binding.answerC.text.toString() -> binding.btnAnswerC.setCardBackgroundColor(Color.parseColor("#76E10A"))
-            binding.answerD.text.toString() -> binding.btnAnswerD.setCardBackgroundColor(Color.parseColor("#76E10A"))
+            binding.answerA.text.toString() -> binding.btnAnswerA.setCardBackgroundColor(Color.parseColor(Colors.GREEN.color))
+            binding.answerB.text.toString() -> binding.btnAnswerB.setCardBackgroundColor(Color.parseColor(Colors.GREEN.color))
+            binding.answerC.text.toString() -> binding.btnAnswerC.setCardBackgroundColor(Color.parseColor(Colors.GREEN.color))
+            binding.answerD.text.toString() -> binding.btnAnswerD.setCardBackgroundColor(Color.parseColor(Colors.GREEN.color))
         }
     }
 
@@ -222,15 +223,15 @@ class QuestionFragment : Fragment() {
    fun enableNextButton(enabled: Boolean){
         binding.btnNext.isEnabled = enabled
         if(enabled){
-            binding.btnNext.setCardBackgroundColor(Color.parseColor("#F5C517"))
+            binding.btnNext.setCardBackgroundColor(Color.parseColor(Colors.YELLOW.color))
         }
     }
 
     fun setRed(){
-        binding.btnAnswerA.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-        binding.btnAnswerB.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-        binding.btnAnswerC.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
-        binding.btnAnswerD.setCardBackgroundColor(Color.parseColor("#EC0A2C"))
+        binding.btnAnswerA.setCardBackgroundColor(Color.parseColor(Colors.RED.color))
+        binding.btnAnswerB.setCardBackgroundColor(Color.parseColor(Colors.RED.color))
+        binding.btnAnswerC.setCardBackgroundColor(Color.parseColor(Colors.RED.color))
+        binding.btnAnswerD.setCardBackgroundColor(Color.parseColor(Colors.RED.color))
     }
     fun next(questionId : Int, questions: MutableMap<Int, Questions>) : Int{
         var nextQuestion = questionId + 1
