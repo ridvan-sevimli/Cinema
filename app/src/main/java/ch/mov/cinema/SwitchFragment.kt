@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import ch.mov.cinema.cinemaapp.model.CategoryHandler
 import ch.mov.cinema.cinemaapp.model.TriviaDataViewModel
 import ch.mov.cinema.cinemaapp.model.entities.*
 import ch.mov.cinema.databinding.TimeToSwitchBinding
@@ -26,7 +25,6 @@ class SwitchFragment : Fragment() {
 
     private var _binding: TimeToSwitchBinding? = null
     val model: TriviaDataViewModel by activityViewModels()
-    var categoryHandler = CategoryHandler()
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!

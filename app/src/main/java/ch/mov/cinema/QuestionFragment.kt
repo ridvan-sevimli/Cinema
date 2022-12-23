@@ -65,8 +65,23 @@ class QuestionFragment : Fragment() {
                     }
                 }
                 var answerArray = model.getAnswers()!!
-                if(categoryId == "mixed"){
+                if(categoryId == "Mixed"){
                     var question = model.getMixed()!!
+                    for(questi in question){
+                        questions[questi.id] = questi
+                    }
+                }else if(categoryId == "Harry Potter"){
+                    var question = model.getHarryPotter()!!
+                    for(questi in question){
+                        questions[questi.id] = questi
+                    }
+                }else if(categoryId == "Star Wars"){
+                    var question = model.getStarWars()!!
+                    for(questi in question){
+                        questions[questi.id] = questi
+                    }
+                }else if(categoryId == "Home Alone"){
+                    var question = model.getHomeAlone()!!
                     for(questi in question){
                         questions[questi.id] = questi
                     }
