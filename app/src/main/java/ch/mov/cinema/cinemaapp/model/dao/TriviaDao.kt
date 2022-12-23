@@ -17,8 +17,17 @@ interface TriviaDao {
 //    @Query("SELECT * FROM questions WHERE category ='top_250_movies'")
 //    fun getTop250movies(): List<Questions>
 
-    @Query("SELECT * FROM questions WHERE category ='mixed'")
+    @Query("SELECT * FROM questions WHERE category ='Mixed'")
     fun getMixed(): List<Questions>
+
+    @Query("SELECT * FROM questions WHERE category ='Harry Potter'")
+    fun getHarryPotter(): List<Questions>
+
+    @Query("SELECT * FROM questions WHERE category ='Star Wars'")
+    fun getStarWars(): List<Questions>
+
+    @Query("SELECT * FROM questions WHERE category ='Home Alone'")
+    fun getHomeAlone(): List<Questions>
 
     @Query("SELECT * FROM answers ORDER BY id DESC")
     fun getAnswers(): List<Answers>

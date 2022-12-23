@@ -270,6 +270,338 @@
       "c":"Paul Newman",
       "d":"William Shatner",
       "answer":"William Shatner"
+    },
+    {
+      "q_id": 31,
+      "type":"multiple",
+      "a":"Poppy",
+      "b":"Lily",
+      "c":"Daisy",
+      "d":"Cherry",
+      "answer":"Lily"
+    },
+    {
+      "q_id": 32,
+      "type":"multiple",
+      "a":"Harry Potter and the Order of the Phoenix",
+      "b":"Harry Potter and the Chamber of Secrets",
+      "c":"Harry Potter and the Prisoner of Azkaban",
+      "d":"Harry Potter and the Goblet of Fire",
+      "answer":"Harry Potter and the Chamber of Secrets"
+    },
+    {
+      "q_id": 33,
+      "type":"multiple",
+      "a":"Romilda",
+      "b":"Pomona",
+      "c":"Ginni",
+      "d":"Pansy",
+      "answer":"Ginnie"
+    },
+    {
+      "q_id": 34,
+      "type":"multiple",
+      "a":"London",
+      "b":"Birmingham",
+      "c":"Edinburgh",
+      "d":"Glasgow",
+      "answer":"London"
+    },
+    {
+      "q_id": 35,
+      "type":"multiple",
+      "a":"Sirius Black",
+      "b":"James Potter",
+      "c":"Peter Pettigrew",
+      "d":"Remus Lupin",
+      "answer":"Sirius Black"
+    },
+    {
+      "q_id": 36,
+      "type":"multiple",
+      "a":"Remus Lupin",
+      "b":"Peter Pettigrew",
+      "c":"James Potter",
+      "d":"Severus Snape",
+      "answer":"Severus Snape"
+    },
+    {
+      "q_id": 37,
+      "type":"multiple",
+      "a":"A magic wand shop",
+      "b":"A bank",
+      "c":"A joke shop",
+      "d":"A pub",
+      "answer":"A pub"
+    },
+    {
+      "q_id": 38,
+      "type":"multiple",
+      "a":"Hungary",
+      "b":"Serbia",
+      "c":"Belgium",
+      "d":"France",
+      "answer":"France"
+    },
+    {
+      "q_id": 39,
+      "type":"multiple",
+      "a":"Luna Lovegood",
+      "b":"Neville Longbottom",
+      "c":"Draco Malfoy",
+      "d":"Hermione Granger",
+      "answer":"Draco Malfoy"
+    },
+    {
+      "q_id": 40,
+      "type":"multiple",
+      "a":"A cat",
+      "b":"A snake",
+      "c":"A rat",
+      "d":"A owl",
+      "answer":"An owl"
+    },
+    {
+      "q_id": 41,
+      "type":"multiple",
+      "a":"Charles",
+      "b":"George",
+      "c":"Fred",
+      "d":"Bill",
+      "answer":"Bill"
+    },
+    {
+      "q_id": 42,
+      "type":"multiple",
+      "a":"Emma Watson",
+      "b":"Bonnie Wright",
+      "c":"Maggie Smith",
+      "d":"Helena Bonham Carter",
+      "answer":"Maggie Smith"
+    },
+    {
+      "q_id": 43,
+      "type":"multiple",
+      "a":"Dementors",
+      "b":"Death Eaters",
+      "c":"Goblins",
+      "d":"Giants",
+      "answer":"Dementors"
+    },
+    {
+      "q_id": 44,
+      "type":"multiple",
+      "a":"Dobby",
+      "b":"Rebeus",
+      "c":"Remus",
+      "d":"Gellert",
+      "answer":"Dobby"
+    },
+    {
+      "q_id": 45,
+      "type": "multiple",
+      "a": "Blue",
+      "b": "Green",
+      "c": "Yellow",
+      "d": "Pink",
+      "answer": "Pink"
+    }, {
+      "q_id": 46,
+      "type":"multiple",
+      "a":"Leia",
+      "b":"Luke",
+      "c":"He didn't die",
+      "d":"Darth Vader",
+      "answer":"Darth Vader"
+    },
+    {
+      "q_id": 47,
+      "type":"multiple",
+      "a":"Blue",
+      "b":"Red",
+      "c":"Purple",
+      "d":"Green",
+      "answer":"Blue"
+    },
+    {
+      "q_id": 48,
+      "type":"multiple",
+      "a":"Green",
+      "b":"Dark blue",
+      "c":"Black",
+      "d":"Gray",
+      "answer":"Black"
+    },
+    {
+      "q_id": 49,
+      "type":"multiple",
+      "a":"Episode 4",
+      "b": "Episode 5",
+      "c":"Episode 6",
+      "d":"Episode 7",
+      "answer":"Episode 5"
+    },
+    {
+      "q_id": 50,
+      "type":"multiple",
+      "a":"Leia",
+      "b":"R2-D2",
+      "c":"Luke",
+      "d":"Chewie",
+      "answer":"Luke"
+    },
+    {
+      "q_id": 51,
+      "type":"multiple",
+      "a":"Obi-Wan",
+      "b":"Yoda",
+      "c":"No one",
+      "d":"Anakin",
+      "answer":"Yoda"
+    },
+    {
+      "q_id": 52,
+      "type":"multiple",
+      "a":"D2",
+      "b":"22",
+      "c":"R2",
+      "d":"RD",
+      "answer":"R2"
+    },
+    {
+      "q_id": 53,
+      "type":"multiple",
+      "a":"The Force",
+      "b":"A lightsaber",
+      "c":"A rat",
+      "d":"Nothing",
+      "answer":"The Force"
+    },
+    {
+      "q_id": 54,
+      "type":"multiple",
+      "a":"No one's",
+      "b":"The Emperor's",
+      "c":"Darth Vader's",
+      "d":"Leia's",
+      "answer":"Darth Vader's"
+    },
+    {
+      "q_id": 55,
+      "type":"multiple",
+      "a":"Red",
+      "b":"Green",
+      "c":"White",
+      "d":"Blue",
+      "answer":"Blue"
+    },
+    {
+      "q_id": 56,
+      "type":"multiple",
+      "a":"The left",
+      "b":"What?",
+      "c":"The right",
+      "d":"The left",
+      "answer":"The right"
+    },
+    {
+      "q_id": 57,
+      "type":"multiple",
+      "a":"A knife",
+      "b":"A sword?",
+      "c":"Nothing",
+      "d":"A lightsaber",
+      "answer":"A lightsaber"
+    },
+    {
+      "q_id": 58,
+      "type": "multiple",
+      "a": "Dagobah",
+      "b": "Hoth",
+      "c": "Tatooine",
+      "d": "Sollust",
+      "answer": "Dagobah"
+    },
+    {
+      "q_id": 59,
+      "type":"multiple",
+      "a":"New York",
+      "b":"Chicago",
+      "c":"Seattle",
+      "d":"Los Angeles",
+      "answer":"Chicago"
+    },
+    {
+      "q_id": 60,
+      "type":"multiple",
+      "a":"Daniel Cerny",
+      "b":"Brian Bonsall",
+      "c":"Kieran Culkin",
+      "d":"Michael Oliver",
+      "answer":"Kieran Culkin"
+    },
+    {
+      "q_id": 61,
+      "type":"multiple",
+      "a":"California",
+      "b":"New York",
+      "c":"Paris",
+      "d":"Florida",
+      "answer":"Paris"
+    },
+    {
+      "q_id": 62,
+      "type":"multiple",
+      "a":"Sprite",
+      "b":"7-Up",
+      "c":"Pepsi",
+      "d":"Coke",
+      "answer":"Pepsi"
+    },
+    {
+      "q_id": 63,
+      "type":"multiple",
+      "a":"Chocolate Cake",
+      "b":"Cheese Balls",
+      "c":"Cheese Macaroni",
+      "d":"Lasagna",
+      "answer":"Cheese Macaroni"
+    },
+    {
+      "q_id": 64,
+      "type":"multiple",
+      "a":"Katheryn",
+      "b":"Kate",
+      "c":"Joan",
+      "d":"Karen",
+      "answer":"Kate"
+    },
+    {
+      "q_id": 65,
+      "type":"multiple",
+      "a":"Gum",
+      "b":"Nothing",
+      "c":"Candies",
+      "d":"Toothbrush",
+      "answer":"Toothbrush"
+    },
+    {
+      "q_id": 66,
+      "type":"multiple",
+      "a":"Harry and Marv",
+      "b":"Larry and Marv",
+      "c":"Larry and Harv",
+      "d":"Harry and Harv",
+      "answer":"Harry and Marv"
+    },
+    {
+      "q_id": 67,
+      "type": "multiple",
+      "a": "California",
+      "b": "New York",
+      "c": "Florida",
+      "d": "Paris",
+      "answer": "Florida"
     }
   ]
 }

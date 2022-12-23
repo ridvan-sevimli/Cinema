@@ -145,14 +145,12 @@ class HomeFragment : Fragment() {
                     var questions : MutableList<Questions>? = null
                     if(categoryName == "Mixed"){
                         questions = model.getMixed()!!
-                    } else if (categoryName == "Top 250 Movies") {
-                        //movies = model.getTop250movies()!!
-                    }else if(categoryName == "Most Popular Movies"){
-                        //movies = model.getMostPopularMovies()!!
-                    }else if(categoryName == "Most Popular Tv's"){
-                        //movies = model.getMostPopularTv()!!
-                    }else if(categoryName == "In Theaters"){
-                        //movies = model.getInTheaters()!!
+                    } else if (categoryName == "Harry Potter") {
+                        questions = model.getHarryPotter()!!
+                    }else if(categoryName == "Star Wars"){
+                        questions = model.getStarWars()!!
+                    }else if(categoryName == "Home Alone"){
+                        questions = model.getHomeAlone()!!
                     }
                     if (questions != null) {
                         for(question in questions){

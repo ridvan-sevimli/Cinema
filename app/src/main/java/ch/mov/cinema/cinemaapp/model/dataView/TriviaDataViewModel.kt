@@ -48,6 +48,21 @@ class TriviaDataViewModel : ViewModel() {
         return data
     }
 
+    suspend fun getHarryPotter() : MutableList<Questions>?{
+        val data = db?.triviaDao()?.getHarryPotter()?.toMutableList()
+        return data
+    }
+
+    suspend fun getStarWars() : MutableList<Questions>?{
+        val data = db?.triviaDao()?.getStarWars()?.toMutableList()
+        return data
+    }
+
+    suspend fun getHomeAlone() : MutableList<Questions>?{
+        val data = db?.triviaDao()?.getHomeAlone()?.toMutableList()
+        return data
+    }
+
     suspend fun insertPlayer(players: MutableList<Players>){
         for(player in players){
             db?.triviaDao()?.insertAll(player)
