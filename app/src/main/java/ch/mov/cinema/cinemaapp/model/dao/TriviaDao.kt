@@ -44,4 +44,7 @@ interface TriviaDao {
     @Query("DELETE FROM questions")
     suspend fun clearQuestionsDb()
 
+    @Query("DELETE FROM players")
+    suspend fun clearPlayer()
+
 }

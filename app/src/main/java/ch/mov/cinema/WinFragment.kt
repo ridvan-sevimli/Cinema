@@ -42,12 +42,16 @@ class WinFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        resetSelectedCategory()
+        resetCurrentPlayer()
         model.initDB(requireContext())
 
 
-//        lifecycleScope.launchWhenStarted {
-//            withContext(Dispatchers.Default) {
+        lifecycleScope.launchWhenStarted {
+            withContext(Dispatchers.Default) {
+
+                model.clearPlayer()
+                model.clearQuestionsDb()
 //                var players = model.getPlayers()
 //                val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
 //                val editor = settings?.edit()
@@ -57,12 +61,27 @@ class WinFragment : Fragment() {
 //                model.clearQuestionsDb()
 //                editor?.putInt(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey, playerId + 1)
 //                editor?.commit()
-//            }
-//        }
+            }
+        }
+
 
         binding.btnGoAgain.setOnClickListener {
             findNavController().navigate(R.id.action_WinFragment_to_SplashFragment)
         }
+    }
+
+    fun resetSelectedCategory(){
+        val setting = context?.getSharedPreferences("prefsfile",Context.MODE_PRIVATE)
+        val editor = setting?.edit()
+        editor?.putString(TriviaKeyIds.SELECTED_CATEGORY.triviaKey,"Mixed")
+        editor?.commit()
+    }
+
+    fun resetCurrentPlayer(){
+        val setting = context?.getSharedPreferences("prefsfile",Context.MODE_PRIVATE)
+        val editor = setting?.edit()
+        editor?.putInt(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey,0)
+        editor?.commit()
     }
 
     override fun onDestroyView() {
