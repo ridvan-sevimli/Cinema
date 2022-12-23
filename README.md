@@ -12,7 +12,7 @@ Download Movie Trivia now and become a film expert!
 
 ![Branching Modell](doc/getStarted.png) ![Branching Modell](doc/firstPage.png) ![Branching Modell](doc/firstPage2.png) ![Branching Modell](doc/trivia_modus.png) ![Branching Modell](doc/trivia_modus_anwer.png)
 
-## Das Team
+## Team
 Rivan Sevimli 
 
 ## Used Technologies
