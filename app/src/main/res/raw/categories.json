@@ -1,9 +1,24 @@
 {
-   "categories":[
-      {
-         "id":"1630029",
-         "title":"Avatar: The Way of Water",
-         "image":"https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_UX128_CR0,12,128,176_AL_.jpg"
-      }
-   ]
+  "maincategories": [
+    {
+      "m_id": "1",
+      "title": "Mixed",
+      "icon": "icons8_coming_soon_100"
+    },
+    {
+      "m_id": "2",
+      "title": "Harry Potter",
+      "icon": "icons8_prize_100"
+    },
+    {
+      "m_id": "3",
+      "title": "Star Wars",
+      "icon": "icons8_final_cut_pro_x_100"
+    },
+    {
+      "m_id": "4",
+      "title": "Home Alone",
+      "icon": "icons8_tv_100"
+    }
+  ]
 }

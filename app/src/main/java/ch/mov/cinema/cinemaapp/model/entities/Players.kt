@@ -5,15 +5,18 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
-@Entity(tableName = "Movies")
-data class Movies (
+/**
+ * This entity is used to store players
+ */
+@Entity(tableName = "Players")
+data class Players(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
 
-    @ColumnInfo(name= "dishName")
-    var dishName : String?,
+    @ColumnInfo(name="Name")
+    var Name : String?,
 
-    @ColumnInfo(name= "dishImgPath")
-    var dishImgPath : String?
+    @ColumnInfo(name="points")
+    var points : Int,
 
 ): Serializable

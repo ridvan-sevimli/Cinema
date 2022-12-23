@@ -8,17 +8,58 @@ app:startDestination="@id/SplashFragment">
 <fragment
     android:id="@+id/SplashFragment"
     android:name="ch.mov.cinema.SplashFragment"
-    android:label="@string/first_fragment_label"
+    android:label="@string/splash_screen_label"
     tools:layout="@layout/splasch_screen">
 
     <action
         android:id="@+id/action_SplashFragment_to_HomeFragment"
         app:destination="@id/HomeFragment" />
+    <action
+        android:id="@+id/action_SplashFragment_self"
+        app:destination="@id/SplashFragment" />
 </fragment>
 <fragment
     android:id="@+id/HomeFragment"
     android:name="ch.mov.cinema.HomeFragment"
-    android:label="@string/second_fragment_label"
+    android:label="@string/dash_boad_label"
     tools:layout="@layout/fragment_home">
+    <action
+        android:id="@+id/action_HomeFragment_to_DetailFragment"
+        app:destination="@id/QuestionFragment" />
 </fragment>
+    <fragment
+        android:id="@+id/QuestionFragment"
+        android:name="ch.mov.cinema.QuestionFragment"
+        android:label="@string/question_view_label"
+        tools:layout="@layout/question_view">
+
+        <action
+            android:id="@+id/action_QuestionFragment_to_QuestionFragment"
+            app:destination="@id/QuestionFragment" />
+        <action
+            android:id="@+id/action_QuestionFragment_to_switchFragment"
+            app:destination="@id/SwitchFragment" />
+        <action
+            android:id="@+id/action_QuestionFragment_to_WinFragment"
+            app:destination="@id/WinFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SwitchFragment"
+        android:name="ch.mov.cinema.SwitchFragment"
+        android:label="@string/question_view_label"
+        tools:layout="@layout/time_to_switch">
+        <action
+            android:id="@+id/action_SwitchFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/WinFragment"
+        android:name="ch.mov.cinema.WinFragment"
+        android:label="@string/question_view_label"
+        tools:layout="@layout/fragment_winning">
+
+        <action
+            android:id="@+id/action_WinFragment_to_SplashFragment"
+            app:destination="@id/SplashFragment" />
+    </fragment>
 </navigation>

@@ -15,11 +15,11 @@
         app:cardElevation="5dp">
 
         <ImageView
-            android:id="@+id/img_dish"
+            android:id="@+id/img_movie"
             android:layout_width="match_parent"
             android:scaleType="centerCrop"
             android:layout_height="match_parent"
-            android:src="@drawable/bg_splash"/>
+            android:src="@drawable/default_poster" />
 
     </androidx.cardview.widget.CardView>
     <LinearLayout
@@ -30,14 +30,14 @@
 
 
         <TextView
-            android:id="@+id/tv_dish_name"
+            android:id="@+id/tv_movie_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dish Name"
+            android:text="Movie Title"
             android:textSize="15sp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:maxLines="2"
-            android:fontFamily="@font/anton"
+            android:fontFamily="@font/roboto_bold"
             android:paddingStart="10dp"/>
     </LinearLayout>
 
