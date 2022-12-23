@@ -17,7 +17,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="104dp"
-        android:layout_above="@+id/btnGetStarted"
+        android:layout_above="@+id/btnGoAgain"
         android:layout_marginBottom="128dp"
         android:text="Winner"
         android:textAlignment="center"
@@ -27,7 +27,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="104dp"
-        android:layout_above="@+id/btnGetStarted"
+        android:layout_above="@+id/btnGoAgain"
         android:layout_marginBottom="19dp"
         android:text="Points"
         android:textAlignment="center"
@@ -35,7 +35,7 @@
         android:textSize="50dp" />
 
     <Button
-        android:id="@+id/btnGetStarted"
+        android:id="@+id/btnGoAgain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"

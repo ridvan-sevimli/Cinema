@@ -59,7 +59,7 @@ app:startDestination="@id/SplashFragment">
         tools:layout="@layout/fragment_winning">
 
         <action
-            android:id="@+id/action_WinFragment_to_HomeFragment"
-            app:destination="@id/HomeFragment" />
+            android:id="@+id/action_WinFragment_to_SplashFragment"
+            app:destination="@id/SplashFragment" />
     </fragment>
 </navigation>

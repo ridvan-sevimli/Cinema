@@ -145,7 +145,11 @@ class QuestionFragment : Fragment() {
                 editor?.commit()
                 findNavController().navigate(R.id.action_QuestionFragment_to_QuestionFragment)
             }else{
-                findNavController().navigate(R.id.action_QuestionFragment_to_switchFragment)
+                if(getCurrentPlayer() == 2){
+                    findNavController().navigate(R.id.action_QuestionFragment_to_WinFragment)
+                }else{
+                    findNavController().navigate(R.id.action_QuestionFragment_to_switchFragment)
+                }
             }
         }
     }
@@ -218,6 +222,12 @@ class QuestionFragment : Fragment() {
         }else{
            return -1
         }
+    }
+
+    fun getCurrentPlayer() : Int?{
+        val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
+        var currentPlayerId = settings?.getInt(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey, 0)
+        return (currentPlayerId)
     }
 
     override fun onDestroyView() {
