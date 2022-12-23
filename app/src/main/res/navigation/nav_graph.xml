@@ -39,6 +39,9 @@ app:startDestination="@id/SplashFragment">
         <action
             android:id="@+id/action_QuestionFragment_to_switchFragment"
             app:destination="@id/SwitchFragment" />
+        <action
+            android:id="@+id/action_QuestionFragment_to_WinFragment"
+            app:destination="@id/WinFragment" />
     </fragment>
     <fragment
         android:id="@+id/SwitchFragment"
@@ -47,6 +50,16 @@ app:startDestination="@id/SplashFragment">
         tools:layout="@layout/time_to_switch">
         <action
             android:id="@+id/action_SwitchFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/WinFragment"
+        android:name="ch.mov.cinema.WinFragment"
+        android:label="@string/question_view_label"
+        tools:layout="@layout/fragment_winning">
+
+        <action
+            android:id="@+id/action_WinFragment_to_HomeFragment"
             app:destination="@id/HomeFragment" />
     </fragment>
 </navigation>
