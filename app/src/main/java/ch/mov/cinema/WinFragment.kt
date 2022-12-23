@@ -44,24 +44,25 @@ class WinFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         resetSelectedCategory()
         resetCurrentPlayer()
+        resetPoints()
         model.initDB(requireContext())
-
+        var maxPoint = 0
+        var winner : String? = ""
 
         lifecycleScope.launchWhenStarted {
             withContext(Dispatchers.Default) {
-
+                var players = model.getPlayers()
+                for(player in players!!){
+                    if(player.points > 0){
+                        maxPoint = player.points
+                        winner = player.Name
+                    }
+                }
                 model.clearPlayer()
                 model.clearQuestionsDb()
-//                var players = model.getPlayers()
-//                val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
-//                val editor = settings?.edit()
-//                var points = settings?.getInt(TriviaKeyIds.CURRENT_PLAYER_POINT.triviaKey, 0)
-//                var playerId = settings?.getInt(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey, 0)
-//                model.updatePlayers(Players(playerId!!, players?.get(playerId)?.Name,points!!))
-//                model.clearQuestionsDb()
-//                editor?.putInt(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey, playerId + 1)
-//                editor?.commit()
             }
+            binding.points.text = maxPoint.toString()
+            binding.winner.text = winner
         }
 
 
@@ -83,6 +84,14 @@ class WinFragment : Fragment() {
         editor?.putInt(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey,0)
         editor?.commit()
     }
+
+    fun resetPoints(){
+        val setting = context?.getSharedPreferences("prefsfile",Context.MODE_PRIVATE)
+        val editor = setting?.edit()
+        editor?.putInt(TriviaKeyIds.CURRENT_PLAYER_POINT.triviaKey,0)
+        editor?.commit()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

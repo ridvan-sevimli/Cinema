@@ -57,6 +57,7 @@ class SwitchFragment : Fragment() {
                 model.clearQuestionsDb()
                 editor?.putInt(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey, playerId + 1)
                 editor?.commit()
+                resetPoints()
             }
         }
 
@@ -64,6 +65,14 @@ class SwitchFragment : Fragment() {
             findNavController().navigate(R.id.action_SwitchFragment_to_HomeFragment)
         }
     }
+
+    fun resetPoints(){
+        val setting = context?.getSharedPreferences("prefsfile",Context.MODE_PRIVATE)
+        val editor = setting?.edit()
+        editor?.putInt(TriviaKeyIds.CURRENT_PLAYER_POINT.triviaKey,0)
+        editor?.commit()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
