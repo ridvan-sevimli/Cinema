@@ -10,6 +10,10 @@ import ch.mov.cinema.cinemaapp.model.entities.Answers
 import ch.mov.cinema.cinemaapp.model.entities.Players
 import ch.mov.cinema.cinemaapp.model.entities.Questions
 
+/**
+ *  TriviaDataViewModel is a bridge between the DB and UX
+ *  it handles the request from the UX
+ */
 class TriviaDataViewModel : ViewModel() {
 
     var db : TriviaDatabase? = null

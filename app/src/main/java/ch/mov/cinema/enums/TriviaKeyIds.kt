@@ -1,5 +1,9 @@
 package ch.mov.cinema.enums
 
+
+/**
+ * Used for Shared Preferences to write and read data in different fragments
+ */
 enum class TriviaKeyIds(val triviaKey: String) {
     POSTER_PATH("POSTER_PATH"),
     QUESTION_ID("QUESTION_ID"),

@@ -7,6 +7,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
+/**
+ * This entity is used to store answers to the questions
+ */
 @Entity(tableName = "Answers")
 data class Answers (
     @PrimaryKey(autoGenerate = true)

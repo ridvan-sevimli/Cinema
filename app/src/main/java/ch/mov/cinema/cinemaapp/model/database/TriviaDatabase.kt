@@ -9,7 +9,10 @@ import ch.mov.cinema.cinemaapp.model.entities.Answers
 import ch.mov.cinema.cinemaapp.model.entities.Players
 import ch.mov.cinema.cinemaapp.model.entities.Questions
 
-
+/**
+ * Instantiates a db for the run time of the application
+ * here are all the players, questions and answers stored for the trivia
+ */
 @Database(entities = [Questions::class,Answers::class, Players::class],version = 1,exportSchema = false)
 abstract class TriviaDatabase : RoomDatabase() {
 

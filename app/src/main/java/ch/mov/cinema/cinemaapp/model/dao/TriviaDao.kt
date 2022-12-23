@@ -8,7 +8,10 @@ import ch.mov.cinema.cinemaapp.model.entities.Answers
 import ch.mov.cinema.cinemaapp.model.entities.Players
 import ch.mov.cinema.cinemaapp.model.entities.Questions
 
-
+/**
+ * TriviaDao (Data Access Object)
+ * Does the main work in retrieving and handling data from the DB
+ */
 @Dao
 interface TriviaDao {
     @Query("SELECT * FROM questions ORDER BY id DESC")

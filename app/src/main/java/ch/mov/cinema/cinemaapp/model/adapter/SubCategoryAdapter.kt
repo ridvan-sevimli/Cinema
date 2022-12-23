@@ -9,7 +9,11 @@ import ch.mov.cinema.cinemaapp.model.entities.Questions
 import ch.mov.cinema.databinding.ItemRvSubCategoryBinding
 import com.squareup.picasso.Picasso
 
-
+/**
+ * Adapter for Sub Category.
+ * Adds onClickListener to the resyclerview items.
+ * Handles individual elements setting text and icon
+ */
 class SubCategoryAdapter() : RecyclerView.Adapter<SubCategoryAdapter.QuestionsViewHolder>(){
 
 

@@ -5,13 +5,17 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ch.mov.cinema.cinemaapp.model.entities.Category
+import ch.mov.cinema.cinemaapp.model.dataClass.Category
 import ch.mov.cinema.databinding.ItemRvMainCategoryBinding
 import ch.mov.cinema.enums.Colors
 import ch.mov.cinema.enums.MainCategory
 import ch.mov.cinema.enums.TriviaKeyIds
 
-
+/**
+ * Adapter for Main Category.
+ * Adds onClickListener to the resyclerview items.
+ * Handles individual elements setting text and icon
+ */
 class MainCategoryAdapter() : RecyclerView.Adapter<MainCategoryAdapter.CategoryViewHolder>(){
 
     var listener : OnItemClickListener? = null

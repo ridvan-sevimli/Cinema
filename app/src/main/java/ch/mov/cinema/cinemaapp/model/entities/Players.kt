@@ -5,6 +5,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
+/**
+ * This entity is used to store players
+ */
 @Entity(tableName = "Players")
 data class Players(
     @PrimaryKey(autoGenerate = true)

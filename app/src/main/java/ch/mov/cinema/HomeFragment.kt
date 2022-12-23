@@ -15,6 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ch.mov.cinema.cinemaapp.model.TriviaDataViewModel
 import ch.mov.cinema.cinemaapp.model.adapter.MainCategoryAdapter
 import ch.mov.cinema.cinemaapp.model.adapter.SubCategoryAdapter
+import ch.mov.cinema.cinemaapp.model.dataClass.Category
+import ch.mov.cinema.cinemaapp.model.dataClass.CategoryItem
+import ch.mov.cinema.cinemaapp.model.dataClass.QuestionItem
 import ch.mov.cinema.cinemaapp.model.entities.*
 import ch.mov.cinema.databinding.FragmentHomeBinding
 import ch.mov.cinema.enums.MainCategory

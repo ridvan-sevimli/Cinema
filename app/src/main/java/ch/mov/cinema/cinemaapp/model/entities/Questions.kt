@@ -4,7 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
-
+/**
+ * This entity is used to store questions in to DB
+ */
 @Entity(tableName = "Questions")
 data class Questions (
     @PrimaryKey(autoGenerate = true)
