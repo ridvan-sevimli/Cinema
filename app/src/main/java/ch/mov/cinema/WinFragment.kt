@@ -11,7 +11,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import ch.mov.cinema.cinemaapp.model.TriviaDataViewModel
-import ch.mov.cinema.cinemaapp.model.entities.*
 import ch.mov.cinema.databinding.FragmentWinningBinding
 import ch.mov.cinema.enums.TriviaKeyIds
 import kotlinx.coroutines.Dispatchers

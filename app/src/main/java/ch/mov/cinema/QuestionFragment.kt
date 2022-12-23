@@ -31,6 +31,7 @@ class QuestionFragment : Fragment() {
 
     private var _binding: QuestionViewBinding? = null
     var player : Players? = null
+    private val ALLOWED_PLAYER = 2
 
 
     // This property is only valid between onCreateView and onDestroyView.
@@ -162,7 +163,7 @@ class QuestionFragment : Fragment() {
                 editor?.commit()
                 findNavController().navigate(R.id.action_QuestionFragment_to_QuestionFragment)
             }else{
-                if(getCurrentPlayer() == 2){
+                if(getCurrentPlayer() == ALLOWED_PLAYER){
                     findNavController().navigate(R.id.action_QuestionFragment_to_WinFragment)
                 }else{
                     findNavController().navigate(R.id.action_QuestionFragment_to_switchFragment)

@@ -1,7 +1,6 @@
 package ch.mov.cinema
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -31,7 +30,7 @@ class HomeFragment : Fragment() {
 
     val model: TriviaDataViewModel by activityViewModels()
     private var _binding: FragmentHomeBinding? = null
-
+    private val ALLOWED_PLAYER = 2
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
 
@@ -64,7 +63,7 @@ class HomeFragment : Fragment() {
         binding.rvMainCategory.adapter = mainCategoryAdapter
         binding.rvMainCategory.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
 
-        if(getCurrentPlayer() == 2){
+        if(getCurrentPlayer() == ALLOWED_PLAYER){
             fillQuestions_to_DB()
             getSelectedCategory()
             lifecycleScope.launchWhenStarted {

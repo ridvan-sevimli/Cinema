@@ -14,9 +14,6 @@ interface TriviaDao {
     @Query("SELECT * FROM questions ORDER BY id DESC")
     fun allQuestions(): List<Questions>
 
-//    @Query("SELECT * FROM questions WHERE category ='top_250_movies'")
-//    fun getTop250movies(): List<Questions>
-
     @Query("SELECT * FROM questions WHERE category ='Mixed'")
     fun getMixed(): List<Questions>
 
