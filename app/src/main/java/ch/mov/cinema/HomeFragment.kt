@@ -1,6 +1,7 @@
 package ch.mov.cinema
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -64,6 +65,7 @@ class HomeFragment : Fragment() {
 
         if(getCurrentPlayer() == 2){
             fillQuestions_to_DB()
+            getSelectedCategory()
             lifecycleScope.launchWhenStarted {
                 withContext(Dispatchers.Default) {
                     arrSubCategory = model.getMixed() as ArrayList<Questions>
@@ -136,6 +138,7 @@ class HomeFragment : Fragment() {
     private val onClickedMainCateogry  = object : MainCategoryAdapter.OnItemClickListener{
         override fun onClicked(categoryName: String) {
             binding.textViewCategory.text = categoryName
+            saveSelectedCategory(categoryName)
             arrSubCategory = ArrayList<Questions>()
             lifecycleScope.launchWhenStarted{
                 withContext(Dispatchers.Default){
@@ -185,6 +188,20 @@ class HomeFragment : Fragment() {
         val editor = setting?.edit()
         editor?.putInt(TriviaKeyIds.CURRENT_PLAYER_ID.triviaKey,palyerId)
         editor?.commit()
+    }
+
+
+    fun saveSelectedCategory(categoryId: String){
+        val setting = context?.getSharedPreferences("prefsfile",Context.MODE_PRIVATE)
+        val editor = setting?.edit()
+        editor?.putString(TriviaKeyIds.SELECTED_CATEGORY.triviaKey,categoryId)
+        editor?.commit()
+    }
+
+    fun getSelectedCategory() : String?{
+        val settings = context?.getSharedPreferences("prefsfile", Context.MODE_PRIVATE)
+        var selectedCategoryId = settings?.getString(TriviaKeyIds.SELECTED_CATEGORY.triviaKey, "Mixed")
+        return selectedCategoryId
     }
 
     fun getCurrentPlayer() : Int?{
